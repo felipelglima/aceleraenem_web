@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-light: hsl(156, 100%, 55%);
+  --primary-base: #00ff98;
+  --primary-dark: #00cc7a;
+
+  --secondary-light: #8800b8;
+  --secondary-base: #640087;
+  --secondary-dark: #4c0066;
+
+  --accent-base: #fbea46;
+}
+
+html {
+  /* height: 100%; */
+}
+
+body {
+  background: #f9f5f2;
+  /* height: 100%; */
+}
+
+main {
+  /* height: 100%; */
+}
