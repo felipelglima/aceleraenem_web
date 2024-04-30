@@ -1,7 +1,7 @@
 import { AtHandle } from "@/ui/AtHandle"
 import { Button } from "@/ui/Button"
 
-const modules = [
+export const modules = [
   { name: "O TEXTO DO ENEM E A MACROESTRUTURA" },
   { name: "PROJETO DE TEXTO ESTRATÉGICO" },
   { name: "BRAINSTORMING E ABORDAGEM COMPLETA AO TEMA" },
@@ -10,7 +10,7 @@ const modules = [
   { name: "COMO FAZER UM PARÁGRAFO DE CONCLUSÃO" },
 ]
 
-const materials = [
+export const materials = [
   { name: "Aulas Semanais", description: "Aulas de 1h30m de duração" },
   { name: "Correção de Redação", description: "1 correção por semana" },
   { name: "Atividades", description: "Propostas de Redação/Temas" },
