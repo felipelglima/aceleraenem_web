@@ -12,7 +12,7 @@ const pages = [
 export const Header = () => {
   return (
     <header className="mx-auto flex max-w-7xl items-center justify-between p-6">
-      <strong className="text-zinc-600">
+      <strong className="text-secondary-light">
         acelera<span className="text-primary">enem</span>
       </strong>
 
