@@ -47,7 +47,7 @@ export default async function Home() {
         <div className="h-full w-full md:py-6">
           <img
             className="h-full max-h-[400px] w-full rounded-md object-cover lg:max-h-none"
-            src="https://static.wixstatic.com/media/98dd76_eac8c740c4d8430cad41ef48e4abe213~mv2.jpg/v1/crop/x_0,y_33,w_785,h_979/fill/w_409,h_510,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/WhatsApp%20Image%202022-06-23%20at%2018_edited.jpg"
+            src="https://static.wixstatic.com/media/1dd3db_0f955ca5bde544e3995cf3c517b9b2d4~mv2.png/v1/fill/w_418,h_418,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/POST%20NOVAS%20VAGAS.png"
           />
         </div>
       </section>
