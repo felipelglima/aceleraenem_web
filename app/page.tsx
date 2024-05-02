@@ -3,11 +3,13 @@ import { Button } from "@/ui/Button"
 
 export const modules = [
   { name: "O TEXTO DO ENEM E A MACROESTRUTURA" },
-  { name: "PROJETO DE TEXTO ESTRATÉGICO" },
+  { name: "COMO FAZER UM PLANEJAMENTO DE TEXTO ESTRATÉGICO" },
   { name: "BRAINSTORMING E ABORDAGEM COMPLETA AO TEMA" },
-  { name: "COMO CONSTRUIR UMA INTRODUÇÃO DE SUCESSO" },
-  { name: "COMO FAZER UM PARÁGRAFO DE DESENVOLVIMENTO" },
-  { name: "COMO FAZER UM PARÁGRAFO DE CONCLUSÃO" },
+  { name: "CONSTRUIR UMA INTRODUÇÃO EM 3 PASSOS" },
+  { name: "DOMINAR O CICLO DO DESENVOLVIMENTO" },
+  { name: "ELABORAR UM REPERTÓRIO PRODUTIVO NA C2" },
+  { name: "ESTRATÉGIAS PARA GABARITAR A C3" },
+  { name: "CRIAR UM PARÁGRAFO DE CONCLUSÃO COM  UMA PROPOSTA DE INTERVENÇÃO COM 5 ELEMENTOS" },
 ]
 
 export const materials = [
@@ -15,8 +17,8 @@ export const materials = [
   { name: "Correção de Redação", description: "1 correção por semana" },
   { name: "Atividades", description: "Propostas de Redação/Temas" },
   { name: "Comunidade", description: "Grupo privado de alunos" },
-  { name: "Materiais", description: "Materiais das aulas em PDF" },
-  { name: "Mentoria", description: "Aulas individuais" },
+  { name: "Materiais", description: "Materiais das aulas e atividades" },
+  { name: "Mentorias em Grupo", description: "Dedicadas à dúvidas" },
 ]
 
 export default async function Home() {
@@ -27,8 +29,8 @@ export default async function Home() {
           <AtHandle />
 
           <h1 className="text-4xl font-bold leading-normal text-zinc-800 lg:text-5xl">
-            Uma headline de <span className="text-primary">teste</span> aqui,
-            <br className="hidden lg:inline" /> poderosa MESMO.
+            Conquiste sua vaga:
+            <br className="hidden lg:inline" /> Alcance os <span className="text-primary">900+</span> na Redação do ENEM!
           </h1>
 
           <p className="text-zinc-600">
