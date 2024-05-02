@@ -19,7 +19,9 @@ export const Footer = () => {
       <div className="flex items-center gap-2 font-semibold text-black">
         <PinIcon />
         {
-          "Rua Dom Pedro II, 54 - Centro, Ilhéus - BA (Galeria It'art - 1º Andar) - TOCA"
+          <a href="https://www.google.com/maps/place/Curso+de+Redação+Acelera+Enem/@-14.7986126,-39.0332874,15z/data=!4m6!3m5!1s0x7390bbf0d2f194b:0x120a76a87f0d1935!8m2!3d-14.7987886!4d-39.0334966!16s%2Fg%2F11s46qyjgf?entry=ttu">
+            "Rua Dom Pedro II, 54 - Centro, Ilhéus - BA (Galeria It'art - 1º Andar) - TOCA"
+          </a>
         }
       </div>
 
