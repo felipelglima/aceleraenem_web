@@ -120,7 +120,8 @@ export default async function Home() {
           <p className="text-zinc-600">
             A professora Dulce Gomes atua há mais de 25 anos na Área de
             Educação. Graduada em Letras pela UNIP - Universidade Paulista em
-            São Paulo e Pós Graduada em Neuropsicologia da Educação.
+            São Paulo, Pós Graduada em Neuropsicologia da Educação e 
+            Certificada em Curso Avançado para Corretores de Redação.
           </p>
 
           <p className="text-zinc-600">
