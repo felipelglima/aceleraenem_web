@@ -9,7 +9,7 @@ export const modules = [
   { name: "DOMINAR O CICLO DO DESENVOLVIMENTO" },
   { name: "ELABORAR UM REPERTÓRIO PRODUTIVO NA C2" },
   { name: "ESTRATÉGIAS PARA GABARITAR A C3" },
-  { name: "CRIAR UM PARÁGRAFO DE CONCLUSÃO COM  UMA PROPOSTA DE INTERVENÇÃO COM 5 ELEMENTOS" },
+  { name: "CRIAR UM PARÁGRAFO DE CONCLUSÃO COM  UMA PROPOSTA DE INTERVENÇÃO COM 5 ELEMENTOS" }.
 ]
 
 export const materials = [
@@ -30,12 +30,12 @@ export default async function Home() {
 
           <h1 className="text-4xl font-bold leading-normal text-zinc-800 lg:text-5xl">
             Conquiste sua vaga:
-            <br className="hidden lg:inline" /> Alcance os <span className="text-primary">900+</span> na Redação do ENEM!
+            <br className="hidden lg:inline" /> Alcance os <span className="text-primary">900+</span> na Redação do ENEM
           </h1>
 
           <p className="text-zinc-600">
-            Transforme a nota da sua redação com a professora dulce gomes.
-            Atinga a nota que você precisa para entrar na faculdade dos sonhos.
+            Transforme a nota da sua redação com a professora Dulce Gomes.
+            A chave para sua faculdade dos sonhos!
           </p>
 
           <Button className="w-max bg-primary text-black hover:bg-primary-light">
