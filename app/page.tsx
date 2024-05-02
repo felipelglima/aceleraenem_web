@@ -83,7 +83,7 @@ export default async function Home() {
       <section className="mx-auto w-full max-w-7xl p-6">
         <div className="flex flex-col items-center gap-16 rounded-md border border-dashed border-zinc-400 p-4 lg:p-12">
           <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-5xl">
-            Você terá acesso a materiais exclusivos
+            Você terá acesso à
           </h2>
 
           <ul className="grid w-full grid-cols-2 gap-6 lg:grid-cols-3">
