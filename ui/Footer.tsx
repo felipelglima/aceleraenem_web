@@ -15,7 +15,7 @@ export const Footer = () => {
       </section>
 
       <div className="h-[500px] w-full rounded bg-zinc-300" />
-
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15429.897385791099!2d-39.0332874!3d-14.7986126!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7390bbf0d2f194b%3A0x120a76a87f0d1935!2sCurso%20de%20Reda%C3%A7%C3%A3o%20Acelera%20Enem!5e0!3m2!1spt-BR!2sbr!4v1714681196335!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       <div className="flex items-center gap-2 font-semibold text-black">
         <PinIcon />
         {
