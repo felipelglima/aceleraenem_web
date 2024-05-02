@@ -34,8 +34,8 @@ export default async function Home() {
           </h1>
 
           <p className="text-zinc-600">
-            Transforme a nota da sua redação com a professora Dulce Gomes.
-            A chave para sua faculdade dos sonhos!
+            O Curso Acelera Enem oferece <strong>cursos Online e Presenciais</strong>
+            <br/>para ajudar você a entrar na sua Universidade dos sonhos!
           </p>
 
           <Button className="w-max bg-primary text-black hover:bg-primary-light">
