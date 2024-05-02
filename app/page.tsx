@@ -132,12 +132,11 @@ export default async function Home() {
           </p>
 
           <p className="text-zinc-600">
-            Atualmente, dedica-se exclusivamente a Mentorias de Redação e em
-            grupo, possui a uma das maiores comunidades na área da educação que
-            vem crescendo no Brasil e em outros países, na qual ensina o
-            processo da escrita com passo a passo para escrever uma redação com
-            as 5 competências exigidas Pelo Enem - Exame Nacional do Ensino
-            Médio.
+            Atualmente, dedica-se exclusivamente ao curso que fundou em 2021, 
+            possui uma das maiores comunidades na área da educação que
+            vem crescendo no Brasil, na qual ensina o processo da escrita 
+            com passo a passo para escrever uma redação com as 5 competências 
+            exigidas Pelo Enem - Exame Nacional do Ensino Médio.
           </p>
 
           <Button className="w-max bg-primary text-black hover:bg-primary-light">
