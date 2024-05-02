@@ -12,16 +12,20 @@ type Class = {
 const MINUTE = 60
 const FIVE_MINUTES = 5 * MINUTE
 
+const mockClasses: Array<Class> = [
+  { name: "Turma 1", slug: "turma-1", startsAt: "2024-02-02" },
+]
 async function getClasses() {
-  const response = await fetch(`${API_URL}/api/classes`, {
-    next: {
-      revalidate: FIVE_MINUTES,
-      tags: ["classes"],
-    },
-  })
-  const data = await response.json()
+  return mockClasses
+  // const response = await fetch(`${API_URL}/api/classes`, {
+  //   next: {
+  //     revalidate: FIVE_MINUTES,
+  //     tags: ["classes"],
+  //   },
+  // })
+  // const data = await response.json()
 
-  return data as Class[]
+  // return data as Class[]
 }
 
 export default async function Page() {

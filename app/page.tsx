@@ -27,8 +27,7 @@ export default async function Home() {
           <AtHandle />
 
           <h1 className="text-4xl font-bold leading-normal text-zinc-800 lg:text-5xl">
-            Uma headline bem <span className="text-primary">poderosa</span>{" "}
-            aqui,
+            Uma headline de <span className="text-primary">teste</span> aqui,
             <br className="hidden lg:inline" /> poderosa MESMO.
           </h1>
 
