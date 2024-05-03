@@ -21,7 +21,7 @@ export const VideoTrigger = () => {
   return (
     <button
       onClick={() => playVideo()}
-      className={`font-text-white flex w-max items-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition hover:bg-primary`}
+      className={`font-text-white mt-4 flex w-max items-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition hover:bg-primary`}
     >
       Ver Vídeo
       <ArrowRight />

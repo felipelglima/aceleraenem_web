@@ -1,18 +1,17 @@
 import Image from "next/image"
 import Teacher from "../public/teacher.jpg"
 
-import { AtHandle, InstagramIcon } from "@/ui/AtHandle"
-import { Button, Link } from "@/ui/Button"
+import { InstagramIcon } from "@/ui/AtHandle"
+import { Link } from "@/ui/Button"
 
-import chart from "../public/chart.png"
 import Cert1 from "../public/certificates/cert_1.jpg"
 import Cert2 from "../public/certificates/cert_2.jpg"
+import chart from "../public/chart.png"
 import logo from "../public/logo.png"
 
-import { API_URL } from "@/util/api"
+import { ArrowRight } from "@/ui/Icons"
 import { VideoTrigger } from "@/ui/Video-Player/Trigger"
 import { materials, modules } from "./variables"
-import { ArrowRight } from "@/ui/Icons"
 
 async function getTotalStudents() {
   // do count on the database instead of find
@@ -34,7 +33,10 @@ export default async function Home() {
 
   return (
     <main className="flex w-full flex-col">
-      <section className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-0 px-6 md:flex-row md:gap-16">
+      <section
+        id="first"
+        className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-0 px-6 md:flex-row md:gap-16"
+      >
         <div className="flex w-full flex-col justify-center gap-6 py-6 md:py-32">
           <h1 className="text-4xl font-bold leading-normal text-zinc-800 lg:text-5xl">
             Conquiste sua vaga:
@@ -69,7 +71,7 @@ export default async function Home() {
 
       <section
         id="sobre"
-        className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-32"
+        className="mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 py-32"
       >
         <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-5xl">
           No{" "}
@@ -217,7 +219,7 @@ export default async function Home() {
         id="resultados"
         className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-6 lg:flex-row-reverse lg:gap-16"
       >
-        <div className="flex w-full flex-col gap-6 lg:py-32">
+        <div className="flex w-full flex-col gap-12 lg:py-32">
           <h2 className="text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
             <span className="text-primary">Resultados</span> de 2023
           </h2>
