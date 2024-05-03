@@ -36,15 +36,15 @@ export const CNPJInfo = (props: CNPJAPIResponse) => {
           <p>Razão social: {props.og_name}</p>
           <p>Nome Fantasia: {props.name}</p>
           <p>CNAE: {props.activity}</p>
+          <p>Data de Início: {props.startDate.toLocaleDateString()}</p>
           <p className="flex items-center gap-2">
             Status: {props.status}{" "}
             {props.status.toLowerCase() === "ativa" && (
               <div className="size-3 rounded-full bg-green-500" />
             )}
           </p>
-          <p>Data de Início: {props.startDate.toLocaleDateString()}</p>
           <p className="text-sm italic text-zinc-600">
-            Dados atualizados automaticamente pela Receita Federal
+            Extratos atualizados automaticamente pela Receita Federal
           </p>
         </div>
       )}

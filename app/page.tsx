@@ -16,16 +16,17 @@ import { ArrowRight } from "@/ui/Icons"
 
 async function getTotalStudents() {
   // do count on the database instead of find
-  const response = await fetch(`${API_URL}/api/students?count=1`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
+  // const response = await fetch(`${API_URL}/api/students?count=1`, {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // })
 
-  const data: Array<any> = await response.json()
+  // const data: Array<any> = await response.json()
 
-  return data.length
+  // return data.length
+  return 61
 }
 
 export default async function Home() {
