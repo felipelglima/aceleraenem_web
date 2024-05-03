@@ -32,7 +32,7 @@ export const Header = () => {
       <nav className="flex items-center gap-6">
         {pages.map((page) => (
           <NextLink
-            className={`relative font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block ${page.primary ? "rounded-full border border-dashed border-zinc-500 px-3 py-1.5 !font-bold !text-black" : "hidden"}`}
+            className={`relative font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block ${page.primary ? "rounded-full border border-dashed border-zinc-500 px-3 py-1.5 !font-bold !text-black hover:opacity-70" : "hidden"}`}
             key={page.href}
             href={page.href}
           >

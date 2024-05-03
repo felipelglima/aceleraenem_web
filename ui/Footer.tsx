@@ -105,7 +105,6 @@ export const Footer = async () => {
 
 function WhatsApp() {
   const phone = "(73) 99812-1251"
-  const phoneNumer = phone.replace(/^[0-9]*$/gi, "")
   const link = `https://wa.me/message/XCR4RQHJV3RNI1`
 
   return (
@@ -122,7 +121,7 @@ function WhatsApp() {
 
 function Email() {
   const email = "contato@aceleraenem.com"
-  const link = `/`
+  const link = `mailto:${email}`
 
   return (
     <a

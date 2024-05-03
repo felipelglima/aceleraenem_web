@@ -2,7 +2,7 @@ import Image from "next/image"
 import Teacher from "../public/teacher.jpg"
 
 import { AtHandle, InstagramIcon } from "@/ui/AtHandle"
-import { Button } from "@/ui/Button"
+import { Button, Link } from "@/ui/Button"
 
 import chart from "../public/chart.png"
 import Cert1 from "../public/certificates/cert_1.jpg"
@@ -48,10 +48,13 @@ export default async function Home() {
             para ajudar você a entrar na sua Universidade dos sonhos!
           </p>
 
-          <Button className="w-max bg-primary text-black hover:bg-primary-light">
+          <Link
+            href="/cursos"
+            className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
+          >
             Quero Conhecer o Curso
             <ArrowRight />
-          </Button>
+          </Link>
         </div>
 
         <div className="h-full w-full md:py-6">
@@ -88,10 +91,13 @@ export default async function Home() {
           ))}
         </ul>
 
-        <Button className="w-max bg-primary text-black hover:bg-primary-light">
+        <Link
+          href="/cursos"
+          className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
+        >
           Quero Conhecer o Curso
           <ArrowRight />
-        </Button>
+        </Link>
       </section>
 
       <section className="mx-auto w-full max-w-7xl p-6">
@@ -102,7 +108,10 @@ export default async function Home() {
 
           <ul className="grid w-full grid-cols-2 gap-6 lg:grid-cols-3">
             {materials.map((material) => (
-              <li key={material.name} className="flex w-full flex-col gap-3">
+              <li
+                key={material.name}
+                className="flex w-full flex-col gap-3 transition hover:opacity-80"
+              >
                 <div className="h-[130px] w-full overflow-hidden rounded-md bg-zinc-300 lg:h-[320px]">
                   <Image
                     src={material.img}
@@ -122,10 +131,13 @@ export default async function Home() {
             ))}
           </ul>
 
-          <Button className="w-max bg-primary text-black hover:bg-primary-light">
+          <Link
+            href="/cursos"
+            className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
+          >
             Quero Conhecer o Curso
             <ArrowRight />
-          </Button>
+          </Link>
         </div>
       </section>
 
@@ -201,7 +213,7 @@ export default async function Home() {
       </section>
 
       <section
-        id="#resultados"
+        id="resultados"
         className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-6 lg:flex-row-reverse lg:gap-16"
       >
         <div className="flex w-full flex-col gap-6 lg:py-32">
@@ -219,10 +231,13 @@ export default async function Home() {
             {totalStudents + 60} alunos fizeram o curso
           </p>
 
-          <Button className="w-max bg-primary text-black hover:bg-primary-light">
+          <Link
+            href="/cursos"
+            className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
+          >
             Quero conhecer o curso
             <ArrowRight />
-          </Button>
+          </Link>
         </div>
 
         <div className="flex h-full w-full items-center gap-4 lg:py-32">
@@ -315,7 +330,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6 lg:py-32">
+      <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6 lg:py-32 lg:pb-0">
         <div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-primary px-8 py-32">
           <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
             Faltam 3 vagas
@@ -325,14 +340,17 @@ export default async function Home() {
             Aceitamos Cartão de Crédito, PIX e Boleto
           </p>
 
-          <Button className="w-max bg-black text-white hover:bg-zinc-700">
+          <Link
+            href="/cursos"
+            className="w-max bg-black text-white hover:bg-zinc-700"
+          >
             Ver Cursos
             <ArrowRight />
-          </Button>
+          </Link>
         </div>
       </section>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6 lg:py-32">
+      <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6">
         <div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-[var(--secondary-lighter)] px-8 py-32">
           <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
             Confira nossos conteúdos grátis
@@ -343,10 +361,13 @@ export default async function Home() {
             aulas e material gratuito.
           </p>
 
-          <Button className="w-max bg-secondary-light text-white hover:!bg-secondary-light hover:!opacity-70">
+          <Link
+            href={process.env.DASHBOARD_URL as string}
+            className="w-max bg-secondary-light text-white hover:!bg-secondary-light hover:!opacity-70"
+          >
             Criar conta grátis
             <ArrowRight />
-          </Button>
+          </Link>
         </div>
       </section>
     </main>
