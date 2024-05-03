@@ -4,18 +4,23 @@ import NextLink from "next/link"
 export const Button = (props: { className?: string; children: ReactNode }) => {
   return (
     <button
-      className={`bg-primary-dark hover:bg-primary flex items-center gap-4 rounded-full px-3 py-1.5 font-bold text-white transition ${props.className || ""}`}
+      className={`flex items-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition hover:bg-primary ${props.className || ""}`}
     >
       {props.children}
     </button>
   )
 }
 
-export const Link = (props: { href: string; children: ReactNode }) => {
+export const Link = (props: {
+  external?: boolean
+  href: string
+  children: ReactNode
+}) => {
   return (
     <NextLink
       href={props.href}
-      className="bg-primary-dark hover:bg-primary flex items-center gap-4 rounded-full px-3 py-1.5 font-bold text-white transition"
+      target={props.external ? "_blank" : "_self"}
+      className="flex items-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition hover:bg-primary"
     >
       {props.children}
     </NextLink>

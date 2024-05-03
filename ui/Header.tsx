@@ -1,25 +1,38 @@
 import NextLink from "next/link"
 
 import { Link } from "./Button"
+import { InstagramIcon } from "./AtHandle"
 
 const pages = [
-  { name: "A Professora", href: "/a-professora" },
-  { name: "Cursos", href: "/cursos" },
-  { name: "Resultados", href: "/resultados" },
-  { name: "Sobre", href: "/sobre" },
+  { primary: true, name: "Cursos", href: "/cursos" },
+  { name: "A Professora", href: "#a-professora" },
+  { name: "Resultados", href: "#resultados" },
+  { name: "Sobre", href: "#sobre" },
 ]
 
 export const Header = () => {
   return (
     <header className="mx-auto flex max-w-7xl items-center justify-between p-6">
-      <strong className="text-secondary-light">
-        acelera<span className="text-primary">enem</span>
-      </strong>
+      <div className="flex items-center gap-2">
+        <NextLink href="/">
+          <strong className="text-secondary-light">
+            acelera<span className="text-primary">enem</span>
+          </strong>
+        </NextLink>
+
+        <a
+          href="https://www.instagram.com/cursoaceleraenem"
+          target="_blank"
+          className="hidden rounded p-2 text-secondary transition hover:bg-zinc-200 md:flex"
+        >
+          <InstagramIcon />
+        </a>
+      </div>
 
       <nav className="flex items-center gap-6">
         {pages.map((page) => (
           <NextLink
-            className="hidden font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block"
+            className={`relative font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block ${page.primary ? "rounded-full border border-dashed border-zinc-500 px-3 py-1.5 !font-bold !text-black" : "hidden"}`}
             key={page.href}
             href={page.href}
           >
@@ -27,7 +40,7 @@ export const Header = () => {
           </NextLink>
         ))}
 
-        <Link href="/cursos">
+        <Link external href={process.env.DASHBOARD_URL as string}>
           Acessar <MouseIcon />
         </Link>
       </nav>

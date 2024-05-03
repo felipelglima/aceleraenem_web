@@ -1,7 +1,7 @@
-import { Button, Link } from "@/ui/Button"
-import { slug } from "@/util/slug"
-import { materials, modules } from "../page"
-import { API_URL } from "@/util/api"
+import Image from "next/image"
+
+import { materials, modules } from "@/app/variables"
+import { Link } from "@/ui/Button"
 
 type Class = {
   name: string
@@ -97,7 +97,13 @@ export default async function Page() {
           <ul className="grid w-full grid-cols-2 gap-6 lg:grid-cols-3">
             {materials.map((material) => (
               <li key={material.name} className="flex w-full flex-col gap-6">
-                <div className="aspect-video h-[80px] w-full rounded-md bg-zinc-300 lg:h-auto" />
+                <div className="h-[130px] w-full overflow-hidden rounded-md bg-zinc-300 lg:h-[320px]">
+                  <Image
+                    src={material.img}
+                    alt=""
+                    className="h-full w-full object-cover"
+                  />
+                </div>
 
                 <footer className="flex flex-col gap-2">
                   <h3 className="text-xl font-semibold text-zinc-800">

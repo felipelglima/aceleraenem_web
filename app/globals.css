@@ -7,6 +7,8 @@
   --primary-base: #00ff98;
   --primary-dark: #00cc7a;
 
+  --secondary-lighter: hsl(284, 100%, 95%);
+
   --secondary-light: #8800b8;
   --secondary-base: #640087;
   --secondary-dark: #4c0066;
@@ -15,7 +17,12 @@
 }
 
 html {
-  /* height: 100%; */
+  scroll-behavior: smooth;
+  scroll-margin: 20vh;
+}
+
+html.dialog {
+  overflow-y: hidden;
 }
 
 body {
@@ -25,4 +32,44 @@ body {
 
 main {
   /* height: 100%; */
+}
+
+.backdrop {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+
+  background: hsla(0, 0%, 0%, 0.45);
+}
+
+.expanded-image {
+  position: fixed;
+  z-index: 40 !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 600px;
+  height: auto;
+
+  transition: all;
+}
+
+body > *:not(.backdrop, .expanded-image) {
+  opacity: 0;
+  animation: fadeIn forwards 1s;
+  animation-delay: 500ms;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

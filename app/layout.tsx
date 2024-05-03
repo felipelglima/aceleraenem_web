@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google"
 import "./globals.css"
 import { Header } from "@/ui/Header"
 import { Footer } from "@/ui/Footer"
+import Script from "next/script"
 
 const reading = Poppins({
   subsets: ["latin"],
@@ -12,9 +13,9 @@ const reading = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Curso de Redação Acelera Enem",
+  title: "Curso de Redação Acelera ENEM",
   description:
-    "O curso ideal para quem quer tirar uma boa nota na redação do Enem. Aprenda com a professora Dulce Gomes.",
+    "Conquiste sua vaga: Alcance os 900+ na Redação do ENEM. Oferecemos cursos Online e Presenciais para ajudar você a entrar na sua Universidade dos sonhos!",
 }
 
 export default function RootLayout({
@@ -30,6 +31,8 @@ export default function RootLayout({
         {children}
 
         <Footer />
+
+        <Script src="/images.js" />
       </body>
     </html>
   )

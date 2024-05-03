@@ -1,13 +1,54 @@
-import { AtHandle } from "@/ui/AtHandle"
+import { AtHandle, InstagramIcon } from "@/ui/AtHandle"
 import Link from "next/link"
+import { CNPJInfo } from "./footer/cnpj-info"
 
-export const Footer = () => {
+export type CNPJResponse = {
+  razao_social: string
+  nome_fantasia: string
+  descricao_situacao_cadastral: string
+  data_inicio_atividade: string
+  cnae_fiscal_descricao: string
+}
+
+const CNPJ = 51119706000108
+
+const ONE_DAY_IN_SECONDS = 60 * 60 * 24
+
+async function getCNPJ(cnpj: number) {
+  const response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`, {
+    next: {
+      revalidate: ONE_DAY_IN_SECONDS,
+    },
+  })
+  const data: CNPJResponse = await response.json()
+
+  return {
+    og_name: data.razao_social,
+    name: data.nome_fantasia,
+    status: data.descricao_situacao_cadastral,
+    startDate: new Date(data.data_inicio_atividade),
+    activity: data.cnae_fiscal_descricao,
+  }
+}
+
+export type CNPJAPIResponse = Awaited<ReturnType<typeof getCNPJ>>
+
+export const Footer = async () => {
+  const cnpj_data = await getCNPJ(CNPJ)
+
   return (
     <footer className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-6 py-6 lg:py-32">
-      <section className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-16">
-        <h3 className="text-xl font-bold text-zinc-800">Contato</h3>
+      <h3 className="text-xl font-bold text-zinc-800">Contato</h3>
 
-        <AtHandle rounded />
+      <section className="flex flex-col justify-center gap-6 lg:flex-row lg:items-center lg:gap-16">
+        <a
+          href="https://www.instagram.com/cursoaceleraenem"
+          target="_blank"
+          className="flex w-max items-center gap-2 rounded border border-secondary p-2 text-secondary transition hover:bg-secondary hover:text-white"
+        >
+          <InstagramIcon />
+          @cursoaceleraenem
+        </a>
 
         <WhatsApp />
 
@@ -17,6 +58,7 @@ export const Footer = () => {
       <div className="h-[500px] w-full rounded bg-zinc-300">
         <iframe
           src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15429.897385791099!2d-39.0332874!3d-14.7986126!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7390bbf0d2f194b%3A0x120a76a87f0d1935!2sCurso%20de%20Reda%C3%A7%C3%A3o%20Acelera%20Enem!5e0!3m2!1spt-BR!2sbr!4v1714681196335!5m2!1spt-BR!2sbr"
+          className="h-full w-full"
           width="600"
           height="450"
           style={{
@@ -28,10 +70,11 @@ export const Footer = () => {
         />
       </div>
 
-      <div className="flex items-center gap-2 font-semibold text-black">
+      <div className="flex items-center justify-center gap-2 font-semibold text-black">
         <PinIcon />
         <a
           target="_blank"
+          className="underline"
           href="https://www.google.com/maps/place/Curso+de+Redação+Acelera+Enem/@-14.7986126,-39.0332874,15z/data=!4m6!3m5!1s0x7390bbf0d2f194b:0x120a76a87f0d1935!8m2!3d-14.7987886!4d-39.0334966!16s%2Fg%2F11s46qyjgf?entry=ttu"
         >
           Rua Dom Pedro II, 54 - Centro, Ilhéus - BA (Galeria {"It'art"} - 1º
@@ -39,17 +82,23 @@ export const Footer = () => {
         </a>
       </div>
 
-      <p className="text-zinc-600">
-        ACELERA ENEM CURSOS PREPARATORIOS LTDA | CNPJ: 51.119.706/0001-08
-      </p>
+      <CNPJInfo {...cnpj_data} />
 
       <hr className="w-full text-zinc-400" />
 
-      <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-16">
-        <Link href="/">Política de Privacidade</Link>
-        <Link href="/">Termos de Uso</Link>
-        <Link href="/">Termos e Condições de Planos</Link>
+      <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-16">
+        <Link className="hover:underline" href="/">
+          Política de Privacidade
+        </Link>
+        <Link className="hover:underline" href="/">
+          Termos de Uso
+        </Link>
+        <Link className="hover:underline" href="/">
+          Termos e Condições
+        </Link>
       </div>
+
+      <p className="self-center">© Todos os direitos reservados.</p>
     </footer>
   )
 }
@@ -57,12 +106,13 @@ export const Footer = () => {
 function WhatsApp() {
   const phone = "(73) 99812-1251"
   const phoneNumer = phone.replace(/^[0-9]*$/gi, "")
-  const link = `/${phoneNumer}`
+  const link = `https://wa.me/message/XCR4RQHJV3RNI1`
 
   return (
     <a
       href={link}
-      className="flex w-max items-center gap-2 rounded-full bg-[#25D366] px-3 py-1.5 text-black"
+      target="_blank"
+      className="flex w-max items-center gap-2 rounded border border-[#25D366] p-2 text-[#25D366] transition hover:bg-[#25D366] hover:text-white hover:opacity-70"
     >
       <WhatsAppIcon />
       {phone}
@@ -77,7 +127,8 @@ function Email() {
   return (
     <a
       href={link}
-      className="flex w-max items-center gap-2 rounded-full bg-zinc-300 px-3 py-1.5 text-black"
+      target="_blank"
+      className="flex w-max items-center gap-2 rounded border border-zinc-600 p-2 text-zinc-600 transition hover:bg-zinc-600 hover:text-white"
     >
       <MailIcon />
       {email}
