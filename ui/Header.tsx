@@ -1,50 +1,55 @@
 import NextLink from "next/link"
 
 import { Link } from "./Button"
-import { InstagramIcon } from "./AtHandle"
+import { RevealOnScroll } from "./Reveal-on-Scroll"
 
 const pages = [
   { primary: true, name: "Cursos", href: "/cursos" },
-  { name: "A Professora", href: "#a-professora" },
-  { name: "Resultados", href: "#resultados" },
-  { name: "Sobre", href: "#sobre" },
+  { name: "Metodologia", href: "/#metodologia" },
+  { name: "Professora", href: "/#a-professora" },
+  { name: "Resultados", href: "/#resultados" },
 ]
 
 export const Header = () => {
   return (
-    <header className="mx-auto flex max-w-7xl items-center justify-between p-6">
-      <div className="flex items-center gap-2">
-        <NextLink href="/">
-          <strong className="text-secondary-light">
-            acelera<span className="text-primary">enem</span>
-          </strong>
-        </NextLink>
-
-        <a
-          href="https://www.instagram.com/cursoaceleraenem"
-          target="_blank"
-          className="hidden rounded p-2 text-secondary transition hover:bg-zinc-200 md:flex"
-        >
-          <InstagramIcon />
-        </a>
-      </div>
-
-      <nav className="flex items-center gap-6">
-        {pages.map((page) => (
-          <NextLink
-            className={`relative font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block ${page.primary ? "rounded-full border border-dashed border-zinc-500 px-3 py-1.5 !font-bold !text-black hover:opacity-70" : "hidden"}`}
-            key={page.href}
-            href={page.href}
-          >
-            {page.name}
+    <RevealOnScroll animation="slide-to-bottom">
+      <header className="sticky top-0 z-50 mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 border-b border-zinc-300 bg-[#f9f5f2] p-6 sm:flex-row">
+        <div className="flex items-center gap-2">
+          <NextLink href="/">
+            <strong className="text-secondary-light">
+              acelera<span className="text-primary">enem</span>
+            </strong>
           </NextLink>
-        ))}
+        </div>
 
-        <Link external href={process.env.DASHBOARD_URL as string}>
-          Acessar <MouseIcon />
-        </Link>
-      </nav>
-    </header>
+        <nav className="flex items-center gap-6">
+          {pages.map((page) => (
+            <NextLink
+              className={`
+              relative font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block
+              ${
+                page.primary
+                  ? "rounded-full bg-secondary px-3 py-1.5 !font-bold !text-white ease-out hover:opacity-70 active:scale-90"
+                  : "hidden"
+              }
+            `}
+              key={page.href}
+              href={page.href}
+            >
+              {page.name}
+            </NextLink>
+          ))}
+
+          <Link
+            external
+            href={process.env.DASHBOARD_URL as string}
+            className="ease-out active:scale-90"
+          >
+            Acessar <MouseIcon />
+          </Link>
+        </nav>
+      </header>
+    </RevealOnScroll>
   )
 }
 

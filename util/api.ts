@@ -5,6 +5,7 @@ export type Class = {
   name: string
   slug: string
   size: number
+  startsAt: string
 }
 
 export type Student = {

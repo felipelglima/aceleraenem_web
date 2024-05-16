@@ -20,8 +20,6 @@ export const Input = (props: {
   name: string
   type: "text" | "email" | "date"
   placeholder: string
-  value?: string
-  onInput?: (value: string) => void
 }) => {
   return (
     <input

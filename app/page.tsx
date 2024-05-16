@@ -11,7 +11,13 @@ import logo from "../public/logo.png"
 
 import { ArrowRight } from "@/ui/Icons"
 import { VideoTrigger } from "@/ui/Video-Player/Trigger"
-import { materials, modules } from "./variables"
+import { grades, materials, modules } from "./variables"
+import { RevealOnScroll } from "@/ui/Reveal-on-Scroll"
+import { Div } from "@/ui/Div"
+import { Li } from "@/ui/Animate/Li"
+import { Countdown } from "@/ui/countdown"
+import { CertificateModal } from "@/ui/CertificateModal"
+import { GradesSlider } from "@/ui/GradesSlider"
 
 async function getTotalStudents() {
   // do count on the database instead of find
@@ -25,7 +31,7 @@ async function getTotalStudents() {
   // const data: Array<any> = await response.json()
 
   // return data.length
-  return 61
+  return 220
 }
 
 export default async function Home() {
@@ -37,40 +43,83 @@ export default async function Home() {
         id="first"
         className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-0 px-6 md:flex-row md:gap-16"
       >
-        <div className="flex w-full flex-col justify-center gap-6 py-6 md:py-32">
-          <h1 className="text-4xl font-bold leading-normal text-zinc-800 lg:text-5xl">
-            Conquiste sua vaga:
-            <br className="hidden lg:inline" /> Alcance os{" "}
-            <span className="text-primary">900+</span> na Redação do ENEM
-          </h1>
+        <RevealOnScroll animation="slide-to-right">
+          <Div className="flex w-full flex-col justify-center gap-6 py-6 md:py-32">
+            <h1 className="text-4xl font-bold leading-normal text-zinc-800 lg:text-5xl">
+              Conquiste sua vaga:
+              <br className="hidden lg:inline" /> Alcance os{" "}
+              <span className="text-primary">900+</span> na Redação do ENEM
+            </h1>
+            <p className="text-zinc-600">
+              O Curso Acelera Enem oferece{" "}
+              <strong>cursos Online e Presenciais</strong>
+              <br />
+              para ajudar você a entrar na sua Universidade dos sonhos!
+            </p>
+            <Link
+              href="/cursos"
+              className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
+            >
+              Quero Conhecer o Curso
+              <ArrowRight />
+            </Link>
+          </Div>
+        </RevealOnScroll>
 
-          <p className="text-zinc-600">
-            O Curso Acelera Enem oferece{" "}
-            <strong>cursos Online e Presenciais</strong>
-            <br />
-            para ajudar você a entrar na sua Universidade dos sonhos!
+        <RevealOnScroll animation="slide-to-left">
+          <Div className="flex h-full w-full items-center justify-center md:py-6">
+            <Image
+              src={logo}
+              alt=""
+              className="h-full w-1/2 rounded-md object-cover md:w-full lg:max-h-none"
+            />
+          </Div>
+        </RevealOnScroll>
+      </section>
+
+      <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6 lg:py-32 lg:pb-0">
+        <div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-primary px-8 py-8 lg:py-32">
+          <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
+            Vagas Disponíveis: 3
+          </h2>
+
+          <p className="text-center text-xl text-zinc-600">
+            Aceitamos Cartão de Crédito, PIX e Boleto
           </p>
 
           <Link
             href="/cursos"
-            className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
+            className="w-max bg-black text-white ease-out hover:bg-black/25 active:scale-90"
           >
-            Quero Conhecer o Curso
+            Ver Cursos
             <ArrowRight />
           </Link>
         </div>
+      </section>
 
-        <div className="h-full w-full md:py-6">
-          <Image
-            src={logo}
-            alt=""
-            className="h-full w-full rounded-md object-cover lg:max-h-none"
-          />
+      <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6">
+        <div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-[var(--secondary-lighter)] px-8 py-8 lg:py-32">
+          <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
+            Confira nossos conteúdos grátis
+          </h2>
+
+          <p className="text-center text-xl text-zinc-600">
+            Crie sua conta na plataforma Acelera Enem e explore atividades,
+            aulas e material gratuito.
+          </p>
+
+          <Link
+            href={process.env.DASHBOARD_URL as string}
+            className="w-max bg-secondary-light text-white ease-out hover:!bg-secondary-light hover:!opacity-70 active:scale-90"
+          >
+            Criar conta grátis
+            <ArrowRight />
+          </Link>
         </div>
       </section>
 
       <section
-        id="sobre"
+        id="metodologia"
         className="mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 py-32"
       >
         <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-5xl">
@@ -84,13 +133,12 @@ export default async function Home() {
 
         <ul className="flex flex-col gap-6">
           {modules.map((mod) => (
-            <li
-              key={mod.name}
-              className="flex items-baseline gap-2 text-xl font-medium"
-            >
-              <DownRightArrowIcon />
-              {mod.name}
-            </li>
+            <RevealOnScroll key={mod.name} animation="slide-to-right">
+              <Li className="flex items-baseline gap-2 text-xl font-medium">
+                <DownRightArrowIcon />
+                {mod.name}
+              </Li>
+            </RevealOnScroll>
           ))}
         </ul>
 
@@ -103,47 +151,6 @@ export default async function Home() {
         </Link>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl p-6">
-        <div className="flex flex-col items-center gap-16 rounded-md border border-dashed border-zinc-400 p-4 lg:p-12">
-          <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-            Você terá acesso à
-          </h2>
-
-          <ul className="grid w-full grid-cols-2 gap-6 lg:grid-cols-3">
-            {materials.map((material) => (
-              <li
-                key={material.name}
-                className="flex w-full flex-col gap-3 transition hover:opacity-80"
-              >
-                <div className="h-[130px] w-full overflow-hidden rounded-md bg-zinc-300 lg:h-[320px]">
-                  <Image
-                    src={material.img}
-                    alt=""
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-
-                <footer className="flex flex-col gap-2">
-                  <h3 className="text-xl font-semibold text-zinc-800">
-                    {material.name}
-                  </h3>
-
-                  <p className="text-zinc-600">{material.description}</p>
-                </footer>
-              </li>
-            ))}
-          </ul>
-
-          <Link
-            href="/cursos"
-            className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
-          >
-            Quero Conhecer o Curso
-            <ArrowRight />
-          </Link>
-        </div>
-      </section>
-
       <section
         id="a-professora"
         className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-6 px-6 py-6 lg:flex-row lg:gap-16"
@@ -154,12 +161,12 @@ export default async function Home() {
           </h2>
 
           <a
-            href="https://www.instagram.com/profdulcegomes"
+            href="https://www.instagram.com/cursoaceleraenem"
             target="_blank"
-            className="flex w-max items-center gap-2 rounded p-2 text-secondary transition hover:bg-zinc-200"
+            className="flex w-max items-center gap-2 rounded border border-secondary p-2 text-secondary transition ease-out hover:bg-secondary hover:text-white active:scale-90"
           >
             <InstagramIcon />
-            @profdulcegomes
+            @cursoaceleraenem
           </a>
 
           <p className="text-zinc-600">
@@ -178,7 +185,7 @@ export default async function Home() {
           </p>
 
           <p className="text-zinc-600">
-            Atualmente, dedica-se exclusivamente ao curso que fundou em 2021,
+            Atualmente, dedica-se exclusivamente ao curso que fundou em 2022,
             possui uma das maiores comunidades na área da educação que vem
             crescendo no Brasil, na qual ensina o processo da escrita com passo
             a passo para escrever uma redação com as 5 competências exigidas
@@ -186,12 +193,8 @@ export default async function Home() {
           </p>
 
           <div className="flex w-full items-center gap-2">
-            <button className="expandable-image w-full">
-              <Image src={Cert1} className="h-auto w-full" alt="" />
-            </button>
-            <button className="expandable-image w-full">
-              <Image src={Cert2} className="h-auto w-full" alt="" />
-            </button>
+            <CertificateModal img={Cert1} />
+            <CertificateModal img={Cert2} />
           </div>
 
           <VideoTrigger />
@@ -217,161 +220,47 @@ export default async function Home() {
 
       <section
         id="resultados"
-        className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 py-6 lg:flex-row-reverse lg:gap-16"
+        className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 pb-6 lg:gap-16 lg:py-32"
       >
-        <div className="flex w-full flex-col gap-12 lg:py-32">
-          <h2 className="text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-            <span className="text-primary">Resultados</span> de 2023
-          </h2>
+        <h2 className="text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
+          <span className="text-primary">Resultados</span> de 2023
+        </h2>
 
-          <p className="text-xl text-zinc-600">
-            95% dos alunos que enviaram resultados tiraram 900+
-          </p>
-
-          <Image src={chart} alt="" className="self-center" />
-
-          <p className="text-xl text-zinc-600">
-            {totalStudents + 60} alunos fizeram o curso
-          </p>
-
-          <Link
-            href="/cursos"
-            className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
-          >
-            Quero conhecer o curso
-            <ArrowRight />
-          </Link>
+        <div className="flex w-full flex-col gap-6 lg:flex-row-reverse">
+          <div className="flex w-full flex-col items-center gap-12">
+            <p className="text-xl text-zinc-600">
+              97% dos alunos alcançaram 900+
+            </p>
+            <Image src={chart} alt="" className="w-[300px] self-center" />
+            <p className="text-xs text-zinc-600">
+              * São contabilizados apenas os resultados enviados pelos alunos
+            </p>
+          </div>
+          <div className="flex h-full w-full items-center gap-4">
+            <section className="flex w-full flex-col gap-4">
+              <GradesSlider grades={grades} />
+              {/* {testimonials.map(({ grade, name }) => (
+                <Testimonial name={name} grade={grade} key={name} />
+              ))} */}
+            </section>
+          </div>
         </div>
 
-        <div className="flex h-full w-full items-center gap-4 lg:py-32">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="size-10 shrink-0 text-zinc-400 hover:text-zinc-500"
-          >
-            <g clipPath="url(#a)">
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.25-7.25a.75.75 0 0 0 0-1.5H8.66l2.1-1.95a.75.75 0 1 0-1.02-1.1l-3.5 3.25a.75.75 0 0 0 0 1.1l3.5 3.25a.75.75 0 0 0 1.02-1.1l-2.1-1.95h4.59Z"
-                clipRule="evenodd"
-              />
-            </g>
-            <defs>
-              <clipPath id="a">
-                <path d="M0 0h20v20H0z" />
-              </clipPath>
-            </defs>
-          </svg>
-
-          <section className="flex flex-col gap-4">
-            <div className="flex flex-col items-center gap-4 rounded border border-zinc-300 p-6">
-              <header className="flex items-center gap-2">
-                <Image
-                  className="size-8 rounded-full bg-zinc-300"
-                  width={32}
-                  height={32}
-                  src={`https://thispersondoesnotexist.com?query=${Math.random().toString()}`}
-                  alt=""
-                />
-                <p className="text-xl text-zinc-600">Fulano Ciclano</p>
-              </header>
-              <strong className="text-5xl font-bold text-secondary">980</strong>
-              <p className="text-center text-zinc-800">
-                Adorei fazer o curso conseguir tirar uma nota gigante e passei
-                em todas as faculdades do universo!
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-4 rounded border border-zinc-300 p-6">
-              <header className="flex items-center gap-2">
-                <Image
-                  className="size-8 rounded-full bg-zinc-300"
-                  width={32}
-                  height={32}
-                  src={`https://thispersondoesnotexist.com?query=${Math.random().toString()}`}
-                  alt=""
-                />
-                <p className="text-xl text-zinc-600">Fulano Ciclano</p>
-              </header>
-              <strong className="text-5xl font-bold text-secondary">980</strong>
-              <p className="text-center text-zinc-800">
-                Adorei fazer o curso conseguir tirar uma nota gigante e passei
-                em todas as faculdades do universo!
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-4 rounded border border-zinc-300 p-6">
-              <header className="flex items-center gap-2">
-                <Image
-                  className="size-8 rounded-full bg-zinc-300"
-                  width={32}
-                  height={32}
-                  src={`https://thispersondoesnotexist.com?query=${Math.random().toString()}`}
-                  alt=""
-                />
-                <p className="text-xl text-zinc-600">Fulano Ciclano</p>
-              </header>
-              <strong className="text-5xl font-bold text-secondary">980</strong>
-              <p className="text-center text-zinc-800">
-                Adorei fazer o curso conseguir tirar uma nota gigante e passei
-                em todas as faculdades do universo!
-              </p>
-            </div>
-          </section>
-
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            className="size-10 shrink-0 text-zinc-400 hover:text-zinc-500"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16ZM6.75 9.25a.75.75 0 0 0 0 1.5h4.59l-2.1 1.95a.75.75 0 0 0 1.02 1.1l3.5-3.25a.75.75 0 0 0 0-1.1l-3.5-3.25a.75.75 0 1 0-1.02 1.1l2.1 1.95H6.75Z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </div>
+        <Link
+          href="/cursos"
+          className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
+        >
+          Quero conhecer o curso
+          <ArrowRight />
+        </Link>
       </section>
 
-      <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6 lg:py-32 lg:pb-0">
-        <div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-primary px-8 py-32">
-          <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-            Faltam 3 vagas
-          </h2>
+      <section className="mx-auto flex w-full max-w-7xl items-center justify-center gap-6 px-6 py-6">
+        <Countdown />
 
-          <p className="text-center text-xl text-zinc-600">
-            Aceitamos Cartão de Crédito, PIX e Boleto
-          </p>
-
-          <Link
-            href="/cursos"
-            className="w-max bg-black text-white hover:bg-zinc-700"
-          >
-            Ver Cursos
-            <ArrowRight />
-          </Link>
-        </div>
-      </section>
-
-      <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6">
-        <div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-[var(--secondary-lighter)] px-8 py-32">
-          <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-            Confira nossos conteúdos grátis
-          </h2>
-
-          <p className="text-center text-xl text-zinc-600">
-            Crie sua conta na plataforma Acelera Enem e explore atividades,
-            aulas e material gratuito.
-          </p>
-
-          <Link
-            href={process.env.DASHBOARD_URL as string}
-            className="w-max bg-secondary-light text-white hover:!bg-secondary-light hover:!opacity-70"
-          >
-            Criar conta grátis
-            <ArrowRight />
-          </Link>
-        </div>
+        <h2 className="text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
+          alunos já fizeram o curso
+        </h2>
       </section>
     </main>
   )

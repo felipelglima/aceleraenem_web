@@ -106,6 +106,16 @@ export const CEPAutofill = () => {
           value={address.street}
           onInput={() => {}}
         />
+
+        <div className="max-w-[240px]">
+          <ControlledInput
+            name="number"
+            type="text"
+            placeholder="Número"
+            value={""}
+            onInput={() => {}}
+          />
+        </div>
       </div>
     </>
   )

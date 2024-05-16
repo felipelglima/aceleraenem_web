@@ -33,16 +33,29 @@ export default async function Page() {
 
   return (
     <main className="flex w-full flex-col">
-      <section className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-0 px-6 md:flex-row md:gap-16">
+      <section className="mx-auto flex w-full max-w-7xl items-center justify-center gap-4 p-6">
+        <Link
+          disabled
+          className="w-max ease-out active:scale-90"
+          href="/cursos/online"
+        >
+          Online - Em Breve
+        </Link>
+        <Link
+          className="w-max ease-out active:scale-90"
+          href="/cursos/presencial"
+        >
+          Presencial
+        </Link>
+      </section>
+
+      {/* <section className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-0 px-6 md:flex-row md:gap-16">
         <div className="flex w-full flex-col justify-center gap-6 py-6 md:py-32">
-          <h1 className="text-4xl font-bold leading-normal text-zinc-800 lg:text-5xl">
-            Curso de Redação AceleraEnem
+          <h1 className="text-2xl font-bold leading-normal text-zinc-800 lg:text-3xl">
+            Curso de Redação Acelera Enem
           </h1>
 
-          <p className="text-zinc-600">
-            Transforme a nota da sua redação com a professora dulce gomes.
-            Atinga a nota que você precisa para entrar na faculdade dos sonhos.
-          </p>
+          <p className="text-zinc-600">Alcance os 900+ na Redação do ENEM</p>
           <hr className="bg-zinc-300" />
 
           <ul className="flex w-full items-center justify-center gap-6">
@@ -53,14 +66,19 @@ export default async function Page() {
               >
                 <h2 className="font-bold text-zinc-800">{name}</h2>
 
-                {new Date(startsAt).getTime() <= new Date().getTime() && (
-                  <span className="text-yellow-500">Em andamento</span>
+                {new Date(startsAt).getTime() <= new Date().getTime() ? (
+                  <span className="text-yellow-500">
+                    Em andamento - {new Date(startsAt).toLocaleDateString()}
+                  </span>
+                ) : (
+                  <span className="text-yellow-500">
+                    Começa dia {new Date(startsAt).toLocaleDateString()}
+                  </span>
                 )}
 
                 <hr className="bg-zinc-300" />
 
-                <p className="text-zinc-600">Segunda</p>
-                <p className="text-zinc-600">1h30min</p>
+                <p className="text-zinc-600">Toda segunda-feira as 18h</p>
 
                 <Link href={`/cursos/${slug}/matricular`}>Fazer Matrícula</Link>
               </li>
@@ -116,7 +134,7 @@ export default async function Page() {
             ))}
           </ul>
         </div>
-      </section>
+      </section> */}
     </main>
   )
 }

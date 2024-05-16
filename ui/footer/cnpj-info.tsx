@@ -33,18 +33,22 @@ export const CNPJInfo = (props: CNPJAPIResponse) => {
 
       {details && (
         <div className="flex flex-col gap-2 rounded border border-zinc-300 p-6">
-          <p>Razão social: {props.og_name}</p>
           <p>Nome Fantasia: {props.name}</p>
           <p>CNAE: {props.activity}</p>
-          <p>Data de Início: {props.startDate.toLocaleDateString()}</p>
+          <p>
+            Data de Início:{" "}
+            {props.startDate.toLocaleDateString("pt-BR", {
+              dateStyle: "short",
+            })}
+          </p>
           <p className="flex items-center gap-2">
-            Status: {props.status}{" "}
+            Status*: {props.status}{" "}
             {props.status.toLowerCase() === "ativa" && (
               <div className="size-3 rounded-full bg-green-500" />
             )}
           </p>
           <p className="text-sm italic text-zinc-600">
-            Extratos atualizados automaticamente pela Receita Federal
+            *Status atualizado automaticamente pela Receita Federal
           </p>
         </div>
       )}

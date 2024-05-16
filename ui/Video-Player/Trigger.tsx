@@ -1,7 +1,5 @@
 "use client"
 
-import { ArrowRight } from "@/ui/Icons"
-
 export const VideoTrigger = () => {
   const playVideo = () => {
     document.querySelector<HTMLImageElement>(
@@ -21,10 +19,9 @@ export const VideoTrigger = () => {
   return (
     <button
       onClick={() => playVideo()}
-      className={`font-text-white mt-4 flex w-max items-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition hover:bg-primary`}
+      className={`font-text-white mt-4 flex w-max items-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition ease-out hover:bg-primary active:scale-90`}
     >
       Ver Vídeo
-      <ArrowRight />
     </button>
   )
 }

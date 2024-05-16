@@ -1,4 +1,4 @@
-import { AtHandle, InstagramIcon } from "@/ui/AtHandle"
+import { InstagramIcon } from "@/ui/AtHandle"
 import Link from "next/link"
 import { CNPJInfo } from "./footer/cnpj-info"
 
@@ -44,7 +44,7 @@ export const Footer = async () => {
         <a
           href="https://www.instagram.com/cursoaceleraenem"
           target="_blank"
-          className="flex w-max items-center gap-2 rounded border border-secondary p-2 text-secondary transition hover:bg-secondary hover:text-white"
+          className="flex w-max items-center gap-2 rounded border border-secondary p-2 text-secondary transition ease-out hover:bg-secondary hover:text-white active:scale-90"
         >
           <InstagramIcon />
           @cursoaceleraenem
@@ -84,6 +84,17 @@ export const Footer = async () => {
 
       <CNPJInfo {...cnpj_data} />
 
+      <a
+        className="self-center rounded px-1 transition hover:bg-zinc-200"
+        target="_blank"
+        href="https://reclameaqui.com.br/empresa/aceleraenem"
+      >
+        <img
+          src="https://digitalks.com.br/wp-content/uploads/2018/01/LOGO-RA-01.png"
+          className="h-auto w-24"
+        />
+      </a>
+
       <hr className="w-full text-zinc-400" />
 
       <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-16">
@@ -92,9 +103,6 @@ export const Footer = async () => {
         </Link>
         <Link className="hover:underline" href="/">
           Termos de Uso
-        </Link>
-        <Link className="hover:underline" href="/">
-          Termos e Condições
         </Link>
       </div>
 
@@ -111,7 +119,7 @@ function WhatsApp() {
     <a
       href={link}
       target="_blank"
-      className="flex w-max items-center gap-2 rounded border border-[#25D366] p-2 text-[#25D366] transition hover:bg-[#25D366] hover:text-white hover:opacity-70"
+      className="flex w-max items-center gap-2 rounded border border-[#25D366] p-2 text-[#25D366] transition ease-out hover:bg-[#25D366] hover:text-white hover:opacity-70 active:scale-90"
     >
       <WhatsAppIcon />
       {phone}
@@ -127,7 +135,7 @@ function Email() {
     <a
       href={link}
       target="_blank"
-      className="flex w-max items-center gap-2 rounded border border-zinc-600 p-2 text-zinc-600 transition hover:bg-zinc-600 hover:text-white"
+      className="flex w-max items-center gap-2 rounded border border-zinc-600 p-2 text-zinc-600 transition ease-out hover:bg-zinc-600 hover:text-white active:scale-90"
     >
       <MailIcon />
       {email}
