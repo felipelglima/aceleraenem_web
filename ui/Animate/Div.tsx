@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 import { ReactNode, forwardRef } from "react"
 
 export const Div = forwardRef<
@@ -5,7 +6,7 @@ export const Div = forwardRef<
   { children: ReactNode; className: string }
 >((props, ref) => {
   return (
-    <div ref={ref} className={`${props.className}`}>
+    <div ref={ref as any} className={`${props.className}`}>
       {props.children}
     </div>
   )

@@ -13,7 +13,7 @@ import { ArrowRight } from "@/ui/Icons"
 import { VideoTrigger } from "@/ui/Video-Player/Trigger"
 import { grades, materials, modules } from "./variables"
 import { RevealOnScroll } from "@/ui/Reveal-on-Scroll"
-import { Div } from "@/ui/Div"
+import { Div } from "@/ui/Animate/Div"
 import { Li } from "@/ui/Animate/Li"
 import { Countdown } from "@/ui/countdown"
 import { CertificateModal } from "@/ui/CertificateModal"
@@ -203,7 +203,8 @@ export default async function Home() {
         <div className="h-[900px] w-full">
           <Image
             id="video-player-cover"
-            className="h-full w-full rounded-md object-cover lg:max-h-none"
+            // className="h-full w-full rounded-md object-cover lg:max-h-none"
+            // className="h-full w-full rounded-md object-cover lg:max-h-none"
             src={Teacher}
             alt="A professora dulce gomes sentada em uma cadeira olhando para a câmera e sorrindo."
           />
