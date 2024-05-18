@@ -153,10 +153,10 @@ export default async function Home() {
 
       <section
         id="a-professora"
-        className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-6 px-6 py-6 lg:flex-row lg:gap-16"
+        className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-6 px-0 py-6 lg:flex-row lg:gap-16 lg:px-6"
       >
         <RevealOnScroll animation="slide-to-right">
-          <Div className="flex w-full flex-col gap-6">
+          <Div className="flex w-full flex-col gap-6 px-2 lg:px-0">
             <h2 className="text-3xl font-bold leading-normal text-zinc-800 lg:text-5xl">
               Conheça sua <span className="text-primary">professora</span>
             </h2>
@@ -202,7 +202,7 @@ export default async function Home() {
         </RevealOnScroll>
 
         <RevealOnScroll animation="slide-to-left">
-          <Div className="relative !h-[765px] !w-[430px] shrink-0">
+          <Div className="relative w-full shrink-0 lg:!h-[765px] lg:!w-[430px]">
             <Image
               id="video-player-cover"
               className="!h-[765px] !w-[430px] object-cover"
@@ -213,7 +213,7 @@ export default async function Home() {
             <video
               controls
               id="video-player"
-              className="hidden h-[765px] w-[430px]"
+              className="hidden lg:h-[765px] lg:w-[430px]"
             >
               <source src="/video.mp4" type="video/mp4" />
             </video>
@@ -260,7 +260,7 @@ export default async function Home() {
         </Link>
       </section>
 
-      <section className="mx-auto flex w-full max-w-7xl items-center justify-center gap-6 px-6 py-6">
+      <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 px-6 py-6 lg:flex-row">
         <Countdown />
 
         <h2 className="text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">

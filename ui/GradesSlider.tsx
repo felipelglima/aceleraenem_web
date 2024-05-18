@@ -25,13 +25,15 @@ export const GradesSlider = (props: {
       plugins={[
         Autoplay({
           delay: 2000,
+          stopOnInteraction: true,
+          stopOnMouseEnter: true,
         }),
       ]}
       className="w-full"
     >
       <CarouselPrevious />
 
-      <CarouselContent className="-mt-4 h-[600px] flex-col">
+      <CarouselContent className="-mt-4 h-[300px] flex-col lg:h-[600px]">
         {props.grades.map((grade) => (
           <CarouselItem key={grade.name} className="basis-1/3">
             <Testimonial name={grade.name} grade={grade.grade} />

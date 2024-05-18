@@ -3,8 +3,8 @@ import NextLink from "next/link"
 import { Link } from "./Button"
 import { RevealOnScroll } from "./Reveal-on-Scroll"
 
-const pages = [
-  { primary: true, name: "Cursos", href: "/cursos" },
+const pages: Array<{ primary?: boolean; name: string; href: string }> = [
+  // { primary: true, name: "Cursos", href: "/cursos" },
   { name: "Metodologia", href: "/#metodologia" },
   { name: "Professora", href: "/#a-professora" },
   { name: "Resultados", href: "/#resultados" },
@@ -28,7 +28,7 @@ export const Header = () => {
               className={`
               relative font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block
               ${
-                page.primary
+                page?.primary
                   ? "rounded-full bg-secondary px-3 py-1.5 !font-bold !text-white ease-out hover:opacity-70 active:scale-90"
                   : "hidden"
               }
@@ -40,13 +40,13 @@ export const Header = () => {
             </NextLink>
           ))}
 
-          <Link
+          {/* <Link
             external
             href={process.env.DASHBOARD_URL as string}
             className="ease-out active:scale-90"
           >
             Acessar <MouseIcon />
-          </Link>
+          </Link> */}
         </nav>
       </header>
     </RevealOnScroll>

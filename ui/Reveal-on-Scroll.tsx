@@ -20,7 +20,6 @@ export const RevealOnScroll = (props: RevealOnScrollProps) => {
 
       if (!ref.current) return
 
-      console.log("entry.isIntersecting: ", entry)
       if (entry.isIntersecting) {
         ref.current.style.opacity = "1"
 
