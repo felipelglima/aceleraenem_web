@@ -1,6 +1,6 @@
 "use client"
 
-import React, { RefObject, useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 
 interface RevealOnScrollProps {
   children: any // Generic type for children (any React element)

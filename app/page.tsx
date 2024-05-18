@@ -155,67 +155,72 @@ export default async function Home() {
         id="a-professora"
         className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-6 px-6 py-6 lg:flex-row lg:gap-16"
       >
-        <div className="flex w-full flex-col gap-6">
-          <h2 className="text-3xl font-bold leading-normal text-zinc-800 lg:text-5xl">
-            Conheça sua <span className="text-primary">professora</span>
-          </h2>
+        <RevealOnScroll animation="slide-to-right">
+          <Div className="flex w-full flex-col gap-6">
+            <h2 className="text-3xl font-bold leading-normal text-zinc-800 lg:text-5xl">
+              Conheça sua <span className="text-primary">professora</span>
+            </h2>
 
-          <a
-            href="https://www.instagram.com/cursoaceleraenem"
-            target="_blank"
-            className="flex w-max items-center gap-2 rounded border border-secondary p-2 text-secondary transition ease-out hover:bg-secondary hover:text-white active:scale-90"
-          >
-            <InstagramIcon />
-            @cursoaceleraenem
-          </a>
+            <a
+              href="https://www.instagram.com/cursoaceleraenem"
+              target="_blank"
+              className="flex w-max items-center gap-2 rounded border border-secondary p-2 text-secondary transition ease-out hover:bg-secondary hover:text-white active:scale-90"
+            >
+              <InstagramIcon />
+              @cursoaceleraenem
+            </a>
 
-          <p className="text-zinc-600">
-            A professora Dulce Gomes atua há mais de 25 anos na Área de
-            Educação. Graduada em Letras pela UNIP - Universidade Paulista em
-            São Paulo, Pós Graduada em Neuropsicologia da Educação e Certificada
-            em Curso Avançado para Corretores de Redação.
-          </p>
+            <p className="text-zinc-600">
+              A professora Dulce Gomes atua há mais de 25 anos na Área de
+              Educação. Graduada em Letras pela UNIP - Universidade Paulista em
+              São Paulo, Pós Graduada em Neuropsicologia da Educação e
+              Certificada em Curso Avançado para Corretores de Redação.
+            </p>
 
-          <p className="text-zinc-600">
-            Possui ampla experiência como professora de redação, ganhando vários
-            prêmios em todo o Brasil. Atuou 15 anos como professora efetiva no
-            Governo do Estado de São Paulo e durante 6 anos ministrou aulas de
-            Língua Portuguesa na Itália. Retornando da Itália, continuou sua
-            carreira em Ilhéus em conceituadas instituições da região.
-          </p>
+            <p className="text-zinc-600">
+              Possui ampla experiência como professora de redação, ganhando
+              vários prêmios em todo o Brasil. Atuou 15 anos como professora
+              efetiva no Governo do Estado de São Paulo e durante 6 anos
+              ministrou aulas de Língua Portuguesa na Itália. Retornando da
+              Itália, continuou sua carreira em Ilhéus em conceituadas
+              instituições da região.
+            </p>
 
-          <p className="text-zinc-600">
-            Atualmente, dedica-se exclusivamente ao curso que fundou em 2022,
-            possui uma das maiores comunidades na área da educação que vem
-            crescendo no Brasil, na qual ensina o processo da escrita com passo
-            a passo para escrever uma redação com as 5 competências exigidas
-            Pelo Enem - Exame Nacional do Ensino Médio.
-          </p>
+            <p className="text-zinc-600">
+              Atualmente, dedica-se exclusivamente ao curso que fundou em 2022,
+              possui uma das maiores comunidades na área da educação que vem
+              crescendo no Brasil, na qual ensina o processo da escrita com
+              passo a passo para escrever uma redação com as 5 competências
+              exigidas Pelo Enem - Exame Nacional do Ensino Médio.
+            </p>
 
-          <div className="flex w-full items-center gap-2">
-            <CertificateModal img={Cert1} />
-            <CertificateModal img={Cert2} />
-          </div>
-        </div>
+            <div className="flex w-full items-center gap-2">
+              <CertificateModal img={Cert1} />
+              <CertificateModal img={Cert2} />
+            </div>
+          </Div>
+        </RevealOnScroll>
 
-        <div className="relative !h-[765px] !w-[430px] shrink-0">
-          <Image
-            id="video-player-cover"
-            className="!h-[765px] !w-[430px] object-cover"
-            src={Teacher}
-            alt="A professora dulce gomes sentada em uma cadeira olhando para a câmera e sorrindo."
-          />
+        <RevealOnScroll animation="slide-to-left">
+          <Div className="relative !h-[765px] !w-[430px] shrink-0">
+            <Image
+              id="video-player-cover"
+              className="!h-[765px] !w-[430px] object-cover"
+              src={Teacher}
+              alt="A professora dulce gomes sentada em uma cadeira olhando para a câmera e sorrindo."
+            />
 
-          <video
-            controls
-            id="video-player"
-            className="hidden h-[765px] w-[430px]"
-          >
-            <source src="/video.mp4" type="video/mp4" />
-          </video>
+            <video
+              controls
+              id="video-player"
+              className="hidden h-[765px] w-[430px]"
+            >
+              <source src="/video.mp4" type="video/mp4" />
+            </video>
 
-          <VideoTrigger />
-        </div>
+            <VideoTrigger />
+          </Div>
+        </RevealOnScroll>
       </section>
 
       <section
