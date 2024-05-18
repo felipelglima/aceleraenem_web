@@ -196,15 +196,12 @@ export default async function Home() {
             <CertificateModal img={Cert1} />
             <CertificateModal img={Cert2} />
           </div>
-
-          <VideoTrigger />
         </div>
 
-        <div className="h-[900px] w-full">
+        <div className="relative !h-[765px] !w-[430px] shrink-0">
           <Image
             id="video-player-cover"
-            // className="h-full w-full rounded-md object-cover lg:max-h-none"
-            // className="h-full w-full rounded-md object-cover lg:max-h-none"
+            className="!h-[765px] !w-[430px] object-cover"
             src={Teacher}
             alt="A professora dulce gomes sentada em uma cadeira olhando para a câmera e sorrindo."
           />
@@ -212,10 +209,12 @@ export default async function Home() {
           <video
             controls
             id="video-player"
-            className="md:0 hidden h-[900px] w-full pt-4"
+            className="hidden h-[765px] w-[430px]"
           >
             <source src="/video.mp4" type="video/mp4" />
           </video>
+
+          <VideoTrigger />
         </div>
       </section>
 

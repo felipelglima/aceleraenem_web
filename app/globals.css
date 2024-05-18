@@ -239,3 +239,7 @@ main {
   height: 50%;
   background-color: rgba(0, 0, 0, 0.02);
 }
+
+#video-player {
+  scroll-margin-top: 10vh;
+}

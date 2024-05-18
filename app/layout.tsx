@@ -32,7 +32,7 @@ export default function RootLayout({
       <body
         id="topo"
         className={cn(
-          "min-h-screen overflow-x-hidden font-sans antialiased",
+          "min-h-screen overflow-x-hidden py-4 font-sans antialiased",
           reading.className
         )}
       >
