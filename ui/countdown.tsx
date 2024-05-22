@@ -52,18 +52,23 @@ export const Countdown = () => {
     const animate = (i: number) => {
       const { top, topBack } = getElements(i)
 
+      // @ts-expect-error
       TweenMax.to(top, 0.15, {
         rotationX: "-180deg",
         transformPerspective: 300,
+        // @ts-expect-error
         ease: Quart.easeOut,
         onComplete: function () {
+          // @ts-expect-error
           TweenMax.set(top, { rotationX: 0 })
         },
       })
 
+      // @ts-expect-error
       TweenMax.to(topBack, 0.15, {
         rotationX: 0,
         transformPerspective: 300,
+        // @ts-expect-error
         ease: Quart.easeOut,
         clearProps: "all",
       })
