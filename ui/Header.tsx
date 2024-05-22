@@ -4,7 +4,7 @@ import { Link } from "./Button"
 import { RevealOnScroll } from "./Reveal-on-Scroll"
 
 const pages: Array<{ primary?: boolean; name: string; href: string }> = [
-  // { primary: true, name: "Cursos", href: "/cursos" },
+  { primary: true, name: "Cursos", href: "/cursos" },
   { name: "Metodologia", href: "/#metodologia" },
   { name: "Professora", href: "/#a-professora" },
   { name: "Resultados", href: "/#resultados" },
@@ -13,41 +13,41 @@ const pages: Array<{ primary?: boolean; name: string; href: string }> = [
 export const Header = () => {
   return (
     <RevealOnScroll animation="slide-to-bottom">
-      <header className="sticky top-0 z-50 mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 border-b border-zinc-300 bg-[#f9f5f2] p-6 sm:flex-row">
-        <div className="flex items-center gap-2">
-          <NextLink href="/">
-            <strong className="text-secondary-light">
-              acelera<span className="text-primary">enem</span>
-            </strong>
-          </NextLink>
-        </div>
-
-        <nav className="flex items-center gap-6">
-          {pages.map((page) => (
-            <NextLink
-              className={`
-              relative font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block
-              ${
-                page?.primary
-                  ? "rounded-full bg-secondary px-3 py-1.5 !font-bold !text-white ease-out hover:opacity-70 active:scale-90"
-                  : "hidden"
-              }
-            `}
-              key={page.href}
-              href={page.href}
-            >
-              {page.name}
+      <header className="sticky top-0 z-50 w-full border-b border-zinc-300 bg-[#f9f5f2]">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 p-6 sm:flex-row">
+          <div className="flex items-center gap-2">
+            <NextLink href="/">
+              <strong className="text-secondary-light">
+                acelera<span className="text-primary">enem</span>
+              </strong>
             </NextLink>
-          ))}
-
-          {/* <Link
-            external
-            href={process.env.DASHBOARD_URL as string}
-            className="ease-out active:scale-90"
-          >
-            Acessar <MouseIcon />
-          </Link> */}
-        </nav>
+          </div>
+          <nav className="flex items-center gap-6">
+            {pages.map((page) => (
+              <NextLink
+                className={`
+                relative font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block
+                ${
+                  page?.primary
+                    ? "rounded-full bg-secondary px-3 py-1.5 !font-bold !text-white ease-out hover:opacity-70 active:scale-90"
+                    : "hidden"
+                }
+              `}
+                key={page.href}
+                href={page.href}
+              >
+                {page.name}
+              </NextLink>
+            ))}
+            <Link
+              external
+              href={process.env.DASHBOARD_URL as string}
+              className="ease-out active:scale-90"
+            >
+              Acessar <MouseIcon />
+            </Link>
+          </nav>
+        </div>
       </header>
     </RevealOnScroll>
   )

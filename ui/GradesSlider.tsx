@@ -9,7 +9,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay"
+import Autoscroll from "embla-carousel-auto-scroll"
 
 export const GradesSlider = (props: {
   grades: Array<{ name: string; grade: number }>
@@ -23,16 +23,13 @@ export const GradesSlider = (props: {
         slidesToScroll: 2,
       }}
       plugins={[
-        Autoplay({
-          delay: 2000,
-          stopOnInteraction: true,
+        Autoscroll({
+          stopOnInteraction: false,
           stopOnMouseEnter: true,
         }),
       ]}
       className="w-full"
     >
-      <CarouselPrevious />
-
       <CarouselContent className="-mt-4 h-[300px] flex-col lg:h-[600px]">
         {props.grades.map((grade) => (
           <CarouselItem key={grade.name} className="basis-1/3">
@@ -40,8 +37,6 @@ export const GradesSlider = (props: {
           </CarouselItem>
         ))}
       </CarouselContent>
-
-      <CarouselNext />
     </Carousel>
   )
 }

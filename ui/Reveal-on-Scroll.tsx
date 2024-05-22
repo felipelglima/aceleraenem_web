@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react"
 
 interface RevealOnScrollProps {
   children: any // Generic type for children (any React element)
-  animation?: "slide-to-right" | "slide-to-left" | "slide-to-bottom"
+  animation?: "slide-to-right" | "slide-to-left" | "slide-to-bottom" | "fade-in"
 }
 
 const options: IntersectionObserverInit = {
@@ -31,6 +31,9 @@ export const RevealOnScroll = (props: RevealOnScrollProps) => {
         }
         if (props.animation === "slide-to-bottom") {
           ref.current.style.animation = "SlideToBottom forwards 2s"
+        }
+        if (props.animation === "fade-in") {
+          ref.current.style.animation = "FadeIn forwards 2s"
         }
       }
     }

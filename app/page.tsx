@@ -18,6 +18,7 @@ import { Li } from "@/ui/Animate/Li"
 import { Countdown } from "@/ui/countdown"
 import { CertificateModal } from "@/ui/CertificateModal"
 import { GradesSlider } from "@/ui/GradesSlider"
+import { NoClassesModal } from "@/ui/full-classes/modal"
 
 async function getTotalStudents() {
   // do count on the database instead of find
@@ -36,6 +37,8 @@ async function getTotalStudents() {
 
 export default async function Home() {
   const totalStudents = await getTotalStudents()
+  const available = 0
+  // const available = 3
 
   return (
     <main className="flex w-full flex-col">
@@ -78,58 +81,72 @@ export default async function Home() {
       </section>
 
       <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6 lg:py-32 lg:pb-0">
-        <div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-primary px-8 py-8 lg:py-32">
-          <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-            Vagas Disponíveis: 3
-          </h2>
+        <RevealOnScroll animation="slide-to-right">
+          <Div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-primary px-8 py-8 lg:py-32">
+            <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
+              {available > 0 ? <>Vagas Disponíveis: 3</> : <>Vagas Esgotadas</>}
+            </h2>
 
-          <p className="text-center text-xl text-zinc-600">
-            Aceitamos Cartão de Crédito, PIX e Boleto
-          </p>
+            <p className="text-center text-xl text-zinc-600">
+              {available > 0 ? (
+                <>Aceitamos Cartão de Crédito, PIX e Boleto.</>
+              ) : (
+                <>Seja notificado quando abrirem novas vagas.</>
+              )}
+            </p>
 
-          <Link
-            href="/cursos"
-            className="w-max bg-black text-white ease-out hover:bg-black/25 active:scale-90"
-          >
-            Ver Cursos
-            <ArrowRight />
-          </Link>
-        </div>
+            {available > 0 ? (
+              <Link
+                href={"/cursos"}
+                className="w-max bg-black text-white ease-out hover:bg-black/25 active:scale-90"
+              >
+                Ver Cursos
+                <ArrowRight />
+              </Link>
+            ) : (
+              <NoClassesModal />
+            )}
+          </Div>
+        </RevealOnScroll>
       </section>
 
       <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6">
-        <div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-[var(--secondary-lighter)] px-8 py-8 lg:py-32">
-          <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-            Confira nossos conteúdos grátis
-          </h2>
+        <RevealOnScroll animation="slide-to-left">
+          <Div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-[var(--secondary-lighter)] px-8 py-8 lg:py-32">
+            <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
+              Confira nossos conteúdos grátis
+            </h2>
 
-          <p className="text-center text-xl text-zinc-600">
-            Crie sua conta na plataforma Acelera Enem e explore atividades,
-            aulas e material gratuito.
-          </p>
+            <p className="text-center text-xl text-zinc-600">
+              Crie sua conta na plataforma Acelera Enem e explore atividades,
+              aulas e material gratuito.
+            </p>
 
-          <Link
-            href={process.env.DASHBOARD_URL as string}
-            className="w-max bg-secondary-light text-white ease-out hover:!bg-secondary-light hover:!opacity-70 active:scale-90"
-          >
-            Criar conta grátis
-            <ArrowRight />
-          </Link>
-        </div>
+            <Link
+              href={process.env.DASHBOARD_URL as string}
+              className="w-max bg-secondary-light text-white ease-out hover:!bg-secondary-light hover:!opacity-70 active:scale-90"
+            >
+              Criar conta grátis
+              <ArrowRight />
+            </Link>
+          </Div>
+        </RevealOnScroll>
       </section>
 
       <section
         id="metodologia"
         className="mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 py-32"
       >
-        <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-5xl">
-          No{" "}
-          <span className="text-secondary-light">
-            Curso de Redação Acelera Enem
-          </span>{" "}
-          <br className="hidden lg:inline" />
-          você vai aprender
-        </h2>
+        <RevealOnScroll animation="slide-to-right">
+          <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-5xl">
+            No{" "}
+            <span className="text-secondary-light">
+              Curso de Redação Acelera Enem
+            </span>{" "}
+            <br className="hidden lg:inline" />
+            você vai aprender
+          </h2>
+        </RevealOnScroll>
 
         <ul className="flex flex-col gap-6">
           {modules.map((mod) => (
@@ -142,13 +159,15 @@ export default async function Home() {
           ))}
         </ul>
 
-        <Link
-          href="/cursos"
-          className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
-        >
-          Quero Conhecer o Curso
-          <ArrowRight />
-        </Link>
+        <RevealOnScroll animation="slide-to-right">
+          <Link
+            href="/cursos"
+            className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
+          >
+            Quero Conhecer o Curso
+            <ArrowRight />
+          </Link>
+        </RevealOnScroll>
       </section>
 
       <section
@@ -195,8 +214,8 @@ export default async function Home() {
             </p>
 
             <div className="flex w-full items-center gap-2">
-              <CertificateModal img={Cert1} />
-              <CertificateModal img={Cert2} />
+              <CertificateModal name="Certificado" img={Cert1} />
+              <CertificateModal name="Licenciatura" img={Cert2} />
             </div>
           </Div>
         </RevealOnScroll>
@@ -227,37 +246,46 @@ export default async function Home() {
         id="resultados"
         className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-6 pb-6 lg:gap-16 lg:py-32"
       >
-        <h2 className="text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-          <span className="text-primary">Resultados</span> de 2023
-        </h2>
+        <RevealOnScroll animation="slide-to-bottom">
+          <h2 className="text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
+            <span className="text-primary">Resultados</span> de 2023
+          </h2>
+        </RevealOnScroll>
 
         <div className="flex w-full flex-col gap-6 lg:flex-row-reverse">
-          <div className="flex w-full flex-col items-center gap-12">
-            <p className="text-xl text-zinc-600">
-              97% dos alunos alcançaram 900+
-            </p>
-            <Image src={chart} alt="" className="w-[300px] self-center" />
-            <p className="text-xs text-zinc-600">
-              * São contabilizados apenas os resultados enviados pelos alunos
-            </p>
-          </div>
-          <div className="flex h-full w-full items-center gap-4">
-            <section className="flex w-full flex-col gap-4">
-              <GradesSlider grades={grades} />
-              {/* {testimonials.map(({ grade, name }) => (
+          <RevealOnScroll animation="slide-to-left">
+            <div className="flex w-full flex-col items-center gap-12">
+              <p className="text-xl text-zinc-600">
+                97% dos alunos alcançaram 900+
+              </p>
+              <Image src={chart} alt="" className="w-[300px] self-center" />
+              <p className="text-xs text-zinc-600">
+                * São contabilizados apenas os resultados enviados pelos alunos
+              </p>
+            </div>
+          </RevealOnScroll>
+
+          <RevealOnScroll animation="slide-to-right">
+            <div className="flex h-full w-full items-center gap-4">
+              <section className="flex w-full flex-col gap-4">
+                <GradesSlider grades={grades} />
+                {/* {testimonials.map(({ grade, name }) => (
                 <Testimonial name={name} grade={grade} key={name} />
               ))} */}
-            </section>
-          </div>
+              </section>
+            </div>
+          </RevealOnScroll>
         </div>
 
-        <Link
-          href="/cursos"
-          className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
-        >
-          Quero conhecer o curso
-          <ArrowRight />
-        </Link>
+        <RevealOnScroll animation="fade-in">
+          <Link
+            href="/cursos"
+            className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
+          >
+            Quero conhecer o curso
+            <ArrowRight />
+          </Link>
+        </RevealOnScroll>
       </section>
 
       <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 px-6 py-6 lg:flex-row">

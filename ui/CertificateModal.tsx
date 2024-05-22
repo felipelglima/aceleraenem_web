@@ -7,7 +7,10 @@ import {
 } from "@/components/ui/dialog"
 import Image, { StaticImageData } from "next/image"
 
-export const CertificateModal = (props: { img: StaticImageData }) => {
+export const CertificateModal = (props: {
+  name: string
+  img: StaticImageData
+}) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -18,7 +21,7 @@ export const CertificateModal = (props: { img: StaticImageData }) => {
 
       <DialogContent className="sm:max-w-[900px]">
         <DialogHeader>
-          <DialogTitle>Certificado</DialogTitle>
+          <DialogTitle>{props.name}</DialogTitle>
         </DialogHeader>
 
         <Image src={props.img} className="h-auto w-full" alt="" />

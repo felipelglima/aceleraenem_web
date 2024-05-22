@@ -43,6 +43,8 @@ export default function RootLayout({
         <BackToTop />
 
         <Footer />
+
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" />
       </body>
     </html>
   )
