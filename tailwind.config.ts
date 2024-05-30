@@ -40,7 +40,7 @@ const config = {
           light: "var(--secondary-light)",
         },
         accent: {
-          DEFAULT: "var(--accent-base)",
+          DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
         destructive: {

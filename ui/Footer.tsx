@@ -1,6 +1,7 @@
 import { InstagramIcon } from "@/ui/AtHandle"
 import Link from "next/link"
 import { CNPJInfo } from "./footer/cnpj-info"
+import { RevealOnScroll } from "./Reveal-on-Scroll"
 
 export type CNPJResponse = {
   razao_social: string
@@ -37,38 +38,34 @@ export const Footer = async () => {
   const cnpj_data = await getCNPJ(CNPJ)
 
   return (
-    <footer className="mx-auto flex w-full max-w-7xl flex-col gap-16 px-6 py-6 lg:py-32">
-      <h3 className="text-xl font-bold text-zinc-800">Contato</h3>
+    <footer
+      id="contato"
+      className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-6 lg:gap-16 lg:py-32"
+    >
+      <RevealOnScroll animation="fade-in">
+        <h3 className="self-center text-xl font-bold text-zinc-800">Contato</h3>
+      </RevealOnScroll>
 
-      <section className="flex flex-col justify-center gap-6 lg:flex-row lg:items-center lg:gap-16">
-        <a
-          href="https://www.instagram.com/cursoaceleraenem"
-          target="_blank"
-          className="flex w-max items-center gap-2 rounded border border-secondary p-2 text-secondary transition ease-out hover:bg-secondary hover:text-white active:scale-90"
-        >
-          <InstagramIcon />
-          @cursoaceleraenem
-        </a>
+      <section className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:items-center lg:gap-16">
+        <RevealOnScroll animation="fade-in">
+          <a
+            href="https://www.instagram.com/cursoaceleraenem"
+            target="_blank"
+            className="flex w-[280px] items-center justify-center gap-2 rounded border border-secondary p-2 text-secondary transition ease-out hover:bg-secondary hover:text-white active:scale-90 lg:w-max"
+          >
+            <InstagramIcon />
+            @cursoaceleraenem
+          </a>
+        </RevealOnScroll>
 
-        <WhatsApp />
+        <RevealOnScroll delay={300} animation="fade-in">
+          <WhatsApp />
+        </RevealOnScroll>
 
-        <Email />
+        <RevealOnScroll delay={500} animation="fade-in">
+          <Email />
+        </RevealOnScroll>
       </section>
-
-      <div className="h-[500px] w-full rounded bg-zinc-300">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15429.897385791099!2d-39.0332874!3d-14.7986126!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7390bbf0d2f194b%3A0x120a76a87f0d1935!2sCurso%20de%20Reda%C3%A7%C3%A3o%20Acelera%20Enem!5e0!3m2!1spt-BR!2sbr!4v1714681196335!5m2!1spt-BR!2sbr"
-          className="h-full w-full"
-          width="600"
-          height="450"
-          style={{
-            border: 0,
-          }}
-          allowFullScreen
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
-      </div>
 
       <div className="flex items-center justify-center gap-2 font-semibold text-black">
         <PinIcon />
@@ -84,29 +81,35 @@ export const Footer = async () => {
 
       <CNPJInfo {...cnpj_data} />
 
-      <a
-        className="self-center rounded px-1 transition hover:bg-zinc-200"
-        target="_blank"
-        href="https://reclameaqui.com.br/empresa/aceleraenem"
-      >
-        <img
-          src="https://digitalks.com.br/wp-content/uploads/2018/01/LOGO-RA-01.png"
-          className="h-auto w-24"
-        />
-      </a>
+      <RevealOnScroll animation="slide-to-left">
+        <a
+          className="self-center rounded px-1 transition hover:bg-zinc-200"
+          target="_blank"
+          href="https://reclameaqui.com.br/empresa/aceleraenem"
+        >
+          <img
+            src="https://digitalks.com.br/wp-content/uploads/2018/01/LOGO-RA-01.png"
+            className="h-auto w-24"
+          />
+        </a>
+      </RevealOnScroll>
 
       <hr className="w-full text-zinc-400" />
 
-      <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-16">
-        <Link className="hover:underline" href="/">
-          Política de Privacidade
-        </Link>
-        <Link className="hover:underline" href="/">
-          Termos de Uso
-        </Link>
-      </div>
+      <RevealOnScroll animation="slide-to-left">
+        <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-16">
+          <Link className="hover:underline" href="/">
+            Política de Privacidade
+          </Link>
+          <Link className="hover:underline" href="/">
+            Termos de Uso
+          </Link>
+        </div>
+      </RevealOnScroll>
 
-      <p className="self-center">© Todos os direitos reservados.</p>
+      <RevealOnScroll animation="slide-to-left">
+        <p className="self-center">© Todos os direitos reservados.</p>
+      </RevealOnScroll>
     </footer>
   )
 }
@@ -119,7 +122,7 @@ function WhatsApp() {
     <a
       href={link}
       target="_blank"
-      className="flex w-max items-center gap-2 rounded border border-[#25D366] p-2 text-[#25D366] transition ease-out hover:bg-[#25D366] hover:text-white hover:opacity-70 active:scale-90"
+      className="flex w-[280px] items-center justify-center gap-2 rounded border border-[#25D366] p-2 text-[#25D366] transition ease-out hover:bg-[#25D366] hover:text-white hover:opacity-70 active:scale-90 lg:w-max"
     >
       <WhatsAppIcon />
       {phone}
@@ -135,7 +138,7 @@ function Email() {
     <a
       href={link}
       target="_blank"
-      className="flex w-max items-center gap-2 rounded border border-zinc-600 p-2 text-zinc-600 transition ease-out hover:bg-zinc-600 hover:text-white active:scale-90"
+      className="flex w-[280px] items-center gap-2 rounded border border-zinc-600 p-2 text-zinc-600 transition ease-out hover:bg-zinc-600 hover:text-white active:scale-90 lg:w-max"
     >
       <MailIcon />
       {email}

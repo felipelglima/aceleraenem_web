@@ -40,7 +40,7 @@ export const BackToTop = () => {
   return (
     <Link
       ref={ref}
-      className={`top-button fixed bottom-8 right-8 rounded-full border-2 border-[#f9f5f2] bg-primary-dark p-4 shadow-xl transition duration-500 hover:bg-primary-dark`}
+      className={`top-button fixed bottom-8 right-8 z-50 rounded-full border-2 border-[#f9f5f2] bg-primary-dark p-4 shadow-xl transition duration-500 hover:bg-primary-dark`}
       style={{ opacity: 0 }}
       href="#topo"
     >

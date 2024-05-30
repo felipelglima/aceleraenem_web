@@ -1,7 +1,0 @@
-API Financeiro
-- [ ] botão disabled quando as vagas estiverem esgotadas com texto "vagas esgotadas"
-  - [ ] buscar essa informação na API
-- [ ] check de aceitar os termos
-- [ ] pedir senha no formulário de matrícula
-- [ ] adicionar o valor e deixar claro "R$ 300/mensal"
-- [ ] todo, seção com "Professora" (seção que já tá na home), "Metodologia" (modulos) e "Sobre" (o que está hoje)

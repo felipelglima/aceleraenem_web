@@ -1,15 +1,4 @@
-import { API_URL, Student } from "@/util/api"
-
-type CreateStudentActionRequest = {
-  name: string
-  email: string
-  cpf: string
-  phone: string
-  address: {
-    cep: string
-  }
-  birthDate: Date
-}
+import { API_URL, Student, StudentProps } from "@/util/api"
 
 export const createStudentAction = async ({
   name,
@@ -18,7 +7,7 @@ export const createStudentAction = async ({
   phone,
   address,
   birthDate,
-}: CreateStudentActionRequest) => {
+}: StudentProps) => {
   const response = await fetch(`${API_URL}/api/students`, {
     method: "POST",
     body: JSON.stringify({
@@ -43,9 +32,12 @@ export const createStudentAction = async ({
   const result = (await response.json()) as APIResponse
 
   if (!result.data) {
-    console.log("error", result.error)
-    return null
+    return {
+      error: result.error,
+    }
   }
 
-  return result.data
+  return {
+    student: result.data,
+  }
 }

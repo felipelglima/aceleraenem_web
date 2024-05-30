@@ -32,7 +32,7 @@ export default function RootLayout({
       <body
         id="topo"
         className={cn(
-          "min-h-screen overflow-x-hidden py-4 font-sans antialiased",
+          "min-h-screen overflow-x-hidden font-sans antialiased",
           reading.variable
         )}
       >
@@ -44,7 +44,7 @@ export default function RootLayout({
 
         <Footer />
 
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js" />
+        <Script src="/counter.js" />
       </body>
     </html>
   )

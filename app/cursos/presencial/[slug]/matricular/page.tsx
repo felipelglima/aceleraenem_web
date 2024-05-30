@@ -1,14 +1,6 @@
-import { notFound, redirect } from "next/navigation"
-
-import { Button } from "@/ui/Button"
-
-import { createStudentAction } from "@/actions/create-student.action"
+import { notFound } from "next/navigation"
 
 import { API_URL, Class } from "@/util/api"
-import { Input } from "@/ui/Input"
-import { CEPAutofill } from "./cep-autofill"
-import { BirthDate } from "./birth-date"
-import { enrollStudentToClass } from "@/actions/enroll-student-to-class.action"
 import { EnrollForm } from "./enroll-form"
 
 async function getClassBySlug(slug: string) {
@@ -19,6 +11,7 @@ async function getClassBySlug(slug: string) {
     next: {
       tags: [`class-${slug}`],
     },
+    cache: "no-cache",
   })
 
   const data = await response.json()
@@ -33,46 +26,6 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return notFound()
   }
 
-  async function enrollAction(formData: FormData) {
-    "use server"
-
-    if (!currentClass) return
-
-    const name = formData.get("name")?.toString()
-    const email = formData.get("email")?.toString()
-    const cpf = formData.get("cpf")?.toString()
-    const phone = formData.get("phone")?.toString()
-    const cep = formData.get("cep")?.toString()
-    const birthDate = formData.get("birthDate")?.toString()
-
-    if (!name || !email || !cpf || !phone || !cep || !birthDate) {
-      return
-    }
-
-    const student = await createStudentAction({
-      name,
-      email,
-      cpf,
-      phone,
-      address: {
-        cep,
-      },
-      birthDate: new Date(birthDate),
-    })
-
-    if (!student) {
-      console.log("could not create student")
-      return
-    }
-
-    await enrollStudentToClass({
-      class: currentClass,
-      student,
-    })
-
-    redirect("https://app.aceleraenem.com")
-  }
-
   return (
     <main className="flex w-full flex-col">
       <section className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-0 px-6 md:flex-row md:gap-16">
@@ -83,7 +36,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
           <p className="text-zinc-600">Toda Segunda-Feira às 18h</p>
 
-          <EnrollForm />
+          <EnrollForm classSlug={params.slug} />
         </div>
       </section>
     </main>

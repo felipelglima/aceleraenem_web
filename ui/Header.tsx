@@ -1,28 +1,59 @@
-import NextLink from "next/link"
+"use client"
 
-import { Link } from "./Button"
+import { Button } from "@/components/ui/button"
+import { useState } from "react"
 import { RevealOnScroll } from "./Reveal-on-Scroll"
+import { Link } from "./Button"
+import NextLink from "next/link"
 
 const pages: Array<{ primary?: boolean; name: string; href: string }> = [
   { primary: true, name: "Cursos", href: "/cursos" },
   { name: "Metodologia", href: "/#metodologia" },
   { name: "Professora", href: "/#a-professora" },
   { name: "Resultados", href: "/#resultados" },
+  { name: "Contato", href: "/#contato" },
 ]
 
 export const Header = () => {
+  const [opened, setOpened] = useState(false)
+
   return (
     <RevealOnScroll animation="slide-to-bottom">
       <header className="sticky top-0 z-50 w-full border-b border-zinc-300 bg-[#f9f5f2]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 p-6 sm:flex-row">
-          <div className="flex items-center gap-2">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 p-2 sm:flex-row md:p-6">
+          <div className="flex w-full items-center justify-between gap-2 lg:w-max">
+            <Button
+              onClick={() => setOpened((state) => !state)}
+              variant={"outline"}
+              size={"icon"}
+              className="md:hidden"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="size-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            </Button>
+
             <NextLink href="/">
               <strong className="text-secondary-light">
                 acelera<span className="text-primary">enem</span>
               </strong>
             </NextLink>
           </div>
-          <nav className="flex items-center gap-6">
+
+          <nav
+            className={`items-center gap-6 md:flex ${opened ? "flex" : "hidden"}`}
+          >
             {pages.map((page) => (
               <NextLink
                 className={`
@@ -41,7 +72,7 @@ export const Header = () => {
             ))}
             <Link
               external
-              href={process.env.DASHBOARD_URL as string}
+              href={process.env.NEXT_PUBLIC_DASHBOARD_URL as string}
               className="ease-out active:scale-90"
             >
               Acessar <MouseIcon />

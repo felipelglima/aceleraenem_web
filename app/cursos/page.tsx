@@ -1,7 +1,15 @@
 import Image from "next/image"
 
 import { materials, modules } from "@/app/variables"
-import { Link } from "@/ui/Button"
+import { Button, Link } from "@/ui/Button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { RevealOnScroll } from "@/ui/Reveal-on-Scroll"
 
 type Class = {
   name: string
@@ -33,20 +41,42 @@ export default async function Page() {
 
   return (
     <main className="flex w-full flex-col">
-      <section className="mx-auto flex w-full max-w-7xl items-center justify-center gap-4 p-6">
-        <Link
-          disabled
-          className="w-max ease-out active:scale-90"
-          href="/cursos/online"
-        >
-          Online - Em Breve
-        </Link>
-        <Link
-          className="w-max ease-out active:scale-90"
-          href="/cursos/presencial"
-        >
-          Presencial
-        </Link>
+      <section className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center gap-4 p-6 lg:flex-row lg:py-32">
+        <RevealOnScroll animation="slide-to-right">
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle>Online</CardTitle>
+              <CardDescription>
+                Assista aulas gravadas no seu próprio ritmo pela plataforma, em
+                qualquer lugar.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="cursor-not-allowed opacity-50">
+              <Link className="w-max ease-out active:scale-90" href="#">
+                Em breve
+              </Link>
+            </CardContent>
+          </Card>
+        </RevealOnScroll>
+
+        <RevealOnScroll animation="slide-to-left">
+          <Card className="w-full">
+            <CardHeader>
+              <CardTitle>Presencial</CardTitle>
+              <CardDescription>
+                Aulas semanais com a professora Dulce Gomes em sala de aula.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Link
+                className="w-max ease-out active:scale-90"
+                href="/cursos/presencial"
+              >
+                Ver mais
+              </Link>
+            </CardContent>
+          </Card>
+        </RevealOnScroll>
       </section>
 
       {/* <section className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-0 px-6 md:flex-row md:gap-16">

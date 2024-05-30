@@ -13,8 +13,6 @@
   --secondary-base: #640087;
   --secondary-dark: #4c0066;
 
-  --accent-base: #fbea46;
-
   --background: 26 37% 96%;
   --foreground: 240 10% 3.9%;
 
@@ -33,7 +31,7 @@
   --muted: 240 4.8% 95.9%;
   --muted-foreground: 240 3.8% 46.1%;
 
-  --accent: 240 4.8% 95.9%;
+  --accent: 240 4.8% 90.9%;
   --accent-foreground: 240 5.9% 10%;
 
   --destructive: 0 84.2% 60.2%;
@@ -297,4 +295,10 @@ main {
 
 #video-player {
   scroll-margin-top: 10vh;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.8;
+  }
 }

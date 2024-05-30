@@ -3,8 +3,8 @@ import { cookies } from "next/headers"
 import { API_URL, Class, Student } from "@/util/api"
 
 type EnrollStudentToClassRequest = {
-  student: Student
   class: Class
+  student: Student
 }
 
 export const enrollStudentToClass = async (
@@ -15,9 +15,26 @@ export const enrollStudentToClass = async (
     body: JSON.stringify(props),
   })
 
-  const data = (await response.json()) as {
-    access_token: string
+  type APIResponse =
+    | {
+        data: { access_token: string }
+      }
+    | {
+        data: null
+        error: string
+      }
+
+  const result = (await response.json()) as APIResponse
+
+  if (!result.data) {
+    return {
+      error: result.error,
+    }
   }
 
-  cookies().set("@acelera-enem:access_token", data.access_token)
+  cookies().set("@acelera-enem:access_token", result.data.access_token)
+
+  return {
+    data: {},
+  }
 }

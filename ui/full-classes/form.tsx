@@ -1,11 +1,11 @@
+"use server"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "../Input"
 
 export const PreStudentForm = async () => {
-  const handleSubscribe = async (formData: FormData) => {
+  const handleSubscribe = async () => {
     "use server"
-
-    console.log(formData.get("email"))
   }
 
   return (

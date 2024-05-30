@@ -1,98 +1,180 @@
 "use client"
 
-import { useState } from "react"
-import { useFormState, useFormStatus } from "react-dom"
+import { useEffect, useState } from "react"
+import { useFormState } from "react-dom"
 
 import { EnrollFormState, enroll } from "./enroll-action"
 
 import { ControlledInput, Input } from "@/ui/Input"
+import { CEPAutofill } from "./cep-autofill"
+import { Button } from "@/ui/Button"
+import { Switch } from "@/components/ui/switch"
 
-const initialState: EnrollFormState = {
-  message: "",
-}
-
-export const EnrollForm = () => {
-  const [state, action] = useFormState(enroll, initialState)
+export const EnrollForm = ({ classSlug }: { classSlug: string }) => {
+  const [state, action] = useFormState(enroll, {
+    message: "",
+  })
 
   const [birthDate, setBirthDate] = useState("")
+  const [isResponsible, setIsResponsible] = useState(false)
+  const [terms, setTerms] = useState(false)
 
   const isMinor =
     new Date().getFullYear() - new Date(birthDate).getFullYear() < 18
 
+  useEffect(() => {
+    if (isMinor === true) {
+      setIsResponsible(false)
+    }
+  }, [isMinor])
+
   return (
-    <form action={action}>
-      <ControlledInput
-        name="birthDate"
-        type="date"
-        placeholder="Data de Nascimento"
-        value={birthDate}
-        onInput={setBirthDate}
-      />
+    <>
+      <form
+        className="flex flex-col gap-4 rounded border border-zinc-300 p-6"
+        action={action}
+      >
+        <h2 className="text-xl font-bold leading-normal text-zinc-800">
+          Dados do Aluno
+        </h2>
 
-      {isMinor && (
-        <Input
-          name="responsible-name"
+        {state.message && <p className="text-red-500">{state.message}</p>}
+
+        <input
           type="text"
-          placeholder="Nome do responsável"
+          className="sr-only"
+          name="class-slug"
+          value={classSlug}
         />
-      )}
-      <p>message: {state.message}</p>
-      <SubmitButton />
 
-      {/* <form
-            className="flex flex-col gap-4 rounded border border-zinc-300 p-6"
-            action={enrollAction}
-          >
+        <div className="flex w-full items-center gap-4">
+          <Input name="student-name" type="text" placeholder="Nome Completo" />
+          <Input name="student-email" type="email" placeholder="E-mail" />
+        </div>
+
+        <div className="flex w-full items-center gap-4">
+          <Input
+            name="student-cpf"
+            type="text"
+            placeholder="CPF (Apenas números)"
+          />
+
+          <Input
+            name="student-phone"
+            type="text"
+            placeholder="Celular (Apenas números com DDD)"
+          />
+        </div>
+
+        <CEPAutofill fieldsPrefix="student" />
+
+        <div className="flex w-full items-center gap-4">
+          <ControlledInput
+            name="student-birthDate"
+            type="date"
+            placeholder="Data de Nascimento"
+            value={birthDate}
+            onInput={setBirthDate}
+          />
+
+          <div className="flex shrink-0 items-center space-x-2">
+            <label
+              htmlFor="responsible-toggle"
+              className={`shrink-0 ${isMinor ? "cursor-not-allowed opacity-50" : ""}`}
+            >
+              Eu sou meu responsável financeiro
+            </label>
+
+            <Switch
+              id="responsible-toggle"
+              checked={isResponsible}
+              onCheckedChange={(checked) => setIsResponsible(checked)}
+              disabled={isMinor}
+            />
+          </div>
+        </div>
+
+        <hr className="bg-zinc-300" />
+
+        {!isResponsible && (
+          <>
             <h2 className="text-xl font-bold leading-normal text-zinc-800">
-              Dados Pessoais
+              Dados do Responsável Financeiro
             </h2>
 
             <div className="flex w-full items-center gap-4">
-              <Input name="name" type="text" placeholder="Nome Completo" />
-              <Input name="email" type="email" placeholder="E-mail" />
+              <Input
+                name="responsible-name"
+                type="text"
+                placeholder="Nome Completo"
+              />
+              <Input
+                name="responsible-email"
+                type="email"
+                placeholder="E-mail"
+              />
             </div>
 
             <div className="flex w-full items-center gap-4">
               <Input
-                name="cpf"
+                name="responsible-cpf"
                 type="text"
                 placeholder="CPF (Apenas números)"
               />
 
               <Input
-                name="phone"
+                name="responsible-phone"
                 type="text"
                 placeholder="Celular (Apenas números com DDD)"
               />
             </div>
 
-            <BirthDate />
+            <CEPAutofill fieldsPrefix="responsible" />
 
-            <CEPAutofill />
+            <Input
+              name="responsible-relationship"
+              type="text"
+              placeholder="Parentesco"
+            />
 
             <hr className="bg-zinc-300" />
+          </>
+        )}
 
-            <div className="rounded bg-yellow-100 p-4 font-medium text-yellow-800">
-              Juros e multa irão incidir sobre pagamentos em atraso A
-              cobrança será efetuada mensalmente
-            </div>
+        <div className="rounded bg-yellow-100 p-4 font-medium text-yellow-800">
+          A matrícula poderá ser cancelada a qualquer momento.
+        </div>
 
-            <Button className="w-max">Matricular</Button>
-          </form> */}
-    </form>
-  )
-}
+        <div className="flex shrink-0 items-center space-x-2">
+          <Switch id="terms" checked={terms} onCheckedChange={setTerms} />
 
-function SubmitButton() {
-  const status = useFormStatus()
+          <label htmlFor="terms" className={`shrink-0 `}>
+            Ao se matrícular você concorda com os{" "}
+            <a
+              href="#"
+              className="font-medium text-blue-500 transition hover:text-blue-400 hover:underline"
+            >
+              Termos de Uso
+            </a>
+            ,{" "}
+            <a
+              href="#"
+              className="font-medium text-blue-500 transition hover:text-blue-400 hover:underline"
+            >
+              Política de Privacidade
+            </a>{" "}
+            e{" "}
+            <a
+              href="#"
+              className="font-medium text-blue-500 transition hover:text-blue-400 hover:underline"
+            >
+              Contrato de Assinatura
+            </a>
+          </label>
+        </div>
 
-  return (
-    <button
-      disabled={status.pending}
-      type="submit"
-      className="rounded-full bg-primary px-3 py-1.5 font-bold text-white disabled:opacity-45"
-    >
-      {status.pending ? "loading..." : "submit"}
-    </button>
+        <Button className="w-[150px] justify-center">Matricular</Button>
+      </form>
+    </>
   )
 }
