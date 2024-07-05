@@ -20,23 +20,25 @@ import { CertificateModal } from "@/ui/CertificateModal"
 import { GradesSlider } from "@/ui/GradesSlider"
 import { NoClassesModal } from "@/ui/full-classes/modal"
 
+import { API_URL } from "@/util/api"
+
 async function getTotalStudents() {
-  // do count on the database instead of find
-  // const response = await fetch(`${API_URL}/api/students?count=1`, {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // })
+  const response = await fetch(`${API_URL}/api/students`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  })
 
-  // const data: Array<any> = await response.json()
+  const data: { count: number } = await response.json()
 
-  // return data.length
-  return 220
+  return data.count
 }
 
 export default async function Home() {
   const totalStudents = await getTotalStudents()
+
   const available = 0
   // const available = 3
 
@@ -204,7 +206,7 @@ export default async function Home() {
       </section>
 
       <section className="mx-auto flex w-full max-w-7xl flex-col items-center justify-center gap-6 px-6 py-6 lg:flex-row">
-        <Countdown />
+        <Countdown count={totalStudents} />
 
         <RevealOnScroll animation="fade-in">
           <h2 className="text-center text-xl font-bold leading-normal text-zinc-800 md:text-2xl lg:text-4xl">

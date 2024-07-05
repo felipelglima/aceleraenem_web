@@ -15,7 +15,6 @@ import Cert2 from "../../../public/certificates/cert_2.jpg"
 import { VideoTrigger } from "@/ui/Video-Player/Trigger"
 import { InstagramIcon } from "@/ui/AtHandle"
 import { CertificateModal } from "@/ui/CertificateModal"
-import { Link } from "@/ui/Button"
 import { ArrowRight } from "@/ui/Icons"
 import { ArrowLeft } from "lucide-react"
 

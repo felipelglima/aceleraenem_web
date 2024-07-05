@@ -20,6 +20,8 @@ export const enroll = async (state: EnrollFormState, formData: FormData) => {
   const cpf = formData.get("student-cpf")?.toString()
   const phone = formData.get("student-phone")?.toString()
 
+  const password = formData.get("student-password")?.toString()
+
   const address = {
     cep: formData.get("student-cep")?.toString()!,
     state: formData.get("student-state")?.toString()!,
@@ -37,6 +39,7 @@ export const enroll = async (state: EnrollFormState, formData: FormData) => {
     !email ||
     !cpf ||
     !phone ||
+    !password ||
     !birthDate ||
     !address.cep ||
     !address.state ||
@@ -46,7 +49,7 @@ export const enroll = async (state: EnrollFormState, formData: FormData) => {
     !address.number
   ) {
     return {
-      message: "Missing fields",
+      message: "Por favor preencha todos os campos",
     }
   }
 
@@ -78,6 +81,7 @@ export const enroll = async (state: EnrollFormState, formData: FormData) => {
     phone,
     address,
     birthDate: new Date(birthDate),
+    password,
   })
 
   if (studentError || !student) {
@@ -106,6 +110,10 @@ export const enroll = async (state: EnrollFormState, formData: FormData) => {
     return {
       message: enrollmentError,
     }
+  }
+
+  if (process.env.NODE_ENV === "development") {
+    redirect("http://localhost:3333")
   }
 
   redirect("https://app.aceleraenem.com")

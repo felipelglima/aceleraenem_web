@@ -69,19 +69,21 @@ export const CEPAutofill = ({ fieldsPrefix }: { fieldsPrefix: string }) => {
   return (
     <>
       <ControlledInput
+        label="CEP"
         name={`${fieldsPrefix}-cep`}
         type="text"
-        placeholder="CEP (Apenas números)"
+        placeholder="Digite aqui..."
         value={cep}
         onInput={setCep}
       />
 
       <div className="flex w-full items-center gap-4">
-        <div className="max-w-[80px]">
+        <div className="max-w-[300px]">
           <ControlledInput
             name={`${fieldsPrefix}-state`}
             type="text"
-            placeholder="UF"
+            label="UF"
+            placeholder="Digite aqui..."
             value={address.state}
             onInput={(text) => setAddress((add) => ({ ...add, state: text }))}
           />
@@ -90,7 +92,8 @@ export const CEPAutofill = ({ fieldsPrefix }: { fieldsPrefix: string }) => {
         <ControlledInput
           name={`${fieldsPrefix}-city`}
           type="text"
-          placeholder="Cidade"
+          label="Cidade"
+          placeholder="Digite aqui..."
           value={address.city}
           onInput={(text) => setAddress((add) => ({ ...add, city: text }))}
         />
@@ -100,7 +103,8 @@ export const CEPAutofill = ({ fieldsPrefix }: { fieldsPrefix: string }) => {
         <ControlledInput
           name={`${fieldsPrefix}-neighborhood`}
           type="text"
-          placeholder="Bairro"
+          label="Bairro"
+          placeholder="Digite aqui..."
           value={address.neighborhood}
           onInput={(text) =>
             setAddress((add) => ({ ...add, neighborhood: text }))
@@ -110,6 +114,7 @@ export const CEPAutofill = ({ fieldsPrefix }: { fieldsPrefix: string }) => {
         <ControlledInput
           name={`${fieldsPrefix}-street`}
           type="text"
+          label="Rua"
           placeholder="Rua, Avenida..."
           value={address.street}
           onInput={(text) => setAddress((add) => ({ ...add, street: text }))}
@@ -119,7 +124,8 @@ export const CEPAutofill = ({ fieldsPrefix }: { fieldsPrefix: string }) => {
           <ControlledInput
             name={`${fieldsPrefix}-number`}
             type="text"
-            placeholder="Número"
+            label="Número"
+            placeholder="Digite aqui..."
             value={address.number}
             onInput={(text) => setAddress((add) => ({ ...add, number: text }))}
           />

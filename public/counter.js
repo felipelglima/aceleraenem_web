@@ -1,5 +1,5 @@
-document.addEventListener("start-counter", () => {
-  const totalNumbers = 244
+document.addEventListener("start-counter", (event) => {
+  const totalNumbers = event.detail.count
   const animationDuration = 3000
   const steps = totalNumbers + 1
   const timeoutInterval = animationDuration / steps

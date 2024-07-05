@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { useFormState } from "react-dom"
 
-import { EnrollFormState, enroll } from "./enroll-action"
+import { enroll } from "./enroll-action"
 
 import { ControlledInput, Input } from "@/ui/Input"
 import { CEPAutofill } from "./cep-autofill"
@@ -38,8 +38,6 @@ export const EnrollForm = ({ classSlug }: { classSlug: string }) => {
           Dados do Aluno
         </h2>
 
-        {state.message && <p className="text-red-500">{state.message}</p>}
-
         <input
           type="text"
           className="sr-only"
@@ -48,50 +46,69 @@ export const EnrollForm = ({ classSlug }: { classSlug: string }) => {
         />
 
         <div className="flex w-full items-center gap-4">
-          <Input name="student-name" type="text" placeholder="Nome Completo" />
-          <Input name="student-email" type="email" placeholder="E-mail" />
+          <Input
+            label="Nome Completo"
+            name="student-name"
+            placeholder="Fulano ciclano"
+            type="text"
+          />
+
+          <Input
+            label="Seu E-mail"
+            name="student-email"
+            placeholder="fulano@gmail.com"
+            type="email"
+          />
         </div>
 
         <div className="flex w-full items-center gap-4">
           <Input
+            label="CPF"
             name="student-cpf"
+            placeholder="Digite aqui..."
             type="text"
-            placeholder="CPF (Apenas números)"
           />
 
           <Input
+            label="Celular"
             name="student-phone"
+            placeholder="Digite aqui..."
             type="text"
-            placeholder="Celular (Apenas números com DDD)"
           />
         </div>
+
+        <Input
+          label="Senha"
+          name="student-password"
+          placeholder="Digite aqui..."
+          type="password"
+        />
 
         <CEPAutofill fieldsPrefix="student" />
 
-        <div className="flex w-full items-center gap-4">
-          <ControlledInput
-            name="student-birthDate"
-            type="date"
-            placeholder="Data de Nascimento"
-            value={birthDate}
-            onInput={setBirthDate}
+        <ControlledInput
+          name="student-birthDate"
+          type="date"
+          placeholder=""
+          label="Data de Nascimento"
+          value={birthDate}
+          onInput={setBirthDate}
+        />
+
+        <div className="flex !h-full shrink-0 items-center space-x-2">
+          <label
+            htmlFor="responsible-toggle"
+            className={`shrink-0 ${isMinor ? "cursor-not-allowed opacity-50" : ""}`}
+          >
+            Eu sou meu responsável financeiro
+          </label>
+
+          <Switch
+            id="responsible-toggle"
+            checked={isResponsible}
+            onCheckedChange={(checked) => setIsResponsible(checked)}
+            disabled={isMinor}
           />
-
-          <div className="flex shrink-0 items-center space-x-2">
-            <label
-              htmlFor="responsible-toggle"
-              className={`shrink-0 ${isMinor ? "cursor-not-allowed opacity-50" : ""}`}
-            >
-              Eu sou meu responsável financeiro
-            </label>
-
-            <Switch
-              id="responsible-toggle"
-              checked={isResponsible}
-              onCheckedChange={(checked) => setIsResponsible(checked)}
-              disabled={isMinor}
-            />
-          </div>
         </div>
 
         <hr className="bg-zinc-300" />
@@ -173,8 +190,52 @@ export const EnrollForm = ({ classSlug }: { classSlug: string }) => {
           </label>
         </div>
 
+        {state.message && <p className="text-red-500">{state.message}</p>}
+
         <Button className="w-[150px] justify-center">Matricular</Button>
       </form>
     </>
+  )
+}
+
+import { format } from "date-fns"
+import { CalendarIcon } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import { Button as ShadcnButton } from "@/components/ui/button"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+
+function DatePickerDemo() {
+  const [date, setDate] = useState<Date>()
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <ShadcnButton
+          variant="outline"
+          className={cn(
+            "w-full justify-start text-left font-normal",
+            !date && "text-muted-foreground"
+          )}
+        >
+          <CalendarIcon className="mr-2 h-4 w-4" />
+          {date ? format(date, "PPP") : <span>Escolha a data</span>}
+        </ShadcnButton>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0" align="start">
+        <Calendar
+          mode="single"
+          selected={date}
+          onSelect={setDate}
+          className="w-full"
+          initialFocus
+        />
+      </PopoverContent>
+    </Popover>
   )
 }

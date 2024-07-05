@@ -22,6 +22,7 @@ import {
 import { Class } from "@/util/api"
 import { Link } from "@/ui/Button"
 import { PreStudentForm } from "@/ui/full-classes/form"
+import { ReactNode } from "react"
 
 const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
   dateStyle: "short",
@@ -30,6 +31,7 @@ const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
 const formatDate = (date: string) => dateFormatter.format(new Date(date))
 
 export const EnrollModal = (props: {
+  children: ReactNode
   classes: (Class & { available: boolean })[]
 }) => {
   return (
@@ -125,17 +127,7 @@ export const EnrollModal = (props: {
               Seja notificado quando abrirem novas vagas.
             </p>
 
-            <Popover>
-              <PopoverTrigger asChild>
-                <button className="flex items-center justify-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition ease-out active:scale-90">
-                  Seja notificado
-                </button>
-              </PopoverTrigger>
-
-              <PopoverContent className="z-50">
-                <PreStudentForm />
-              </PopoverContent>
-            </Popover>
+            {props.children}
           </li>
         </ul>
       </DialogContent>

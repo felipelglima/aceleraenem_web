@@ -7,7 +7,8 @@ export const createStudentAction = async ({
   phone,
   address,
   birthDate,
-}: StudentProps) => {
+  password,
+}: StudentProps & { password: string }) => {
   const response = await fetch(`${API_URL}/api/students`, {
     method: "POST",
     body: JSON.stringify({
@@ -17,6 +18,7 @@ export const createStudentAction = async ({
       phone,
       address,
       birthDate,
+      password,
     }),
   })
 

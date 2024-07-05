@@ -7,13 +7,17 @@ const options: IntersectionObserverInit = {
   threshold: 0.1,
 }
 
-export const Countdown = () => {
+export const Countdown = ({ count }: { count: number }) => {
   const ref = useRef<HTMLDivElement>(null)
 
   const [counted, setCounted] = useState(false)
 
   const emitEvent = () => {
-    const event = new CustomEvent("start-counter")
+    const event = new CustomEvent("start-counter", {
+      detail: {
+        count,
+      },
+    })
     document.dispatchEvent(event)
   }
 

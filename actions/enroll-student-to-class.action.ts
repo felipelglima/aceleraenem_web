@@ -32,6 +32,14 @@ export const enrollStudentToClass = async (
     }
   }
 
+  if (process.env.NODE_ENV === "development") {
+    cookies().set("@acelera-enem:access_token", result.data.access_token)
+
+    return {
+      data: {},
+    }
+  }
+
   cookies().set("@acelera-enem:access_token", result.data.access_token, {
     domain: ".aceleraenem.com",
   })

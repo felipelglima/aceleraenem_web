@@ -6,6 +6,7 @@ import { EnrollModal } from "./enroll-modal"
 import { getClasses } from "./get-classes.query"
 import { Content } from "./content"
 import { RevealOnScroll } from "@/ui/Reveal-on-Scroll"
+import { InterestModal } from "./interest-modal"
 
 export default async function Page() {
   const classes = await getClasses()
@@ -18,7 +19,10 @@ export default async function Page() {
             Curso <span className="text-secondary">Presencial</span>
           </h2>
           <Content />
-          <EnrollModal classes={classes} />
+
+          <EnrollModal classes={classes}>
+            <InterestModal />
+          </EnrollModal>
         </section>
       </RevealOnScroll>
     </main>
