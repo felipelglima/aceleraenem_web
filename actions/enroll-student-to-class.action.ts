@@ -1,10 +1,15 @@
 import { cookies } from "next/headers"
+import crypto from "node:crypto"
 
-import { API_URL, Class, Student } from "@/util/api"
+import { API_URL, COMMUNICATION_TOKEN } from "@/util/api"
 
 type EnrollStudentToClassRequest = {
-  class: Class
-  student: Student
+  class: {
+    id: string
+  }
+  student: {
+    id: string
+  }
 }
 
 export const enrollStudentToClass = async (
@@ -12,12 +17,26 @@ export const enrollStudentToClass = async (
 ) => {
   const response = await fetch(`${API_URL}/api/enrollments`, {
     method: "POST",
-    body: JSON.stringify(props),
+    headers: {
+      Authorization: `Basic ${COMMUNICATION_TOKEN}`,
+    },
+    body: JSON.stringify({
+      specversion: "1.0",
+      type: "Enrollment Placed",
+      source: "web",
+      subject: "enrollment",
+      action: "placed",
+      id: crypto.randomUUID(),
+      time: new Date().toISOString(),
+      env: process.env.NODE_ENV === "production" ? "prd" : "dev",
+      datacontenttype: "application/json",
+      data: props,
+    }),
   })
 
   type APIResponse =
     | {
-        data: { access_token: string }
+        data: { access_token: string; expiresIn: number }
       }
     | {
         data: null

@@ -1,3 +1,4 @@
+export const COMMUNICATION_TOKEN = process.env.COMMUNICATION_TOKEN
 export const API_URL = process.env.API_URL
 
 export type Address = {
@@ -33,4 +34,14 @@ export type Student = StudentProps & {
   id: string
 
   createdAt: Date
+}
+
+export type Responsible = {
+  name: string
+  email: string
+  cpf: string
+  phone: string
+  address: Address
+  relationship: string
+  studentId: string
 }
