@@ -4,6 +4,7 @@ import { createResponsible } from "@/actions/create-responsible"
 import { createStudentAction } from "@/actions/create-student.action"
 import { enrollStudentToClass } from "@/actions/enroll-student-to-class.action"
 import { retrieveClassBySlugAction } from "@/actions/retrieve-class-by-slug"
+import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { z } from "zod"
 
@@ -222,7 +223,7 @@ export async function enrollStudent(
     return {}
   }
 
-  const { error: enrollmentError } = await enrollStudentToClass({
+  const { data, error: enrollmentError } = await enrollStudentToClass({
     class: {
       id: enrollingClass.class!.id,
     },
@@ -237,8 +238,14 @@ export async function enrollStudent(
   }
 
   if (process.env.NODE_ENV === "development") {
+    cookies().set("@acelera-enem:access_token", data!.access_token)
+
     return redirect("http://localhost:3333")
   }
+
+  cookies().set("@acelera-enem:access_token", data!.access_token, {
+    domain: ".aceleraenem.com",
+  })
 
   return redirect("https://app.aceleraenem.com")
 }

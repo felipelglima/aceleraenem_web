@@ -1,4 +1,5 @@
-import { cookies } from "next/headers"
+"use server"
+
 import crypto from "node:crypto"
 
 import { API_URL, COMMUNICATION_TOKEN } from "@/util/api"
@@ -48,24 +49,14 @@ export const enrollStudentToClass = async (
   if (!result.data) {
     return {
       error: result.error,
+      data: null,
     }
   }
-
-  if (process.env.NODE_ENV === "development") {
-    cookies().set("@acelera-enem:access_token", result.data.access_token)
-
-    return {
-      data: {},
-    }
-  }
-
-  console.log("setting access token", result.data.access_token)
-
-  cookies().set("@acelera-enem:access_token", result.data.access_token, {
-    domain: ".aceleraenem.com",
-  })
 
   return {
-    data: {},
+    error: null,
+    data: {
+      access_token: result.data.access_token,
+    },
   }
 }
