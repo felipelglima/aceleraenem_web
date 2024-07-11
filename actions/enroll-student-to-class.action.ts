@@ -45,7 +45,6 @@ export const enrollStudentToClass = async (
       }
 
   const result = (await response.json()) as APIResponse
-  console.log("calling POST /enrollments ", { result })
 
   if (!result.data) {
     return {
