@@ -53,6 +53,8 @@ export const enrollStudentToClass = async (
     }
   }
 
+  console.log("calling POST /enrollments ", { result })
+
   return {
     error: null,
     data: {

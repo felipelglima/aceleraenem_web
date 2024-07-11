@@ -237,6 +237,8 @@ export async function enrollStudent(
     return {}
   }
 
+  console.log("received data", data)
+
   if (process.env.NODE_ENV === "development") {
     cookies().set("@acelera-enem:access_token", data!.access_token)
 
