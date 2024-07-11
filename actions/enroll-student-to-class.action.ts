@@ -59,8 +59,10 @@ export const enrollStudentToClass = async (
     }
   }
 
+  console.log("setting access token", result.data.access_token)
+
   cookies().set("@acelera-enem:access_token", result.data.access_token, {
-    domain: "app.aceleraenem.com",
+    domain: ".aceleraenem.com",
   })
 
   return {
