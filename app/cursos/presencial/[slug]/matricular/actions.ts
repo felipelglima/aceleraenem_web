@@ -1,9 +1,6 @@
 "use server"
 
-import { createResponsible } from "@/actions/create-responsible"
-import { createStudentAction } from "@/actions/create-student.action"
 import { enrollStudentToClass } from "@/actions/enroll-student-to-class.action"
-import { retrieveClassBySlugAction } from "@/actions/retrieve-class-by-slug"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { z } from "zod"
@@ -89,146 +86,152 @@ export async function enrollStudent(
   _: EnrollStudentState,
   formData: FormData
 ): Promise<EnrollStudentState> {
-  const address = addressSchema.safeParse({
-    cep: formData.get("student-address-cep"),
-    state: formData.get("student-address-state"),
-    city: formData.get("student-address-city"),
-    neighborhood: formData.get("student-address-neighborhood"),
-    street: formData.get("student-address-street"),
-    number: formData.get("student-address-number"),
-  })
+  // const address = addressSchema.safeParse({
+  //   cep: formData.get("student-address-cep"),
+  //   state: formData.get("student-address-state"),
+  //   city: formData.get("student-address-city"),
+  //   neighborhood: formData.get("student-address-neighborhood"),
+  //   street: formData.get("student-address-street"),
+  //   number: formData.get("student-address-number"),
+  // })
 
-  let errors: EnrollStudentState["errors"] = {}
+  // let errors: EnrollStudentState["errors"] = {}
 
-  if (address.error) {
-    errors = {
-      ...mapError(address.error.flatten().fieldErrors, "student-address"),
-    }
-  }
+  // if (address.error) {
+  //   errors = {
+  //     ...mapError(address.error.flatten().fieldErrors, "student-address"),
+  //   }
+  // }
 
-  const student = studentSchema.safeParse({
-    name: formData.get("student-name"),
-    email: formData.get("student-email"),
-    cpf: formData.get("student-cpf"),
-    phone: formData.get("student-phone"),
-    birthDate: formData.get("student-birthDate"),
-    password: formData.get("student-password"),
-  })
+  // const student = studentSchema.safeParse({
+  //   name: formData.get("student-name"),
+  //   email: formData.get("student-email"),
+  //   cpf: formData.get("student-cpf"),
+  //   phone: formData.get("student-phone"),
+  //   birthDate: formData.get("student-birthDate"),
+  //   password: formData.get("student-password"),
+  // })
 
-  if (student.error) {
-    errors = {
-      ...errors,
-      ...mapError(student.error.flatten().fieldErrors, "student"),
-    }
-  }
+  // if (student.error) {
+  //   errors = {
+  //     ...errors,
+  //     ...mapError(student.error.flatten().fieldErrors, "student"),
+  //   }
+  // }
 
-  const minor = student.data?.birthDate
-    ? new Date().getFullYear() -
-        new Date(student.data.birthDate!).getFullYear() <
-      18
-    : false
+  // const minor = student.data?.birthDate
+  //   ? new Date().getFullYear() -
+  //       new Date(student.data.birthDate!).getFullYear() <
+  //     18
+  //   : false
 
-  const responsibleAddress = addressSchema.safeParse({
-    cep: formData.get("responsible-address-cep"),
-    state: formData.get("responsible-address-state"),
-    city: formData.get("responsible-address-city"),
-    neighborhood: formData.get("responsible-address-neighborhood"),
-    street: formData.get("responsible-address-street"),
-    number: formData.get("responsible-address-number"),
-  })
+  // const responsibleAddress = addressSchema.safeParse({
+  //   cep: formData.get("responsible-address-cep"),
+  //   state: formData.get("responsible-address-state"),
+  //   city: formData.get("responsible-address-city"),
+  //   neighborhood: formData.get("responsible-address-neighborhood"),
+  //   street: formData.get("responsible-address-street"),
+  //   number: formData.get("responsible-address-number"),
+  // })
 
-  const responsibleValidate = responsibleSchema.safeParse({
-    name: formData.get("responsible-name"),
-    email: formData.get("responsible-email"),
-    cpf: formData.get("responsible-cpf"),
-    phone: formData.get("responsible-phone"),
-    relationship: formData.get("responsible-relationship"),
-  })
-  if (minor || config.responsibleEnabled) {
-    if (responsibleAddress.error) {
-      errors = {
-        ...errors,
-        ...mapError(
-          responsibleAddress.error.flatten().fieldErrors,
-          "responsible-address"
-        ),
-      }
-    }
+  // const responsibleValidate = responsibleSchema.safeParse({
+  //   name: formData.get("responsible-name"),
+  //   email: formData.get("responsible-email"),
+  //   cpf: formData.get("responsible-cpf"),
+  //   phone: formData.get("responsible-phone"),
+  //   relationship: formData.get("responsible-relationship"),
+  // })
+  // if (minor || config.responsibleEnabled) {
+  //   if (responsibleAddress.error) {
+  //     errors = {
+  //       ...errors,
+  //       ...mapError(
+  //         responsibleAddress.error.flatten().fieldErrors,
+  //         "responsible-address"
+  //       ),
+  //     }
+  //   }
 
-    if (responsibleValidate.error) {
-      errors = {
-        ...errors,
-        ...mapError(
-          responsibleValidate.error.flatten().fieldErrors,
-          "responsible"
-        ),
-      }
-    }
-  }
+  //   if (responsibleValidate.error) {
+  //     errors = {
+  //       ...errors,
+  //       ...mapError(
+  //         responsibleValidate.error.flatten().fieldErrors,
+  //         "responsible"
+  //       ),
+  //     }
+  //   }
+  // }
 
-  if (Object.keys(errors).length > 0) {
-    return {
-      errors,
-    }
-  }
+  // if (Object.keys(errors).length > 0) {
+  //   return {
+  //     errors,
+  //   }
+  // }
 
-  const enrollingClass = await retrieveClassBySlugAction({
-    slug: config.slug,
-  })
+  // const enrollingClass = await retrieveClassBySlugAction({
+  //   slug: config.slug,
+  // })
 
-  if (enrollingClass.error) {
-    console.log(enrollingClass.error)
-    return {}
-  }
+  // if (enrollingClass.error) {
+  //   console.log(enrollingClass.error)
+  //   return {}
+  // }
 
-  const createStudent = await createStudentAction({
-    name: student.data!.name,
-    email: student.data!.email,
-    cpf: student.data!.cpf,
-    phone: student.data!.phone,
-    address: {
-      cep: address.data!.cep,
-      state: address.data!.state,
-      city: address.data!.city,
-      neighborhood: address.data!.neighborhood,
-      street: address.data!.street,
-      number: address.data!.number,
-    },
-    birthDate: student.data!.birthDate,
-    password: student.data!.password,
-  })
+  // const createStudent = await createStudentAction({
+  //   name: student.data!.name,
+  //   email: student.data!.email,
+  //   cpf: student.data!.cpf,
+  //   phone: student.data!.phone,
+  //   address: {
+  //     cep: address.data!.cep,
+  //     state: address.data!.state,
+  //     city: address.data!.city,
+  //     neighborhood: address.data!.neighborhood,
+  //     street: address.data!.street,
+  //     number: address.data!.number,
+  //   },
+  //   birthDate: student.data!.birthDate,
+  //   password: student.data!.password,
+  // })
 
-  if (createStudent.error) {
-    console.log(createStudent.error)
-    return {}
-  }
+  // if (createStudent.error) {
+  //   console.log(createStudent.error)
+  //   return {}
+  // }
 
-  if (!createStudent.student?.id) {
-    console.log("student id not returned")
-    return {}
-  }
+  // if (!createStudent.student?.id) {
+  //   console.log("student id not returned")
+  //   return {}
+  // }
 
-  const responsible = await createResponsible({
-    name: responsibleValidate.data!.name,
-    email: responsibleValidate.data!.email,
-    cpf: responsibleValidate.data!.cpf,
-    phone: responsibleValidate.data!.phone,
-    address: responsibleAddress.data!,
-    relationship: responsibleValidate.data!.relationship,
-    studentId: createStudent.student.id,
-  })
+  // const responsible = await createResponsible({
+  //   name: responsibleValidate.data!.name,
+  //   email: responsibleValidate.data!.email,
+  //   cpf: responsibleValidate.data!.cpf,
+  //   phone: responsibleValidate.data!.phone,
+  //   address: responsibleAddress.data!,
+  //   relationship: responsibleValidate.data!.relationship,
+  //   studentId: createStudent.student.id,
+  // })
 
-  if (responsible.error) {
-    console.log(responsible.error)
-    return {}
-  }
+  // if (responsible.error) {
+  //   console.log(responsible.error)
+  //   return {}
+  // }
 
   const { data, error: enrollmentError } = await enrollStudentToClass({
+    // class: {
+    //   id: enrollingClass.class!.id,
+    // },
+    // student: {
+    //   id: createStudent.student.id,
+    // },
     class: {
-      id: enrollingClass.class!.id,
+      id: "spider-man",
     },
     student: {
-      id: createStudent.student.id,
+      id: "hahahah",
     },
   })
 
