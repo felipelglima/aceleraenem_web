@@ -145,7 +145,9 @@ export async function enrollStudent(
     relationship: formData.get("responsible-relationship"),
   })
 
-  if (config.responsibleEnabled || minor) {
+  const shouldCreateResponsible = config.responsibleEnabled || minor
+
+  if (shouldCreateResponsible) {
     if (responsibleAddress.error) {
       errors = {
         ...errors,
@@ -209,19 +211,21 @@ export async function enrollStudent(
     return {}
   }
 
-  const responsible = await createResponsible({
-    name: responsibleValidate.data!.name,
-    email: responsibleValidate.data!.email,
-    cpf: responsibleValidate.data!.cpf,
-    phone: responsibleValidate.data!.phone,
-    address: responsibleAddress.data!,
-    relationship: responsibleValidate.data!.relationship,
-    studentId: createStudent.student.id,
-  })
+  if (shouldCreateResponsible) {
+    const responsible = await createResponsible({
+      name: responsibleValidate.data!.name,
+      email: responsibleValidate.data!.email,
+      cpf: responsibleValidate.data!.cpf,
+      phone: responsibleValidate.data!.phone,
+      address: responsibleAddress.data!,
+      relationship: responsibleValidate.data!.relationship,
+      studentId: createStudent.student.id,
+    })
 
-  if (responsible.error) {
-    console.log(responsible.error)
-    return {}
+    if (responsible.error) {
+      console.log(responsible.error)
+      return {}
+    }
   }
 
   const { data, error: enrollmentError } = await enrollStudentToClass({
