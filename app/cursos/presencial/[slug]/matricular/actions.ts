@@ -144,7 +144,8 @@ export async function enrollStudent(
     phone: formData.get("responsible-phone"),
     relationship: formData.get("responsible-relationship"),
   })
-  if (minor || config.responsibleEnabled) {
+
+  if (config.responsibleEnabled || minor) {
     if (responsibleAddress.error) {
       errors = {
         ...errors,
