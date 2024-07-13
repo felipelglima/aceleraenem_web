@@ -16,7 +16,7 @@ export function AboutTeacher() {
   return (
     <section
       id="a-professora"
-      className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-6 px-0 py-6 lg:flex-row lg:gap-16 lg:px-6"
+      className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-6 px-0 py-6 lg:flex-row lg:gap-16 lg:px-6 lg:pt-[calc(85px+40px)]"
     >
       <AnimateOnScroll animation="slide-to-right">
         <Div className="flex w-full flex-col gap-6 px-2 lg:px-0">

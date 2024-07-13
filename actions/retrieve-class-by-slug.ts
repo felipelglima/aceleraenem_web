@@ -10,7 +10,9 @@ export const retrieveClassBySlugAction = async ({ slug }: { slug: string }) => {
 
   type APIResponse =
     | {
-        data: Class
+        data: {
+          class: Class
+        }
       }
     | {
         data: null
@@ -26,6 +28,6 @@ export const retrieveClassBySlugAction = async ({ slug }: { slug: string }) => {
   }
 
   return {
-    class: result.data,
+    class: result.data.class,
   }
 }

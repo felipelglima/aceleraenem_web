@@ -1,5 +1,7 @@
 "use client"
 
+import { MessageCircleQuestionIcon } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -48,7 +50,7 @@ export async function ClassListModal(props: {
           <DialogTitle>Turmas</DialogTitle>
         </DialogHeader>
 
-        <ul className="flex w-full flex-col items-center justify-center gap-6 lg:flex-row">
+        <ul className="flex max-h-[600px] w-full flex-col items-center justify-start gap-6 overflow-auto lg:flex-row">
           {props.classes.map((props) => (
             <li
               key={props.name}
@@ -85,41 +87,33 @@ function ClassCard({
     <>
       <h2 className="font-bold text-zinc-800">{name}</h2>
 
-      <div className="flex flex-wrap text-zinc-900">
+      <div className="flex flex-col flex-wrap gap-2 text-zinc-900">
         <span>{hasAlreadyStarted ? <>Começou dia</> : <>Começa dia</>} </span>
 
-        <span>{formatDate(startsAt)}</span>
-
-        {hasAlreadyStarted && (
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger>
-                <div className="flex h-max w-max scale-75 items-center justify-center rounded-full bg-zinc-500 p-1 text-white">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                    className="size-4"
+        <div className="flex items-center gap-2">
+          <span>{formatDate(startsAt)}</span>
+          {hasAlreadyStarted && (
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant={"ghost"}
+                    className="size-auto p-2"
+                    size="icon"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 5.25h.008v.008H12v-.008Z"
-                    />
-                  </svg>
-                </div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>
-                  O material das aulas passadas estará disponível para você na
-                  plataforma
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-        )}
+                    <MessageCircleQuestionIcon size={14} />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    O material das aulas passadas estará disponível para você na
+                    plataforma
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          )}
+        </div>
       </div>
 
       <hr className="bg-zinc-300" />

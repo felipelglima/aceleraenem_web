@@ -25,6 +25,7 @@ const addressSchema = z.object({
     .min(2, "O bairro precisa ter no mínimo 2 caracteres"),
   street: z.string().min(2, "A rua precisa ter no mínimo 2 caracteres"),
   number: z.string().min(1, "É necessário fornecer o número"),
+  complement: z.string().optional(),
 })
 
 const studentSchema = z.object({
@@ -96,6 +97,7 @@ export async function enrollStudent(
     neighborhood: formData.get("student-address-neighborhood"),
     street: formData.get("student-address-street"),
     number: formData.get("student-address-number"),
+    complement: formData.get("student-address-complement"),
   })
 
   let errors: EnrollStudentState["errors"] = {}
@@ -135,6 +137,7 @@ export async function enrollStudent(
     neighborhood: formData.get("responsible-address-neighborhood"),
     street: formData.get("responsible-address-street"),
     number: formData.get("responsible-address-number"),
+    complement: formData.get("responsible-address-complement"),
   })
 
   const responsibleValidate = responsibleSchema.safeParse({
@@ -202,8 +205,11 @@ export async function enrollStudent(
   })
 
   if (createStudent.error) {
-    console.log(createStudent.error)
-    return {}
+    return {
+      errors: {
+        general: createStudent.error,
+      },
+    }
   }
 
   if (!createStudent.student?.id) {
@@ -224,7 +230,11 @@ export async function enrollStudent(
 
     if (responsible.error) {
       console.log(responsible.error)
-      return {}
+      return {
+        errors: {
+          general: responsible.error,
+        },
+      }
     }
   }
 

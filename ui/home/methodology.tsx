@@ -8,7 +8,7 @@ export function Methodology() {
   return (
     <section
       id="metodologia"
-      className="mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 py-4 lg:py-32"
+      className="mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-0 py-6 lg:px-6 lg:pt-[calc(85px+40px)]"
     >
       <AnimateOnScroll animation="slide-to-right">
         <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-5xl">

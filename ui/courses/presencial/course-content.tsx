@@ -1,12 +1,20 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
+import { useMemo, useState } from "react"
 
 import { materials } from "@/ui/variables"
 
 import { Button } from "@/components/ui/button"
 import { AnimateOnScroll } from "@/ui/animate"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/ui/components/select"
 
 import { AboutTeacher } from "@/ui/home/about-teacher"
 import { Methodology } from "@/ui/home/methodology"
@@ -17,40 +25,39 @@ type ContentType = "teacher" | "about" | "methodology" | "location"
 export const CourseContent = () => {
   const [section, setSection] = useState<ContentType>("about")
 
+  const sectionName = useMemo(() => {
+    switch (section) {
+      case "about":
+        return "Sobre"
+      case "teacher":
+        return "Professora"
+      case "methodology":
+        return "Metodologia"
+      case "location":
+        return "Local"
+    }
+  }, [section])
+
   const handlePrevious = () => {
-    if (section === "teacher") {
-      return setSection("location")
+    const sections: Record<ContentType, ContentType> = {
+      location: "methodology",
+      methodology: "teacher",
+      teacher: "about",
+      about: "location",
     }
 
-    if (section === "about") {
-      return setSection("teacher")
-    }
-
-    if (section === "methodology") {
-      return setSection("about")
-    }
-
-    if (section === "location") {
-      return setSection("methodology")
-    }
+    return setSection(sections[section])
   }
 
   const handleNext = () => {
-    if (section === "teacher") {
-      return setSection("about")
+    const sections: Record<ContentType, ContentType> = {
+      about: "teacher",
+      teacher: "methodology",
+      methodology: "location",
+      location: "about",
     }
 
-    if (section === "about") {
-      return setSection("methodology")
-    }
-
-    if (section === "methodology") {
-      return setSection("location")
-    }
-
-    if (section === "location") {
-      return setSection("teacher")
-    }
+    return setSection(sections[section])
   }
 
   return (
@@ -60,20 +67,39 @@ export const CourseContent = () => {
           <ArrowLeftIcon />
         </Button>
 
-        <div className="flex w-full flex-col gap-2 lg:flex-row">
-          <Button
-            className="w-full lg:w-[120px]"
-            onClick={() => setSection("teacher")}
-            variant={section === "teacher" ? "default" : "outline"}
+        <div className="md:hidden">
+          <Select
+            value={section}
+            onValueChange={(value) => setSection(value as ContentType)}
           >
-            Professora
-          </Button>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder={sectionName} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="about">Sobre</SelectItem>
+                <SelectItem value="teacher">Professora</SelectItem>
+                <SelectItem value="methodology">Metodologia</SelectItem>
+                <SelectItem value="location">Local</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="hidden w-full flex-col gap-2 lg:flex lg:flex-row">
           <Button
             className="w-full lg:w-[120px]"
             onClick={() => setSection("about")}
             variant={section === "about" ? "default" : "outline"}
           >
             Sobre
+          </Button>
+          <Button
+            className="w-full lg:w-[120px]"
+            onClick={() => setSection("teacher")}
+            variant={section === "teacher" ? "default" : "outline"}
+          >
+            Professora
           </Button>
           <Button
             className="w-full lg:w-[120px]"
@@ -96,8 +122,8 @@ export const CourseContent = () => {
         </Button>
       </div>
 
-      {section === "teacher" && <AboutTeacher />}
       {section === "about" && <Materials />}
+      {section === "teacher" && <AboutTeacher />}
       {section === "methodology" && <Methodology />}
       {section === "location" && <LocationSection />}
     </>

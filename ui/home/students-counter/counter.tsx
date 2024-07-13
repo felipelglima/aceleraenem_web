@@ -46,7 +46,10 @@ export const Counter = ({ count }: { count: number }) => {
   }, [counted, ref])
 
   return (
-    <div ref={ref} className="mx-0 my-auto flex w-max">
+    <div
+      ref={ref}
+      className="mx-0 my-auto flex w-max overflow-hidden rounded-md"
+    >
       <AnimateOnScroll animation="fade-in">
         <div
           id="hundreds"

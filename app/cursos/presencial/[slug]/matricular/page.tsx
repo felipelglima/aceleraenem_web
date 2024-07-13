@@ -22,7 +22,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <form
-      className="flex flex-col gap-4 rounded border border-zinc-300 p-6"
+      className="flex flex-col gap-4 rounded border-zinc-300 p-2 md:border md:p-6"
       action={action}
     >
       <InputRow>
@@ -128,13 +128,19 @@ export default function Page({ params }: { params: { slug: string } }) {
         </label>
       </div>
 
+      <span className="text-red-500">{state.errors?.general}</span>
+
       <Button className="w-[150px] justify-center">Matricular</Button>
     </form>
   )
 }
 
 function InputRow({ children }: { children: ReactNode }) {
-  return <div className="flex w-full items-start gap-4">{children}</div>
+  return (
+    <div className="flex w-full flex-col items-start gap-4 md:flex-row">
+      {children}
+    </div>
+  )
 }
 
 function InputField({

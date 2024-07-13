@@ -1,5 +1,6 @@
 "use client"
 
+import { DatePicker } from "@/ui/courses/matricular/date-picker"
 import { cache, useEffect, useId, useState } from "react"
 
 export function BirthDate(props: {
@@ -15,16 +16,26 @@ export function BirthDate(props: {
   }, [age, props])
 
   return (
-    <ControlledInputField
-      name="student-birthDate"
-      type="date"
-      placeholder=""
-      value={birthDate}
-      onInput={setBirthDate}
-      error={props.error}
-    >
-      Data de Nascimento
-    </ControlledInputField>
+    <>
+      <DatePicker
+        onDateChange={(date) => {
+          const dateAsString = date
+            .toLocaleString("pt-BR", { dateStyle: "short" })
+            .replaceAll("/", "-")
+
+          setBirthDate(dateAsString)
+        }}
+      >
+        Data de Nascimento
+      </DatePicker>
+
+      <input
+        value={birthDate}
+        type="text"
+        className="sr-only"
+        name="student-birthDate"
+      />
+    </>
   )
 }
 
@@ -52,6 +63,7 @@ const getCEPData = cache(async (cep: string) => {
       city: "",
       state: "",
       number: "",
+      complement: "",
     }
   }
 
@@ -72,6 +84,7 @@ const getCEPData = cache(async (cep: string) => {
     city: data.localidade,
     state: data.uf,
     number: "",
+    complement: "",
   }
 })
 
@@ -123,6 +136,7 @@ export function Address({
     city: "",
     state: "",
     number: "",
+    complement: "",
   })
 
   const triggerAutofill = useDebouncedValue(cep, 500)
@@ -136,24 +150,24 @@ export function Address({
 
   return (
     <>
-      <ControlledInputField
-        name={`${fieldsPrefix}-cep`}
-        type="text"
-        placeholder="Digite aqui..."
-        value={cep}
-        onInput={setCep}
-        error={errors?.[`${fieldsPrefix}-cep`]}
-      >
-        CEP
-      </ControlledInputField>
+      <div className="flex w-full flex-col items-center gap-4 md:flex-row">
+        <ControlledInputField
+          name={`${fieldsPrefix}-cep`}
+          type="text"
+          placeholder="Digite aqui..."
+          value={cep}
+          onInput={setCep}
+          error={errors?.[`${fieldsPrefix}-cep`]}
+        >
+          CEP
+        </ControlledInputField>
 
-      <div className="flex w-full items-center gap-4">
-        <div className="max-w-[300px]">
+        <div className="md:max-w-[300px]">
           <ControlledInputField
             name={`${fieldsPrefix}-state`}
             error={errors?.[`${fieldsPrefix}-state`]}
             type="text"
-            placeholder="Digite aqui..."
+            placeholder=""
             value={address.state}
             onInput={(text) => updateInfo("state", text)}
           >
@@ -171,9 +185,7 @@ export function Address({
         >
           Cidade
         </ControlledInputField>
-      </div>
 
-      <div className="flex w-full items-center gap-4">
         <ControlledInputField
           name={`${fieldsPrefix}-neighborhood`}
           error={errors?.[`${fieldsPrefix}-neighborhood`]}
@@ -184,7 +196,9 @@ export function Address({
         >
           Bairro
         </ControlledInputField>
+      </div>
 
+      <div className="flex w-full flex-col items-center gap-4 md:flex-row">
         <ControlledInputField
           name={`${fieldsPrefix}-street`}
           error={errors?.[`${fieldsPrefix}-street`]}
@@ -196,7 +210,7 @@ export function Address({
           Rua
         </ControlledInputField>
 
-        <div className="max-w-[240px]">
+        <div className="md:max-w-[240px]">
           <ControlledInputField
             name={`${fieldsPrefix}-number`}
             error={errors?.[`${fieldsPrefix}-number`]}
@@ -208,6 +222,17 @@ export function Address({
             Número
           </ControlledInputField>
         </div>
+
+        <ControlledInputField
+          name={`${fieldsPrefix}-complement`}
+          error={errors?.[`${fieldsPrefix}-complement`]}
+          type="text"
+          placeholder=""
+          value={address.complement}
+          onInput={(text) => updateInfo("complement", text)}
+        >
+          Complemento
+        </ControlledInputField>
       </div>
     </>
   )

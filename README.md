@@ -82,3 +82,18 @@ Objetivo: Permitir a entrada de mais alunos.
 # Correção de redação na Plataforma do Aluno
 
 Objetivo: Deixar o processo de correção de redação mais rápido.
+
+---
+
+---
+
+---
+
+- [ ] Atendimento via Bot WhatsApp
+
+> Suporte automatizado através do whatsapp, incluir vídeos com tutorial, opções pré-selecionadas, enviar para whatsapp com mensagem pré-criada
+
+- Web
+  - [ ] Google Analytics, Microsoft Clarity, Google Tag Manager, Search Console
+- App
+  > Links do google drive devem baixar arquivos ao invés de visualizar
