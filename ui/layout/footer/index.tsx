@@ -1,70 +1,71 @@
-import { InstagramIcon } from "@/ui/AtHandle"
 import Link from "next/link"
-import { CNPJInfo } from "./footer/cnpj-info"
-import { RevealOnScroll } from "./Reveal-on-Scroll"
 
-export type CNPJResponse = {
-  razao_social: string
-  nome_fantasia: string
-  descricao_situacao_cadastral: string
-  data_inicio_atividade: string
-  cnae_fiscal_descricao: string
-}
+import { AnimateOnScroll } from "@/ui/animate"
+import { InstagramIcon } from "@/ui/icons"
 
-const CNPJ = 51119706000108
+import { BusinessDetails } from "./business-details"
 
-const ONE_DAY_IN_SECONDS = 60 * 60 * 24
+async function retrieveBusinessDetails() {
+  const CNPJ = process.env.NEXT_PUBLIC_BUSINESS_CNPJ!
+  const ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
-async function getCNPJ(cnpj: number) {
-  const response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`, {
+  type Response = {
+    razao_social: string
+    nome_fantasia: string
+    descricao_situacao_cadastral: string
+    data_inicio_atividade: string
+    cnae_fiscal_descricao: string
+  }
+
+  const response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${CNPJ}`, {
+    method: "GET",
+    headers: {
+      "Content-type": "application/json",
+    },
     next: {
       revalidate: ONE_DAY_IN_SECONDS,
     },
   })
-  const data: CNPJResponse = await response.json()
+
+  const data = (await response.json()) as Response
 
   return {
-    og_name: data.razao_social,
-    name: data.nome_fantasia,
+    name: {
+      default: data.razao_social,
+      display: data.nome_fantasia,
+    },
     status: data.descricao_situacao_cadastral,
     startDate: new Date(data.data_inicio_atividade),
     activity: data.cnae_fiscal_descricao,
   }
 }
 
-export type CNPJAPIResponse = Awaited<ReturnType<typeof getCNPJ>>
-
 export const Footer = async () => {
-  const cnpj_data = await getCNPJ(CNPJ)
+  const address =
+    "Rua Dom Pedro II, 54 - Centro, Ilhéus - BA (Galeria It'art - 1º Andar) - TOCA"
+  const businessDetails = await retrieveBusinessDetails()
 
   return (
     <footer
       id="contato"
       className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-6 py-6 lg:gap-16 lg:py-32"
     >
-      <RevealOnScroll animation="fade-in">
+      <AnimateOnScroll animation="fade-in">
         <h3 className="self-center text-xl font-bold text-zinc-800">Contato</h3>
-      </RevealOnScroll>
+      </AnimateOnScroll>
 
       <section className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:items-center lg:gap-16">
-        <RevealOnScroll animation="fade-in">
-          <a
-            href="https://www.instagram.com/cursoaceleraenem"
-            target="_blank"
-            className="flex w-[280px] items-center justify-center gap-2 rounded border border-secondary p-2 text-secondary transition ease-out hover:bg-secondary hover:text-white active:scale-90 lg:w-max"
-          >
-            <InstagramIcon />
-            @cursoaceleraenem
-          </a>
-        </RevealOnScroll>
+        <AnimateOnScroll animation="fade-in">
+          <Instagram />
+        </AnimateOnScroll>
 
-        <RevealOnScroll delay={300} animation="fade-in">
+        <AnimateOnScroll delay={300} animation="fade-in">
           <WhatsApp />
-        </RevealOnScroll>
+        </AnimateOnScroll>
 
-        <RevealOnScroll delay={500} animation="fade-in">
+        <AnimateOnScroll delay={500} animation="fade-in">
           <Email />
-        </RevealOnScroll>
+        </AnimateOnScroll>
       </section>
 
       <div className="flex items-center justify-center gap-2 font-semibold text-black">
@@ -74,14 +75,13 @@ export const Footer = async () => {
           className="underline"
           href="https://www.google.com/maps/place/Curso+de+Redação+Acelera+Enem/@-14.7986126,-39.0332874,15z/data=!4m6!3m5!1s0x7390bbf0d2f194b:0x120a76a87f0d1935!8m2!3d-14.7987886!4d-39.0334966!16s%2Fg%2F11s46qyjgf?entry=ttu"
         >
-          Rua Dom Pedro II, 54 - Centro, Ilhéus - BA (Galeria {"It'art"} - 1º
-          Andar) - TOCA
+          {address}
         </a>
       </div>
 
-      <CNPJInfo {...cnpj_data} />
+      <BusinessDetails {...businessDetails} />
 
-      <RevealOnScroll animation="slide-to-left">
+      <AnimateOnScroll animation="slide-to-left">
         <a
           className="self-center rounded px-1 transition hover:bg-zinc-200"
           target="_blank"
@@ -89,14 +89,15 @@ export const Footer = async () => {
         >
           <img
             src="https://digitalks.com.br/wp-content/uploads/2018/01/LOGO-RA-01.png"
+            alt=""
             className="h-auto w-24"
           />
         </a>
-      </RevealOnScroll>
+      </AnimateOnScroll>
 
       <hr className="w-full text-zinc-400" />
 
-      <RevealOnScroll animation="slide-to-left">
+      <AnimateOnScroll animation="slide-to-left">
         <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-16">
           <Link className="hover:underline" href="/">
             Política de Privacidade
@@ -105,12 +106,25 @@ export const Footer = async () => {
             Termos de Uso
           </Link>
         </div>
-      </RevealOnScroll>
+      </AnimateOnScroll>
 
-      <RevealOnScroll animation="slide-to-left">
+      <AnimateOnScroll animation="slide-to-left">
         <p className="self-center">© Todos os direitos reservados.</p>
-      </RevealOnScroll>
+      </AnimateOnScroll>
     </footer>
+  )
+}
+
+function Instagram() {
+  return (
+    <a
+      href="https://www.instagram.com/cursoaceleraenem"
+      target="_blank"
+      className="flex w-[280px] items-center justify-center gap-2 rounded border border-secondary p-2 text-secondary transition ease-out hover:bg-secondary hover:text-white active:scale-90 lg:w-max"
+    >
+      <InstagramIcon />
+      @cursoaceleraenem
+    </a>
   )
 }
 

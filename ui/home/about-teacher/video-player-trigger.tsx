@@ -2,19 +2,27 @@
 
 import { ReactNode } from "react"
 
-export const VideoTrigger = (props: {
-  videoId: string
-  scrollIntoView?: boolean
-  children?: ReactNode
+export const VIDEO_ELEMENT_ID = "teacher-video-player"
+// export const VideoPlayerTrigger = (props: {
+//   videoId: string
+//   scrollIntoView?: boolean
+//   children?: ReactNode
+//   position: "top" | "bottom"
+//   absolute?: boolean
+// }) => {
+
+// this is kinda trash to be honest
+export function VideoPlayerTrigger(props: {
   position: "top" | "bottom"
   absolute?: boolean
-}) => {
+  children?: ReactNode
+  videoElementId?: string
+}) {
   const playVideo = () => {
-    const cover = document.querySelector<HTMLImageElement>(
-      `#${props.videoId}-cover`
-    )!
+    const videoId = props.videoElementId || VIDEO_ELEMENT_ID
+    const cover = document.querySelector<HTMLImageElement>(`#${videoId}-cover`)!
 
-    const video = document.querySelector<HTMLVideoElement>(`#${props.videoId}`)!
+    const video = document.querySelector<HTMLVideoElement>(`#${videoId}`)!
 
     const isVideoPlaying = !!(
       video.currentTime > 0 &&
@@ -36,17 +44,17 @@ export const VideoTrigger = (props: {
     video.style.display = "block"
     video.play()
 
-    if (props.scrollIntoView) {
-      video.scrollIntoView({
-        behavior: "smooth",
-      })
-    }
+    // if (props.scrollIntoView) {
+    video.scrollIntoView({
+      behavior: "smooth",
+    })
+    // }
   }
 
   return (
     <button
       onClick={() => playVideo()}
-      className={`font-text-white ${props.absolute && "absolute"} ${props.position === "top" ? "top-4" : "bottom-4"} left-4 z-50 flex w-max animate-pulse items-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition ease-out hover:bg-primary active:scale-90`}
+      className={`font-text-white ${props.absolute && "absolute"} ${props.position === "top" ? "top-4" : "bottom-4"} left-4 z-30 flex w-max animate-pulse items-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition ease-out hover:bg-primary active:scale-90`}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

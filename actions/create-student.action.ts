@@ -1,4 +1,4 @@
-import { API_URL, Student, StudentProps } from "@/util/api"
+import { API_URL, Student, StudentProps } from "@/lib/api"
 
 export const createStudentAction = async ({
   name,

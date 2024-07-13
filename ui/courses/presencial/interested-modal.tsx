@@ -3,9 +3,9 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import { PreStudentForm } from "@/ui/full-classes/form"
+import { PreStudentForm } from "@/ui/no-available-enrollments/form"
 
-export async function InterestModal() {
+export async function InterestedModal() {
   return (
     <Popover>
       <PopoverTrigger asChild>

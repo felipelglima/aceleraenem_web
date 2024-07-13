@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog"
 import { PreStudentForm } from "./form"
 
-export const NoClassesModal = () => {
+export const NoAvailableEnrollmentsModal = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>

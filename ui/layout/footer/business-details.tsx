@@ -1,14 +1,24 @@
 "use client"
 
 import { useState } from "react"
-import { CNPJAPIResponse } from "../Footer"
-import { RevealOnScroll } from "../Reveal-on-Scroll"
 
-export const CNPJInfo = (props: CNPJAPIResponse) => {
+import { AnimateOnScroll } from "@/ui/animate"
+
+type BusinessDetailsProps = {
+  name: {
+    default: string
+    display: string
+  }
+  status: string
+  startDate: Date
+  activity: string
+}
+
+export const BusinessDetails = (props: BusinessDetailsProps) => {
   const [details, setDetails] = useState(false)
 
   return (
-    <RevealOnScroll animation="slide-to-left">
+    <AnimateOnScroll animation="slide-to-left">
       <div className="flex flex-col items-center justify-center gap-6 lg:gap-16">
         <button
           onClick={() => {
@@ -34,9 +44,9 @@ export const CNPJInfo = (props: CNPJAPIResponse) => {
         </button>
 
         {details && (
-          <RevealOnScroll animation="fade-in">
+          <AnimateOnScroll animation="fade-in">
             <div className="flex flex-col gap-2 rounded border border-zinc-300 p-6">
-              <p>Nome Fantasia: {props.name}</p>
+              <p>Nome Fantasia: {props.name.display}</p>
               <p>CNAE: {props.activity}</p>
               <p>
                 Data de Início:{" "}
@@ -54,9 +64,9 @@ export const CNPJInfo = (props: CNPJAPIResponse) => {
                 *Status atualizado automaticamente pela Receita Federal
               </p>
             </div>
-          </RevealOnScroll>
+          </AnimateOnScroll>
         )}
       </div>
-    </RevealOnScroll>
+    </AnimateOnScroll>
   )
 }

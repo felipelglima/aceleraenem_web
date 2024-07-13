@@ -1,4 +1,4 @@
-import { API_URL, Class } from "@/util/api"
+import { API_URL, Class } from "@/lib/api"
 
 export const retrieveClassBySlugAction = async ({ slug }: { slug: string }) => {
   const response = await fetch(`${API_URL}/api/classes?slug=${slug}`, {

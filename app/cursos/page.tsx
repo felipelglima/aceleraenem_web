@@ -1,7 +1,3 @@
-import Image from "next/image"
-
-import { materials, modules } from "@/app/variables"
-import { Button, Link } from "@/ui/Button"
 import {
   Card,
   CardContent,
@@ -9,7 +5,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { RevealOnScroll } from "@/ui/Reveal-on-Scroll"
+import { AnimateOnScroll } from "@/ui/animate"
+import { Link } from "@/ui/Button"
 
 type Class = {
   name: string
@@ -37,47 +34,43 @@ async function getClasses() {
 }
 
 export default async function Page() {
-  const classes = await getClasses()
-
   return (
-    <main className="flex w-full flex-col">
-      <section className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center gap-4 p-6 lg:flex-row lg:py-32">
-        <RevealOnScroll animation="slide-to-right">
-          <Card className="w-full">
-            <CardHeader>
-              <CardTitle>Online</CardTitle>
-              <CardDescription>
-                Assista aulas gravadas no seu próprio ritmo pela plataforma, em
-                qualquer lugar.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="cursor-not-allowed opacity-50">
-              <Link className="w-max ease-out active:scale-90" href="#">
-                Em breve
-              </Link>
-            </CardContent>
-          </Card>
-        </RevealOnScroll>
+    <section className="mx-auto flex w-full max-w-4xl flex-col items-center justify-center gap-4 p-6 lg:flex-row lg:py-32">
+      <AnimateOnScroll animation="slide-to-right">
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>Online</CardTitle>
+            <CardDescription>
+              Assista aulas gravadas no seu próprio ritmo pela plataforma, em
+              qualquer lugar.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="cursor-not-allowed opacity-50">
+            <Link className="w-max ease-out active:scale-90" href="#">
+              Em breve
+            </Link>
+          </CardContent>
+        </Card>
+      </AnimateOnScroll>
 
-        <RevealOnScroll animation="slide-to-left">
-          <Card className="w-full">
-            <CardHeader>
-              <CardTitle>Presencial</CardTitle>
-              <CardDescription>
-                Aulas semanais com a professora Dulce Gomes em sala de aula.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Link
-                className="w-max ease-out active:scale-90"
-                href="/cursos/presencial"
-              >
-                Ver mais
-              </Link>
-            </CardContent>
-          </Card>
-        </RevealOnScroll>
-      </section>
-    </main>
+      <AnimateOnScroll animation="slide-to-left">
+        <Card className="w-full">
+          <CardHeader>
+            <CardTitle>Presencial</CardTitle>
+            <CardDescription>
+              Aulas semanais com a professora Dulce Gomes em sala de aula.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Link
+              className="w-max ease-out active:scale-90"
+              href="/cursos/presencial"
+            >
+              Ver mais
+            </Link>
+          </CardContent>
+        </Card>
+      </AnimateOnScroll>
+    </section>
   )
 }

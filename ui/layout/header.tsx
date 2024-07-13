@@ -1,10 +1,10 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { useState } from "react"
-import { RevealOnScroll } from "./Reveal-on-Scroll"
-import { Link } from "./Button"
 import NextLink from "next/link"
+import { useState } from "react"
+
+import { Button } from "@/components/ui/button"
+import { AnimateOnScroll } from "@/ui/animate"
 
 const pages: Array<{ primary?: boolean; name: string; href: string }> = [
   { primary: true, name: "Cursos", href: "/cursos" },
@@ -18,7 +18,7 @@ export const Header = () => {
   const [opened, setOpened] = useState(false)
 
   return (
-    <RevealOnScroll animation="slide-to-bottom">
+    <AnimateOnScroll animation="slide-to-bottom">
       <header className="sticky top-0 z-50 w-full border-b border-zinc-300 bg-[#f9f5f2]">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 p-2 sm:flex-row md:p-6">
           <div className="flex w-full items-center justify-between gap-2 lg:w-max">
@@ -70,17 +70,18 @@ export const Header = () => {
                 {page.name}
               </NextLink>
             ))}
-            <Link
+
+            {/* <Link
               external
               href={process.env.NEXT_PUBLIC_DASHBOARD_URL as string}
               className="ease-out active:scale-90"
             >
               Acessar <MouseIcon />
-            </Link>
+            </Link> */}
           </nav>
         </div>
       </header>
-    </RevealOnScroll>
+    </AnimateOnScroll>
   )
 }
 

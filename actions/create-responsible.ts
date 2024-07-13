@@ -1,4 +1,4 @@
-import { Address, API_URL, Responsible } from "@/util/api"
+import { Address, API_URL, Responsible } from "@/lib/api"
 
 type CreateResponsible = {
   name: string

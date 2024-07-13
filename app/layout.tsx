@@ -1,13 +1,13 @@
 import type { Metadata } from "next"
-import Script from "next/script"
 import { Poppins } from "next/font/google"
+import Script from "next/script"
 
 import "./globals.css"
 
-import { Header } from "@/ui/Header"
-import { Footer } from "@/ui/Footer"
-import { BackToTop } from "@/ui/back-to-top"
-import { cn } from "@/lib/utils"
+import { BackToTop } from "@/ui/layout/back-to-top"
+import { Footer } from "@/ui/layout/footer"
+import { Header } from "@/ui/layout/header"
+import { cn } from "@/ui/utils"
 
 const reading = Poppins({
   subsets: ["latin"],
@@ -19,7 +19,6 @@ export const metadata: Metadata = {
   title: "Curso de Redação Acelera ENEM",
   description:
     "Conquiste sua vaga: Alcance os 900+ na Redação do ENEM. Oferecemos cursos Online e Presenciais para ajudar você a entrar na sua Universidade dos sonhos!",
-  metadataBase: new URL("https://hmg.aceleraenem.com"),
 }
 
 export default function RootLayout({
@@ -44,7 +43,7 @@ export default function RootLayout({
 
         <Footer />
 
-        <Script src="/counter.js" />
+        <Script src="/home/students-counter.js" />
       </body>
     </html>
   )

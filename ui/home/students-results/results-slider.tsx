@@ -1,29 +1,23 @@
 "use client"
 
+import Autoscroll from "embla-carousel-auto-scroll"
 import Image, { StaticImageData } from "next/image"
+import { useEffect, useState } from "react"
 
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel"
-import { grades as loadGrades } from "@/app/variables"
-import Autoscroll from "embla-carousel-auto-scroll"
-import { useEffect, useState } from "react"
+import { grades as loadGrades } from "@/ui/variables"
 
 type Grades = Awaited<ReturnType<typeof loadGrades>>
 
-export const GradesSlider = () => {
+export const ResultsSlider = () => {
   const [grades, setGrades] = useState<Grades>([])
 
   useEffect(() => {
-    async function main() {
-      const g = await loadGrades()
-      setGrades(g)
-    }
-    main()
+    loadGrades().then(setGrades)
   }, [])
 
   return (

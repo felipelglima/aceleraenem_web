@@ -1,6 +1,6 @@
 "use server"
 
-import { API_URL } from "@/util/api"
+import { API_URL } from "@/lib/api"
 
 export type State = {
   success: boolean

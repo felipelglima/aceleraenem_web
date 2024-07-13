@@ -1,13 +1,14 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { RevealOnScroll } from "./Reveal-on-Scroll"
+
+import { AnimateOnScroll } from "@/ui/animate"
 
 const options: IntersectionObserverInit = {
   threshold: 0.1,
 }
 
-export const Countdown = ({ count }: { count: number }) => {
+export const Counter = ({ count }: { count: number }) => {
   const ref = useRef<HTMLDivElement>(null)
 
   const [counted, setCounted] = useState(false)
@@ -46,7 +47,7 @@ export const Countdown = ({ count }: { count: number }) => {
 
   return (
     <div ref={ref} className="mx-0 my-auto flex w-max">
-      <RevealOnScroll animation="fade-in">
+      <AnimateOnScroll animation="fade-in">
         <div
           id="hundreds"
           className="relative size-[80px] overflow-hidden bg-primary"
@@ -63,9 +64,9 @@ export const Countdown = ({ count }: { count: number }) => {
             </div>
           ))}
         </div>
-      </RevealOnScroll>
+      </AnimateOnScroll>
 
-      <RevealOnScroll animation="fade-in">
+      <AnimateOnScroll animation="fade-in">
         <div
           id="tens"
           className="relative size-[80px] overflow-hidden bg-primary"
@@ -82,9 +83,9 @@ export const Countdown = ({ count }: { count: number }) => {
             </div>
           ))}
         </div>
-      </RevealOnScroll>
+      </AnimateOnScroll>
 
-      <RevealOnScroll animation="fade-in">
+      <AnimateOnScroll animation="fade-in">
         <div
           id="units"
           className="relative size-[80px] overflow-hidden bg-primary"
@@ -101,7 +102,7 @@ export const Countdown = ({ count }: { count: number }) => {
             </div>
           ))}
         </div>
-      </RevealOnScroll>
+      </AnimateOnScroll>
     </div>
   )
 }

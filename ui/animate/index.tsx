@@ -12,7 +12,7 @@ const options: IntersectionObserverInit = {
   threshold: 0.1,
 }
 
-export const RevealOnScroll = (props: RevealOnScrollProps) => {
+export const AnimateOnScroll = (props: RevealOnScrollProps) => {
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
@@ -63,3 +63,6 @@ export const RevealOnScroll = (props: RevealOnScrollProps) => {
     },
   })
 }
+
+export { Div } from "./Div"
+export { Li } from "./Li"

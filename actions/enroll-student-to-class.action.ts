@@ -2,7 +2,7 @@
 
 import crypto from "node:crypto"
 
-import { API_URL, COMMUNICATION_TOKEN } from "@/util/api"
+import { API_URL, COMMUNICATION_TOKEN } from "@/lib/api"
 
 type EnrollStudentToClassRequest = {
   class: {
