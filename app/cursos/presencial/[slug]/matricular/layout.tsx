@@ -22,6 +22,7 @@ export default async function Layout({
   const currentClass = await retrieveClassBySlugAction({
     slug: params.slug,
   })
+  console.log("returned function data", {  currentClass })
 
   if (currentClass.error) {
     throw new Error(currentClass.error)
