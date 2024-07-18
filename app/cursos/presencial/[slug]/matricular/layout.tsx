@@ -19,15 +19,15 @@ export default async function Layout({
     slug: string
   }
 }>) {
-  const currentClass = await retrieveClassBySlugAction({
+  const { class: currentClass,  error } = await retrieveClassBySlugAction({
     slug: params.slug,
   })
   
-  if (currentClass.error) {
-    throw new Error(currentClass.error)
+  if (error) {
+    throw new Error(error)
   }
 
-  if (!currentClass.class) {
+  if (!currentClass) {
     return notFound()
   }
 
@@ -35,7 +35,7 @@ export default async function Layout({
     <div className="mx-auto flex w-full max-w-7xl flex-col-reverse items-center gap-0 md:flex-row md:gap-16 md:px-6">
       <div className="flex w-full flex-col justify-center gap-6 py-6 md:py-12">
         <h1 className="text-2xl font-bold leading-normal text-zinc-800">
-          Fazer Matrícula na {currentClass.class.name}
+          Fazer Matrícula na {currentClass.name}
         </h1>
 
         <p className="text-zinc-600">Toda Segunda-Feira às 18h</p>

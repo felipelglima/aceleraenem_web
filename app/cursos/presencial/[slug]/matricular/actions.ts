@@ -183,8 +183,19 @@ export async function enrollStudent(
   })
 
   if (enrollingClass.error) {
-    console.log(enrollingClass.error)
-    return {}
+    return {
+      errors: {
+        general: "Ocorreu um erro ao realizar a matrícula. Código 0001"
+      }
+    }
+  }
+
+  if(!enrollingClass.class) {
+    return {
+      errors: {
+        general: "Turma não encontrada"
+      }
+    }
   }
 
   const createStudent = await createStudentAction({
@@ -213,8 +224,12 @@ export async function enrollStudent(
   }
 
   if (!createStudent.student?.id) {
-    console.log("student id not returned")
-    return {}
+    console.log("Student not returned.", createStudent)
+    return {
+      errors: {
+        general: "Ocorreu um erro ao realizar a matrícula. Código 0002"
+      }
+    }
   }
 
   if (shouldCreateResponsible) {
@@ -229,7 +244,7 @@ export async function enrollStudent(
     })
 
     if (responsible.error) {
-      console.log(responsible.error)
+      console.log("Ocorreu um erro ao criar o responsável.", responsible.error)
       return {
         errors: {
           general: responsible.error,
@@ -240,7 +255,7 @@ export async function enrollStudent(
 
   const { data, error: enrollmentError } = await enrollStudentToClass({
     class: {
-      id: enrollingClass.class!.id,
+      id: enrollingClass.class.id,
     },
     student: {
       id: createStudent.student.id,
@@ -248,8 +263,12 @@ export async function enrollStudent(
   })
 
   if (enrollmentError) {
-    console.log("ocorreu um erro", enrollmentError)
-    return {}
+    console.log("Ocorreu um erro ao criar a matrícula.", enrollmentError)
+    return {
+      errors: {
+        general: "Ocorreu um erro ao criar sua matrícula. Código 0003"
+      }
+    }
   }
 
   if (process.env.NODE_ENV === "development") {
