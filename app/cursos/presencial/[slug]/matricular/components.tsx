@@ -1,6 +1,6 @@
 "use client"
 import { cache, ReactNode, useEffect, useId, useState } from "react"
-import { useFormState } from "react-dom"
+import { useFormState, useFormStatus } from "react-dom"
 
 import { DatePicker } from "@/ui/courses/matricular/date-picker"
 
@@ -130,8 +130,18 @@ export function Form({ slug }: { slug: string }) {
 
       <span className="text-red-500">{state.errors?.general}</span>
 
-      <Button className="w-[150px] justify-center">Matricular</Button>
+      <EnrollButton />
     </form>
+  )
+}
+
+function EnrollButton() {
+  const { pending } = useFormStatus()
+
+  return (
+    <Button disabled={pending} className="h-[36px] w-[150px] justify-center">
+      Matricular
+    </Button>
   )
 }
 

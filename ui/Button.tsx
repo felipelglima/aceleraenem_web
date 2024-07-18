@@ -1,9 +1,14 @@
-import { ReactNode } from "react"
 import NextLink from "next/link"
+import { ReactNode } from "react"
 
-export const Button = (props: { className?: string; children: ReactNode }) => {
+export const Button = (props: {
+  disabled?: boolean
+  className?: string
+  children: ReactNode
+}) => {
   return (
     <button
+      disabled={props.disabled}
       className={`flex items-center gap-4 rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition hover:bg-primary ${props.className || ""}`}
     >
       {props.children}
