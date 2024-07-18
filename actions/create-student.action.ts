@@ -24,7 +24,9 @@ export const createStudentAction = async ({
 
   type APIResponse =
     | {
-        data: Student
+        data: {
+          student: Student
+        }
       }
     | {
         data: null
@@ -40,6 +42,6 @@ export const createStudentAction = async ({
   }
 
   return {
-    student: result.data,
+    student: result.data.student,
   }
 }
