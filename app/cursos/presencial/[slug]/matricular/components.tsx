@@ -2,7 +2,7 @@
 import { cache, ReactNode, useEffect, useId, useState } from "react"
 import { useFormState, useFormStatus } from "react-dom"
 
-import { DatePicker } from "@/ui/courses/matricular/date-picker"
+import InputMask from "react-input-mask"
 
 import { Switch } from "@/components/ui/switch"
 import { Button } from "@/ui/Button"
@@ -15,7 +15,7 @@ export function Form({ slug }: { slug: string }) {
   const [age, setAge] = useState(0)
   const [responsibleEnabled, setResponsibleEnabled] = useState(false)
 
-  const [state, action, pending] = useFormState(
+  const [state, action] = useFormState(
     enrollStudent.bind(null, { slug, responsibleEnabled }),
     initalState
   )
@@ -74,6 +74,15 @@ export function Form({ slug }: { slug: string }) {
         Senha
       </InputField>
 
+      <InputField
+        name="student-confirm-password"
+        placeholder="Digite aqui..."
+        type="password"
+        error={state.errors?.[`student-confirm-password`]}
+      >
+        Confirme a Senha
+      </InputField>
+
       <Address fieldsPrefix="student-address" errors={state.errors} />
 
       <BirthDate
@@ -87,7 +96,9 @@ export function Form({ slug }: { slug: string }) {
       <Toggle
         disabled={age < 18}
         checked={!responsibleEnabled}
-        onUpdate={(v) => setResponsibleEnabled(!v)}
+        onUpdate={(v) => {
+          setResponsibleEnabled(!v)
+        }}
       >
         Eu sou meu responsável financeiro
       </Toggle>
@@ -272,38 +283,47 @@ function ResponsibleForm({
   )
 }
 
+import { useInputMask } from "@code-forge/react-input-mask"
+
 function BirthDate(props: {
   error?: string | null
   onUpdate: (age: number) => void
 }) {
-  const [birthDate, setBirthDate] = useState("")
-
-  const age = new Date().getFullYear() - new Date(birthDate).getFullYear()
+  const id = useId()
+  const { getInputProps } = useInputMask({ mask: "99/99/9999" })
+  const maskProps = getInputProps()
 
   useEffect(() => {
-    props.onUpdate(age)
-  }, [age, props])
+    if (!maskProps.value) return
+
+    const [day, month, year] = maskProps.value.replaceAll("_", "").split("/")
+
+    if (day.length === 2 && month.length === 2 && year.length === 4) {
+      const age =
+        new Date().getFullYear() -
+        new Date(`${month}-${day}-${year}`).getFullYear()
+
+      props.onUpdate(age)
+    }
+  }, [maskProps.value, props])
 
   return (
     <>
-      <DatePicker
-        onDateChange={(date) => {
-          const dateAsString = date
-            .toLocaleString("pt-BR", { dateStyle: "short" })
-            .replaceAll("/", "-")
-
-          setBirthDate(dateAsString)
-        }}
-      >
+      <label htmlFor={id} className="flex w-full flex-col gap-1">
         Data de Nascimento
-      </DatePicker>
+        {/* {error && <span className="text-red-500">{error}</span>} */}
+        <input
+          name="student-birthDate"
+          id={id}
+          className="w-full rounded border border-zinc-300 bg-transparent text-zinc-700"
+          value={maskProps.value}
+          onKeyDown={(event) => {
+            if (!maskProps?.onKeyDown) return
 
-      <input
-        value={birthDate}
-        type="text"
-        className="sr-only"
-        name="student-birthDate"
-      />
+            maskProps.onKeyDown(event)
+          }}
+        />
+      </label>
     </>
   )
 }
