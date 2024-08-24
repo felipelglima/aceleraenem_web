@@ -283,45 +283,34 @@ function ResponsibleForm({
   )
 }
 
-import { useInputMask } from "@code-forge/react-input-mask"
-
 function BirthDate(props: {
   error?: string | null
   onUpdate: (age: number) => void
 }) {
   const id = useId()
-  const { getInputProps } = useInputMask({ mask: "99/99/9999" })
-  const maskProps = getInputProps()
 
-  useEffect(() => {
-    if (!maskProps.value) return
+  function update(value: string) {
+    const [day, month, year] = value.replaceAll("_", "").split("/")
 
-    const [day, month, year] = maskProps.value.replaceAll("_", "").split("/")
+    if (day.length !== 2 && month.length !== 2 && year.length !== 4) return
 
-    if (day.length === 2 && month.length === 2 && year.length === 4) {
-      const age =
-        new Date().getFullYear() -
-        new Date(`${month}-${day}-${year}`).getFullYear()
+    const age =
+      new Date().getFullYear() -
+      new Date(`${month}-${day}-${year}`).getFullYear()
 
-      props.onUpdate(age)
-    }
-  }, [maskProps.value, props])
+    props.onUpdate(age)
+  }
 
   return (
     <>
       <label htmlFor={id} className="flex w-full flex-col gap-1">
         Data de Nascimento
-        {/* {error && <span className="text-red-500">{error}</span>} */}
-        <input
-          name="student-birthDate"
+        <InputMask
           id={id}
+          mask="99/99/9999"
+          name="student-birthDate"
           className="w-full rounded border border-zinc-300 bg-transparent text-zinc-700"
-          value={maskProps.value}
-          onKeyDown={(event) => {
-            if (!maskProps?.onKeyDown) return
-
-            maskProps.onKeyDown(event)
-          }}
+          onChange={(event) => update(event.target.value)}
         />
       </label>
     </>
