@@ -173,6 +173,8 @@ export async function enrollStudent(
     }
   }
 
+  consola.debug("Form Errors", errors)
+
   if (Object.keys(errors).length > 0) {
     return {
       errors,
