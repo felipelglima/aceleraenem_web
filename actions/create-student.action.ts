@@ -1,4 +1,5 @@
 import { API_URL, Student, StudentProps } from "@/lib/api"
+import consola from "consola"
 
 export const createStudentAction = async ({
   name,
@@ -36,6 +37,7 @@ export const createStudentAction = async ({
   const result = (await response.json()) as APIResponse
 
   if (!result.data) {
+    consola.error("Error creating student", result.error)
     return {
       error: result.error,
     }

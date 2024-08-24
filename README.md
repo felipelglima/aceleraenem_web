@@ -16,7 +16,7 @@ Microsserviço do Acelera Enem para a landing page.
 - [ ] [Automatizar o setor financeiro](#automatizar-o-setor-financeiro)
   - [x] Replicamento da plataforma do aluno
   - [x] Evolução da plataforma do aluno para lidar com pagamentos
-  - [ ] [Criação de novo website](#criação-de-novo-website)
+  - [x] [Criação de novo website](#criação-de-novo-website)
   - [ ] [Resolver automação entradas e saídas](#resolver-automação-entradas-e-saídas)
   - [ ] [Desligamento do ERP](#desligamento-do-erp)
   - [ ] [Migração dos Alunos](#migração-dos-alunos)

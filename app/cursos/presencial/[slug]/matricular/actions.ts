@@ -1,5 +1,6 @@
 "use server"
 
+import consola from "consola"
 import { createResponsible } from "@/actions/create-responsible"
 import { createStudentAction } from "@/actions/create-student.action"
 import { enrollStudentToClass } from "@/actions/enroll-student-to-class.action"
@@ -183,18 +184,20 @@ export async function enrollStudent(
   })
 
   if (enrollingClass.error) {
+    consola.error("Ocorreu um erro ao buscar a turma.", enrollingClass.error)
     return {
       errors: {
-        general: "Ocorreu um erro ao realizar a matrícula. Código 0001"
-      }
+        general: "Ocorreu um erro ao realizar a matrícula. Código 0001",
+      },
     }
   }
 
-  if(!enrollingClass.class) {
+  if (!enrollingClass.class) {
+    consola.error("Turma não encontrada.", enrollingClass)
     return {
       errors: {
-        general: "Turma não encontrada"
-      }
+        general: "Turma não encontrada",
+      },
     }
   }
 
@@ -216,6 +219,7 @@ export async function enrollStudent(
   })
 
   if (createStudent.error) {
+    consola.error("Ocorreu um erro ao criar o estudante.", createStudent.error)
     return {
       errors: {
         general: createStudent.error,
@@ -227,8 +231,8 @@ export async function enrollStudent(
     console.log("Student not returned.", createStudent)
     return {
       errors: {
-        general: "Ocorreu um erro ao realizar a matrícula. Código 0002"
-      }
+        general: "Ocorreu um erro ao realizar a matrícula. Código 0002",
+      },
     }
   }
 
@@ -266,8 +270,8 @@ export async function enrollStudent(
     console.log("Ocorreu um erro ao criar a matrícula.", enrollmentError)
     return {
       errors: {
-        general: "Ocorreu um erro ao criar sua matrícula. Código 0003"
-      }
+        general: "Ocorreu um erro ao criar sua matrícula. Código 0003",
+      },
     }
   }
 
