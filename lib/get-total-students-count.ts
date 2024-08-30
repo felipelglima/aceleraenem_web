@@ -9,7 +9,7 @@ export async function getTotalStudentsCount() {
     }
   }
 
-  const response = await fetch(`${API_URL}/api/students`, {
+  const response = await fetch(`${API_URL}/students`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

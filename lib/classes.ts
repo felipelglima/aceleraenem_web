@@ -14,7 +14,7 @@ export async function listClasses() {
     }
   }
 
-  const response = await fetch(`${API_URL}/api/classes`, {
+  const response = await fetch(`${API_URL}/classes`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

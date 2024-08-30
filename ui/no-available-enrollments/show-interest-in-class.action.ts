@@ -24,7 +24,7 @@ async function showInterestInClass({
   email: string
   classId: string | null
 }) {
-  const response = await fetch(`${API_URL}/api/interested`, {
+  const response = await fetch(`${API_URL}/interested`, {
     method: "POST",
     body: JSON.stringify({
       email,

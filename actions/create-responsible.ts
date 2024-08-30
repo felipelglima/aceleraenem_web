@@ -12,7 +12,7 @@ type CreateResponsible = {
 }
 
 export async function createResponsible(props: CreateResponsible) {
-  const response = await fetch(`${API_URL}/api/responsible`, {
+  const response = await fetch(`${API_URL}/responsible`, {
     method: "POST",
     body: JSON.stringify(props),
   })

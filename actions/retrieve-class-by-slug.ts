@@ -1,7 +1,7 @@
 import { API_URL, Class } from "@/lib/api"
 
 export const retrieveClassBySlugAction = async ({ slug }: { slug: string }) => {
-  const response = await fetch(`${API_URL}/api/classes?slug=${slug}`, {
+  const response = await fetch(`${API_URL}/classes?slug=${slug}`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -10,7 +10,7 @@ export const retrieveClassBySlugAction = async ({ slug }: { slug: string }) => {
 
   type APIResponse =
     | {
-        data: { class:  Class }
+        data: { class: Class }
       }
     | {
         data: null

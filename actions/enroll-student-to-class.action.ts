@@ -5,34 +5,19 @@ import crypto from "node:crypto"
 import { API_URL, COMMUNICATION_TOKEN } from "@/lib/api"
 
 type EnrollStudentToClassRequest = {
-  class: {
-    id: string
-  }
-  student: {
-    id: string
-  }
+  classId: string
+  studentId: string
 }
 
 export const enrollStudentToClass = async (
   props: EnrollStudentToClassRequest
 ) => {
-  const response = await fetch(`${API_URL}/api/enrollments`, {
+  const response = await fetch(`${API_URL}/enrollments`, {
     method: "POST",
     headers: {
       Authorization: `Basic ${COMMUNICATION_TOKEN}`,
     },
-    body: JSON.stringify({
-      specversion: "1.0",
-      type: "Enrollment Placed",
-      source: "web",
-      subject: "enrollment",
-      action: "placed",
-      id: crypto.randomUUID(),
-      time: new Date().toISOString(),
-      env: process.env.NODE_ENV === "production" ? "prd" : "dev",
-      datacontenttype: "application/json",
-      data: props,
-    }),
+    body: JSON.stringify(props),
   })
 
   type APIResponse =
