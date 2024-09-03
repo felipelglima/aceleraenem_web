@@ -40,11 +40,11 @@ const studentSchema = z
   .object({
     name: z
       .string()
-      .min(5, "O nome precisa conter no mínimo 5 caracteres")
+      .min(3, "O nome precisa conter no mínimo 5 caracteres")
       .max(50, "O nome pode conter no máximo 50 caracteres"),
     lastname: z
       .string()
-      .min(5, "O sobrenome precisa conter no mínimo 5 caracteres")
+      .min(3, "O sobrenome precisa conter no mínimo 5 caracteres")
       .max(50, "O sobrenome pode conter no máximo 50 caracteres"),
     email: z.string().email("E-mail inválido"),
     cpf: z

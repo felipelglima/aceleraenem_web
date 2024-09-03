@@ -52,7 +52,7 @@ export function DateField({
         name={name}
         placeholder={placeholder}
         className={
-          "flex h-10 w-full rounded-xl border border-input bg-background bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          "flex h-10 w-full rounded-xl border border-input bg-background bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:!ring-0 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         }
         onChange={(event) => {
           const date = formatDateInput(event.target.value)
@@ -60,12 +60,12 @@ export function DateField({
           if (!date) return
 
           if (date.getTime() < min.getTime()) {
-            setError(`A data precisa ser maior que: ${formatter.format(min)}`)
+            setError(`O aluno não pode ser mais velho que 40 anos.`)
             return
           }
 
           if (date.getTime() > max.getTime()) {
-            setError(`A data precisa ser menor que: ${formatter.format(max)}`)
+            setError("O aluno precisa ter no mínimo 15 anos.")
             return
           }
 

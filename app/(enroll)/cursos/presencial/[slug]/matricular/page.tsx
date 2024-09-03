@@ -1,19 +1,18 @@
 "use client"
 
-import { useCallback, useEffect, useMemo, useState, useTransition } from "react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 
-import { TextField } from "@/components/TextField"
-import { SubmitButton } from "@/components/SubmitButton"
-import { Divider } from "@/components/Divider"
 import { DateField } from "@/components/DateField"
+import { Divider } from "@/components/Divider"
+import { SubmitButton } from "@/components/SubmitButton"
+import { TextField } from "@/components/TextField"
 
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 
-import { useDebounce, useDebouncedCallback } from "use-debounce"
 import consola from "consola"
-import { Spinner } from "@/components/Spinner"
 import { useFormState } from "react-dom"
+import { useDebounce } from "use-debounce"
 
 const emptyAddress: Address = {
   street: "",
@@ -46,7 +45,7 @@ function StudentInfo({
   const minDate = useMemo(() => {
     const current = new Date()
 
-    current.setFullYear(current.getFullYear() - 85)
+    current.setFullYear(current.getFullYear() - 40)
 
     return current
   }, [])
@@ -125,11 +124,13 @@ function StudentInfo({
           label="Senha"
           name="student-password"
           error={errors?.password}
+          type="password"
         />
         <TextField
           label="Confirme a Senha"
           name="student-password-confirm"
           error={errors?.["password-confirm"]}
+          type="password"
         />
       </FormRow>
     </FormSection>
@@ -139,11 +140,18 @@ function StudentInfo({
 function AddressInfo({ errors }: { errors: Errors }) {
   const [cep, setCep] = useState("")
   const [debouncedCep] = useDebounce(cep, 500)
+  const [loading, setLoading] = useState(false)
 
   const [address, setAddress] = useState<Address>(emptyAddress)
 
   useEffect(() => {
-    getAddressByCep(debouncedCep).then(setAddress)
+    setLoading(true)
+    setAddress(emptyAddress)
+
+    getAddressByCep(debouncedCep).then((address) => {
+      setAddress(address)
+      setLoading(false)
+    })
   }, [debouncedCep])
 
   const handleAddressField = useCallback((field: keyof Address) => {
@@ -153,6 +161,8 @@ function AddressInfo({ errors }: { errors: Errors }) {
         [field]: value,
       }))
   }, [])
+
+  const defaultPlaceholder = loading ? "Carregando..." : undefined
 
   return (
     <FormSection>
@@ -174,7 +184,9 @@ function AddressInfo({ errors }: { errors: Errors }) {
             label="UF"
             name="address-state"
             value={address.state}
+            placeholder={defaultPlaceholder}
             onChange={handleAddressField("state")}
+            className={loading ? "pointer-events-none opacity-50" : ""}
             error={errors?.state}
           />
         </div>
@@ -183,7 +195,9 @@ function AddressInfo({ errors }: { errors: Errors }) {
           label="Cidade"
           name="address-city"
           value={address.city}
+          placeholder={defaultPlaceholder}
           onChange={handleAddressField("city")}
+          className={loading ? "pointer-events-none opacity-50" : ""}
           error={errors?.city}
         />
       </FormRow>
@@ -193,7 +207,9 @@ function AddressInfo({ errors }: { errors: Errors }) {
           label="Rua/Avenida"
           name="address-street"
           value={address.street}
+          placeholder={defaultPlaceholder}
           onChange={handleAddressField("street")}
+          className={loading ? "pointer-events-none opacity-50" : ""}
           error={errors?.street}
         />
 
@@ -201,7 +217,9 @@ function AddressInfo({ errors }: { errors: Errors }) {
           label="Bairro"
           name="address-neighborhood"
           value={address.neighborhood}
+          placeholder={defaultPlaceholder}
           onChange={handleAddressField("neighborhood")}
+          className={loading ? "pointer-events-none opacity-50" : ""}
           error={errors?.neighborhood}
         />
       </FormRow>
