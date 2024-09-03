@@ -22,7 +22,12 @@ export const enrollStudentToClass = async (
 
   type APIResponse =
     | {
-        data: { access_token: string; expiresIn: number }
+        data: {
+          authentication: { accessToken: string; refreshToken: string }
+          invoice: {
+            id: string
+          }
+        }
       }
     | {
         data: null
@@ -40,8 +45,6 @@ export const enrollStudentToClass = async (
 
   return {
     error: null,
-    data: {
-      access_token: result.data.access_token,
-    },
+    data: result.data,
   }
 }

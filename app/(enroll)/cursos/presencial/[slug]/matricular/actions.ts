@@ -10,6 +10,21 @@ import { enrollStudentToClass } from "@/actions/enroll-student-to-class.action"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
+export const accessTokenCookieKey = "@acelera-enem:analytics-track"
+export const refreshTokenCookieKey = "@acelera-enem:clarity-token"
+
+const isProduction = process.env.NODE_ENV === "production"
+const DAY_IN_MILISECONDS = 1000 * 60 * 60 * 24
+
+export const cookieOptions = {
+  httpOnly: true,
+  secure: isProduction,
+  sameSite: "lax",
+  path: "/",
+  domain: isProduction ? `.aceleraenem.com` : "",
+  maxAge: DAY_IN_MILISECONDS * 365,
+} as const
+
 function formatDateInput(date: string) {
   const [day, month, year] = date.replaceAll("_", "").split("/")
 
@@ -340,15 +355,19 @@ export async function createEnrollment(
     }
   }
 
-  if (process.env.NODE_ENV === "development") {
-    cookies().set("@acelera-enem:access_token", enrolledInfo!.access_token)
+  cookies().set(
+    accessTokenCookieKey,
+    enrolledInfo!.authentication.accessToken,
+    cookieOptions
+  )
 
-    return redirect("http://localhost:3333")
-  }
+  cookies().set(
+    refreshTokenCookieKey,
+    enrolledInfo!.authentication.refreshToken,
+    cookieOptions
+  )
 
-  cookies().set("@acelera-enem:access_token", enrolledInfo!.access_token, {
-    domain: ".aceleraenem.com",
-  })
+  const invoiceId = enrolledInfo!.invoice.id
 
-  return redirect("https://app.aceleraenem.com")
+  return redirect(`https://app.aceleraenem.com/pay/${invoiceId}`)
 }
