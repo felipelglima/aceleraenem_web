@@ -10,13 +10,13 @@ import { enrollStudentToClass } from "@/actions/enroll-student-to-class.action"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
-export const accessTokenCookieKey = "@acelera-enem:analytics-track"
-export const refreshTokenCookieKey = "@acelera-enem:clarity-token"
+const accessTokenCookieKey = "@acelera-enem:analytics-track"
+const refreshTokenCookieKey = "@acelera-enem:clarity-token"
 
 const isProduction = process.env.NODE_ENV === "production"
 const DAY_IN_MILISECONDS = 1000 * 60 * 60 * 24
 
-export const cookieOptions = {
+const cookieOptions = {
   httpOnly: true,
   secure: isProduction,
   sameSite: "lax",
