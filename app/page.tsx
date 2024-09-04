@@ -88,7 +88,7 @@ function FreeContent() {
           </p>
 
           <Link
-            href={process.env.NEXT_PUBLIC_DASHBOARD_URL as string}
+            href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/register`}
             className="w-max bg-secondary-light text-white ease-out hover:!bg-secondary-light hover:!opacity-70 active:scale-90"
           >
             Criar conta grátis

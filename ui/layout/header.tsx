@@ -6,6 +6,7 @@ import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { AnimateOnScroll } from "@/ui/animate"
+import { Link } from "../Button"
 
 const pages: Array<{ primary?: boolean; name: string; href: string }> = [
   { primary: true, name: "Cursos", href: "/cursos" },
@@ -61,13 +62,13 @@ export const Header = () => {
               </NextLink>
             ))}
 
-            {/* <Link
+            <Link
               external
               href={process.env.NEXT_PUBLIC_DASHBOARD_URL as string}
               className="ease-out active:scale-90"
             >
               Acessar <MouseIcon />
-            </Link> */}
+            </Link>
           </nav>
         </div>
       </header>

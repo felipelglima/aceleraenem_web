@@ -1,9 +1,13 @@
 import Link from "next/link"
+import Image from "next/image"
 
 import { AnimateOnScroll } from "@/ui/animate"
 import { InstagramIcon } from "@/ui/icons"
 
 import { BusinessDetails } from "./business-details"
+
+import MercadoPago from "@/public/footer/mercado-pago.png"
+import ReclameAqui from "./reclame-aqui"
 
 async function retrieveBusinessDetails() {
   const CNPJ = process.env.NEXT_PUBLIC_BUSINESS_CNPJ!
@@ -99,14 +103,30 @@ export const Footer = async () => {
 
       <AnimateOnScroll animation="slide-to-left">
         <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-16">
-          <Link className="hover:underline" href="/">
+          <Link className="hover:underline" href="/privacy-policy">
             Política de Privacidade
           </Link>
-          <Link className="hover:underline" href="/">
+          <Link className="hover:underline" href="/terms">
             Termos de Uso
           </Link>
         </div>
       </AnimateOnScroll>
+
+      <div className="mx-auto flex flex-col items-center gap-8 sm:flex-row">
+        <AnimateOnScroll animation="fade-in">
+          <Image
+            src={MercadoPago.src}
+            width={MercadoPago.width}
+            height={MercadoPago.height}
+            alt="Certificação de Segurança Mercado Pago"
+            className="h-auto w-52"
+          />
+        </AnimateOnScroll>
+
+        <AnimateOnScroll animation="fade-in">
+          <ReclameAqui />
+        </AnimateOnScroll>
+      </div>
 
       <AnimateOnScroll animation="slide-to-left">
         <p className="self-center">© Todos os direitos reservados.</p>

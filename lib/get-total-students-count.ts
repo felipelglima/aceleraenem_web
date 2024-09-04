@@ -21,5 +21,5 @@ export async function getTotalStudentsCount() {
 
   const { data } = (await response.json()) as Response
 
-  return data.count
+  return data.count + 270
 }

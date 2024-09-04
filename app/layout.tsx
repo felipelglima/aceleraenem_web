@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import Script from "next/script"
+import { GoogleTagManager } from "@next/third-parties/google"
 
 import "./globals.css"
 
@@ -29,6 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
+      <GoogleTagManager gtmId="GTM-NVQ4VRKG" />
       <body
         id="topo"
         className={cn(
