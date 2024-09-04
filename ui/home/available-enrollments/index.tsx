@@ -1,5 +1,5 @@
 import { ArrowRightIcon } from "lucide-react"
-import Link from "next/link"
+import { Link } from "@/ui/Button"
 
 import { AnimateOnScroll } from "@/ui/animate"
 import { Div } from "@/ui/animate/Div"
@@ -25,10 +25,7 @@ export async function AvailableEnrollments() {
                 Aceitamos Cartão de Crédito, PIX e Boleto.
               </p>
 
-              <Link
-                href={"/cursos"}
-                className="w-max bg-black text-white ease-out hover:bg-black/25 active:scale-90"
-              >
+              <Link className="w-max ease-out active:scale-90" href="/cursos">
                 Ver Cursos
                 <ArrowRightIcon />
               </Link>
