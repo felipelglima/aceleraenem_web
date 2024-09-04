@@ -24,6 +24,7 @@ export type StudentProps = {
   email: string
   cpf: string
   phone: string
+  disability?: string
 
   address: Address
 

@@ -83,6 +83,10 @@ const studentSchema = z
       .string()
       .min(6, "A senha precisa ter no mínimo 6 caracteres")
       .max(100, "A senha pode ter no máximo 100 caracteres"),
+    disability: z
+      .string()
+      .min(3, "A necessidade/deficiência precisa ter no mínimo 3 caracteres")
+      .optional(),
   })
   .refine((schema) => schema.password === schema["password-confirm"], {
     path: ["password-confirm"],
@@ -156,6 +160,7 @@ export async function createEnrollment(
     birthdate: form.get("student-birthdate")?.toString()! as any,
     password: form.get("student-password")?.toString()!,
     "password-confirm": form.get("student-password-confirm")?.toString()!,
+    disability: form.get("student-disability")?.toString()!,
   }
   const studentAddressEntry: z.infer<typeof addressSchema> = {
     cep: form.get("address-cep")?.toString()!,
@@ -285,6 +290,7 @@ export async function createEnrollment(
       phone: student.data?.phone!,
       birthDate: student.data?.birthdate!,
       password: student.data?.password!,
+      disability: student.data?.disability,
       address: {
         cep: studentAddress.data?.cep!,
         city: studentAddress.data?.city!,
