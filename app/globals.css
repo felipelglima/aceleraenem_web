@@ -7,6 +7,7 @@
   --primary-base: hsl(156, 100%, 50%);
   --primary-dark: #00cc7a;
 
+  --primary-lighter: hsl(156, 100%, 95%);
   --secondary-lighter: hsl(284, 100%, 95%);
 
   --secondary-light: #8800b8;

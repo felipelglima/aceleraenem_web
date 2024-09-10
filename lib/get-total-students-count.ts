@@ -14,12 +14,9 @@ export async function getTotalStudentsCount() {
     headers: {
       "Content-Type": "application/json",
     },
-    next: {
-      revalidate: ONE_HOUR_IN_SECONDS,
-    },
   })
 
   const { data } = (await response.json()) as Response
 
-  return data.count + 270
+  return data.count + 275
 }

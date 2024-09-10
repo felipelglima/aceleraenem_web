@@ -137,13 +137,14 @@ function Materials() {
         <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-4xl">
           Você terá <span className="text-primary">acesso</span> à
         </h2>
+
         <ul className="grid w-full grid-cols-2 gap-6 lg:grid-cols-3">
           {materials.map((material) => (
             <li
               key={material.name}
               className="flex w-full flex-col gap-3 transition duration-500 ease-out hover:scale-105 hover:saturate-150"
             >
-              <div className="h-[130px] w-full overflow-hidden rounded-md bg-zinc-300 lg:h-[320px]">
+              <div className="h-[130px] w-full overflow-hidden rounded-md bg-zinc-300 lg:h-[230px]">
                 <Image
                   src={material.img}
                   alt=""
@@ -169,7 +170,7 @@ function Materials() {
 function LocationSection() {
   return (
     <AnimateOnScroll animation="fade-in">
-      <section className="mx-auto flex w-full max-w-7xl flex-col items-center gap-12 px-6 py-4">
+      <section className="flex w-full flex-col items-center gap-10">
         <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-4xl">
           O <span className="text-primary">endereço</span> é
         </h2>

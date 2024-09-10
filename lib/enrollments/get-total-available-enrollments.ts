@@ -14,9 +14,6 @@ export async function getTotalAvailableEnrollments() {
     headers: {
       "Content-Type": "application/json",
     },
-    next: {
-      revalidate: ONE_HOUR_IN_SECONDS,
-    },
   })
 
   const { data } = (await response.json()) as Response

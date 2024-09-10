@@ -9,7 +9,7 @@ import { AnimateOnScroll } from "@/ui/animate"
 import { Link } from "../Button"
 
 const pages: Array<{ primary?: boolean; name: string; href: string }> = [
-  { primary: true, name: "Cursos", href: "/cursos" },
+  { primary: true, name: "Matricule-se", href: "/curso" },
   { name: "Metodologia", href: "/#metodologia" },
   { name: "Professora", href: "/#a-professora" },
   { name: "Resultados", href: "/#resultados" },
@@ -67,7 +67,7 @@ export const Header = () => {
               href={process.env.NEXT_PUBLIC_DASHBOARD_URL as string}
               className="ease-out active:scale-90"
             >
-              Acessar <MouseIcon />
+              Área do Aluno <MouseIcon />
             </Link>
           </nav>
         </div>

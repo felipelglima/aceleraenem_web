@@ -17,9 +17,9 @@ const reading = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: "Curso de Redação Acelera ENEM",
+  title: "Acelera Enem: Curso de Redação Online/Presencial",
   description:
-    "Conquiste sua vaga: Alcance os 900+ na Redação do ENEM. Oferecemos cursos Online e Presenciais para ajudar você a entrar na sua Universidade dos sonhos!",
+    "Conquiste sua vaga: Alcance os 900+ na Redação do ENEM. Oferecemos cursos Online e Presenciais para ajudar você a entrar na sua Universidade dos sonhos! Aceitamos pagamento em Boleto, Cartão de Crédito e PIX.",
   metadataBase: new URL("http://localhost:3000"),
 }
 
