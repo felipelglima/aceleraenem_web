@@ -17,6 +17,8 @@ import { Switch } from "@/components/ui/switch"
 
 import { useDebounce } from "use-debounce"
 import { Address, emptyAddress, getAddressByCep } from "./components"
+import { Checkbox } from "@/ui/components/checkbox"
+import Link from "next/link"
 
 function FormSection({ children }: React.PropsWithChildren) {
   return <div className="flex w-full flex-col gap-6">{children}</div>
@@ -431,20 +433,21 @@ export function Form({ slug }: { slug: string }) {
 
       {responsibleEnabled && <ResponsibleInfo errors={state.errors} />}
 
-      <p>
+      <Label className="shrink-1 flex w-full items-center gap-2">
+        <Checkbox name="terms" className="size-5" />
         Ao se matrícular você concorda com os{" "}
-        <a className="text-sky-500" href="">
+        <Link href="/terms" className="text-sky-500">
           Termos de Uso
-        </a>
+        </Link>
         ,{" "}
-        <a className="text-sky-500" href="">
+        <Link href="/privacy-policy" className="text-sky-500">
           Política de Privacidade
-        </a>{" "}
+        </Link>{" "}
         e{" "}
         <a className="text-sky-500" href="">
           Contrato de Assinatura
         </a>
-      </p>
+      </Label>
 
       {state.errors?.general && (
         <p className="text-red-500">{state.errors?.general}</p>

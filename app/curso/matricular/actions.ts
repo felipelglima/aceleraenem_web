@@ -86,7 +86,7 @@ const studentSchema = z
     disability: z
       .string()
       .min(3, "A necessidade/deficiência precisa ter no mínimo 3 caracteres")
-      .optional(),
+      .nullable(),
   })
   .refine((schema) => schema.password === schema["password-confirm"], {
     path: ["password-confirm"],
@@ -151,6 +151,14 @@ export async function createEnrollment(
   _: unknown,
   form: FormData
 ): Promise<State> {
+  if (form.get("terms")?.toString() !== "on") {
+    return {
+      errors: {
+        general: ["É preciso aceitar os termos para prosseguir"],
+      },
+    }
+  }
+
   const studentEntry: z.infer<typeof studentSchema> = {
     name: form.get("student-name")?.toString()!,
     lastname: form.get("student-lastname")?.toString()!,
@@ -160,7 +168,7 @@ export async function createEnrollment(
     birthdate: form.get("student-birthdate")?.toString()! as any,
     password: form.get("student-password")?.toString()!,
     "password-confirm": form.get("student-password-confirm")?.toString()!,
-    disability: form.get("student-disability")?.toString()!,
+    disability: form.get("student-disability")?.toString()! || null,
   }
   const studentAddressEntry: z.infer<typeof addressSchema> = {
     cep: form.get("address-cep")?.toString()!,
@@ -261,7 +269,12 @@ export async function createEnrollment(
 
   if (Object.keys(errors).length > 0) {
     return {
-      errors,
+      errors: {
+        ...errors,
+        general: [
+          "Existem alguns erros no formulário, tente novamente após corrigir os erros",
+        ],
+      },
     }
   }
 
@@ -290,7 +303,7 @@ export async function createEnrollment(
       phone: student.data?.phone!,
       birthDate: student.data?.birthdate!,
       password: student.data?.password!,
-      disability: student.data?.disability,
+      disability: student.data?.disability ?? undefined,
       address: {
         cep: studentAddress.data?.cep!,
         city: studentAddress.data?.city!,
