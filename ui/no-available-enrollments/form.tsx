@@ -8,6 +8,7 @@ import {
   showInterestInClassAction,
   State,
 } from "./show-interest-in-class.action"
+import { SubmitButton } from "@/components/SubmitButton"
 
 export const PreStudentForm = () => {
   const [state, action] = useFormState(showInterestInClassAction, {
@@ -27,12 +28,9 @@ export const PreStudentForm = () => {
             type="email"
           />
 
-          <Button
-            variant="default"
-            className="w-max rounded-full transition ease-out active:scale-90"
-          >
+          <SubmitButton className="w-max rounded-full transition ease-out active:scale-90">
             Quero ser notificado
-          </Button>
+          </SubmitButton>
         </>
       )}
     </form>

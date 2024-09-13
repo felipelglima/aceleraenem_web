@@ -65,7 +65,7 @@ export function StudentsResults() {
 
       <AnimateOnScroll animation="fade-in">
         <Link
-          href="/cursos"
+          href="/curso"
           className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
         >
           Quero conhecer o curso

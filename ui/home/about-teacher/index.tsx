@@ -63,7 +63,7 @@ export function AboutTeacher() {
 
           <AnimateOnScroll animation="fade-in">
             <Link
-              href="/cursos"
+              href="/curso"
               className="w-max self-center bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
             >
               Quero conhecer o curso

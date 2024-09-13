@@ -18,7 +18,7 @@ export default async function Home() {
 
       <AvailableEnrollments />
 
-      <FreeContent />
+      {/* <FreeContent /> */}
 
       <Methodology />
 
@@ -51,7 +51,7 @@ function Hero() {
             para ajudar você a entrar na sua Universidade dos sonhos!
           </p>
           <Link
-            href="/cursos"
+            href="/curso"
             className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
           >
             Quero Conhecer o Curso
@@ -73,29 +73,29 @@ function Hero() {
   )
 }
 
-function FreeContent() {
-  return (
-    <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6">
-      <AnimateOnScroll animation="slide-to-left">
-        <Div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-[var(--secondary-lighter)] px-8 py-8 lg:py-32">
-          <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-            Confira nossos conteúdos grátis
-          </h2>
+// function FreeContent() {
+//   return (
+//     <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6">
+//       <AnimateOnScroll animation="slide-to-left">
+//         <Div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-[var(--secondary-lighter)] px-8 py-8 lg:py-32">
+//           <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
+//             Confira nossos conteúdos grátis
+//           </h2>
 
-          <p className="text-center text-xl text-zinc-600">
-            Crie sua conta na plataforma Acelera Enem e explore atividades,
-            aulas e material gratuito.
-          </p>
+//           <p className="text-center text-xl text-zinc-600">
+//             Crie sua conta na plataforma Acelera Enem e explore atividades,
+//             aulas e material gratuito.
+//           </p>
 
-          <Link
-            href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/register`}
-            className="w-max bg-secondary-light text-white ease-out hover:!bg-secondary-light hover:!opacity-70 active:scale-90"
-          >
-            Criar conta grátis
-            <ArrowRightIcon />
-          </Link>
-        </Div>
-      </AnimateOnScroll>
-    </section>
-  )
-}
+//           <Link
+//             href={`${process.env.NEXT_PUBLIC_DASHBOARD_URL}/register`}
+//             className="w-max bg-secondary-light text-white ease-out hover:!bg-secondary-light hover:!opacity-70 active:scale-90"
+//           >
+//             Criar conta grátis
+//             <ArrowRightIcon />
+//           </Link>
+//         </Div>
+//       </AnimateOnScroll>
+//     </section>
+//   )
+// }

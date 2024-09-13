@@ -1,6 +1,7 @@
 "use server"
 
 import { API_URL } from "@/lib/api"
+import consola from "consola"
 
 export type State = {
   success: boolean
@@ -43,10 +44,11 @@ export const showInterestInClassAction = async (
 ): Promise<State> => {
   const email = formData.get("email")?.toString()
 
-  if (!email || email.length === 0)
+  if (!email || email.length === 0) {
     return {
-      success: true,
+      success: false,
     }
+  }
 
   const result = await showInterestInClass({
     email,
@@ -54,7 +56,7 @@ export const showInterestInClassAction = async (
   })
 
   if (!result.data) {
-    console.log(`something failed: ${result.error}`)
+    consola.error(`something failed: ${result.error}`)
     return {
       success: false,
     }

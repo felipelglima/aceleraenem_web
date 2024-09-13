@@ -15,6 +15,8 @@ import { ClassWithAvailability } from "@/lib/classes"
 import { Link } from "@/ui/Button"
 import { CourseContent } from "@/ui/courses/presencial/course-content"
 import { useState } from "react"
+import { useFormState } from "react-dom"
+import { showInterestInClassAction } from "@/ui/no-available-enrollments/show-interest-in-class.action"
 
 const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
   dateStyle: "short",
@@ -84,6 +86,55 @@ export function ClassCard({
   )
 }
 
+function Interested() {
+  const [state, action] = useFormState(showInterestInClassAction, {
+    success: false,
+  })
+
+  return (
+    <form
+      action={action}
+      className="flex w-full items-center rounded-md bg-primary-dark p-8"
+    >
+      {state.success ? (
+        <>
+          <header className="flex flex-col gap-1">
+            <h2 className="text-xl font-bold text-white">
+              Você está na lista de espera!
+            </h2>
+            <p className="text-white">
+              Iremos te enviar um e-mail quando abrir uma vaga.
+            </p>
+          </header>
+        </>
+      ) : (
+        <>
+          <header className="flex flex-col gap-1">
+            <h2 className="text-xl font-bold text-white">
+              Entrar para a lista de espera
+            </h2>
+            <p className="text-white">
+              Entre na lista de espera e seja notificado quando novas vagas
+              estiverem disponiveis.
+            </p>
+          </header>
+
+          <div className="flex w-full items-end gap-2 rounded-lg bg-black/5 p-4 text-white">
+            <TextField
+              label="E-mail"
+              name="email"
+              className="rounded-full text-black"
+            />
+            <SubmitButton className="bg-white !font-normal text-black hover:bg-white/85">
+              Quero ser notificado
+            </SubmitButton>
+          </div>
+        </>
+      )}
+    </form>
+  )
+}
+
 export function Course({ classes }: { classes: ClassWithAvailability[] }) {
   const [type, setType] = useState<"online" | "presencial">("presencial")
 
@@ -111,28 +162,7 @@ export function Course({ classes }: { classes: ClassWithAvailability[] }) {
         ))}
       </ul>
 
-      <form className="flex w-full items-center rounded-md bg-primary-dark p-4">
-        <header className="flex flex-col gap-1">
-          <h2 className="text-xl font-bold text-white">
-            Entrar para a lista de espera
-          </h2>
-          <p className="text-white">
-            Entre na lista de espera e seja notificado quando novas vagas
-            estiverem disponiveis.
-          </p>
-        </header>
-
-        <div className="flex w-full items-end gap-2 rounded-lg bg-black/5 p-4 text-white">
-          <TextField label="E-mail" name="email" className="rounded-full" />
-          <SubmitButton className="bg-white !font-normal text-black hover:bg-white/85">
-            Quero ser notificado
-          </SubmitButton>
-        </div>
-
-        {/* <li className="flex h-full w-full flex-col justify-between gap-4 rounded border border-zinc-300 p-6">
-          <InterestedModal />
-        </li> */}
-      </form>
+      <Interested />
     </>
   )
 }
