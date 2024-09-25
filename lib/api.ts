@@ -17,6 +17,7 @@ export type Class = {
   startsAt: string
   slug: string
   price: number
+  type: "online" | "classroom"
 }
 
 export type StudentProps = {

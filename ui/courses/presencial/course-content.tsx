@@ -21,6 +21,7 @@ import { Methodology } from "@/ui/home/methodology"
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 
 type ContentType = "teacher" | "about" | "methodology" | "location"
+type OnlineContentType = "teacher" | "methodology"
 
 export const CourseContent = () => {
   const [section, setSection] = useState<ContentType>("about")
@@ -126,6 +127,88 @@ export const CourseContent = () => {
       {section === "teacher" && <AboutTeacher />}
       {section === "methodology" && <Methodology />}
       {section === "location" && <LocationSection />}
+    </>
+  )
+}
+
+export function OnlineCourseContent() {
+  const [section, setSection] = useState<OnlineContentType>("methodology")
+
+  const sectionName = useMemo(() => {
+    switch (section) {
+      case "teacher":
+        return "Professora"
+      case "methodology":
+        return "Metodologia"
+    }
+  }, [section])
+
+  const handlePrevious = () => {
+    const sections: Record<OnlineContentType, OnlineContentType> = {
+      methodology: "teacher",
+      teacher: "methodology",
+    }
+
+    return setSection(sections[section])
+  }
+
+  const handleNext = () => {
+    const sections: Record<OnlineContentType, OnlineContentType> = {
+      teacher: "methodology",
+      methodology: "teacher",
+    }
+
+    return setSection(sections[section])
+  }
+
+  return (
+    <>
+      <div className="flex w-full items-center justify-between gap-2 self-center lg:w-max">
+        <Button onClick={handlePrevious} variant={"ghost"} className="shrink-0">
+          <ArrowLeftIcon />
+        </Button>
+
+        <div className="md:hidden">
+          <Select
+            value={section}
+            onValueChange={(value) => setSection(value as OnlineContentType)}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder={sectionName} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="teacher">Professora</SelectItem>
+                <SelectItem value="methodology">Metodologia</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="hidden w-full flex-col gap-2 lg:flex lg:flex-row">
+          <Button
+            className="w-full lg:w-[120px]"
+            onClick={() => setSection("teacher")}
+            variant={section === "teacher" ? "default" : "outline"}
+          >
+            Professora
+          </Button>
+          <Button
+            className="w-full lg:w-[120px]"
+            onClick={() => setSection("methodology")}
+            variant={section === "methodology" ? "default" : "outline"}
+          >
+            Metodologia
+          </Button>
+        </div>
+
+        <Button onClick={handleNext} variant={"ghost"} className="shrink-0">
+          <ArrowRightIcon />
+        </Button>
+      </div>
+
+      {section === "teacher" && <AboutTeacher />}
+      {section === "methodology" && <Methodology />}
     </>
   )
 }
