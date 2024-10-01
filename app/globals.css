@@ -29,7 +29,7 @@
   --secondary: 240 4.8% 95.9%;
   --secondary-foreground: 240 5.9% 10%;
 
-  --muted: 240 4.8% 95.9%;
+  --muted: 240 4.8% 90.9%;
   --muted-foreground: 240 3.8% 46.1%;
 
   --accent: 240 4.8% 90.9%;
@@ -45,7 +45,7 @@
   --radius: 0.5rem;
 }
 
-.dark {
+/* .dark {
   --background: 26 37% 96%;
   --foreground: 0 0% 98%;
 
@@ -73,7 +73,7 @@
   --border: 240 3.7% 15.9%;
   --input: 240 3.7% 15.9%;
   --ring: 240 4.9% 83.9%;
-}
+} */
 
 html {
   scroll-behavior: smooth;

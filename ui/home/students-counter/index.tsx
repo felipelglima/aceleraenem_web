@@ -1,6 +1,6 @@
 import { ArrowRight } from "lucide-react"
-import Link from "next/link"
 
+import { Link } from "@/ui/Button"
 import { AnimateOnScroll } from "@/ui/animate"
 
 import { getTotalStudentsCount } from "@/lib/get-total-students-count"

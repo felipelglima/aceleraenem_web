@@ -22,13 +22,13 @@ export const Header = () => {
   return (
     <AnimateOnScroll animation="slide-to-bottom">
       <header className="sticky top-0 z-50 w-full border-b border-zinc-300 bg-[#f9f5f2]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 p-2 sm:flex-row md:p-6">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 p-2 sm:flex-row lg:p-6">
           <div className="flex w-full items-center justify-between gap-2 lg:w-max">
             <Button
               onClick={() => setOpened((state) => !state)}
               variant={"outline"}
               size={"icon"}
-              className="md:hidden"
+              className="lg:hidden"
             >
               {opened ? <XIcon /> : <MenuIcon />}
             </Button>
@@ -39,16 +39,16 @@ export const Header = () => {
               </strong>
             </NextLink>
 
-            <div className="md:sr-only" />
+            <div className="lg:sr-only" />
           </div>
 
           <nav
-            className={`items-center gap-6 md:flex ${opened ? "flex" : "hidden"}`}
+            className={`flex-col items-center gap-6 lg:flex lg:flex-row ${opened ? "flex" : "hidden"}`}
           >
             {pages.map((page) => (
               <NextLink
                 className={`
-                relative font-medium text-zinc-500 transition hover:text-zinc-700 md:inline-block
+                relative font-medium text-zinc-500 transition hover:text-zinc-700 lg:inline-block
                 ${
                   page?.primary
                     ? "rounded-full bg-secondary px-3 py-1.5 !font-bold !text-white ease-out hover:opacity-70 active:scale-90"
