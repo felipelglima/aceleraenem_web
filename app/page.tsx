@@ -11,6 +11,7 @@ import { Methodology } from "@/ui/home/methodology"
 import { StudentsCounter } from "@/ui/home/students-counter"
 import { StudentsResults } from "@/ui/home/students-results"
 import { Faq } from "@/components/Faq"
+import { PreEnrollmentSection } from "@/components/PreEnrollmentSection"
 
 export default async function Home() {
   return (
@@ -28,6 +29,8 @@ export default async function Home() {
       <StudentsResults />
 
       <StudentsCounter />
+
+      <PreEnrollmentSection />
 
       <Faq />
     </main>
