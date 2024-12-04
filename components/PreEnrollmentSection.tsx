@@ -12,12 +12,12 @@ export function PreEnrollmentSection() {
           </h2>
 
           <p className="text-center text-xl text-zinc-600">
-            Garanta sua vaga de 2026 com um desconto especial.
+            Garanta sua vaga de 2025 com um desconto especial.
           </p>
 
           <Link
             className="w-max ease-out active:scale-90"
-            href="/curso/matricular?turma=pre-matricula-2026"
+            href="/pre-matricula"
           >
             Garantir Vaga
             <ArrowRightIcon />

@@ -42,6 +42,8 @@ export function ClassCard({
   price,
   available,
   slug,
+  weekday,
+  classhour,
 }: ClassWithAvailability) {
   const hasAlreadyStarted = new Date(startsAt).getTime() <= new Date().getTime()
 
@@ -80,7 +82,9 @@ export function ClassCard({
 
       <hr className="bg-zinc-300" />
 
-      <p className="text-zinc-600">Toda segunda-feira as 18h</p>
+      <p className="text-zinc-600">
+        Toda {weekday} as {classhour}h
+      </p>
 
       <p>R$ {price}/mês</p>
 
@@ -159,22 +163,24 @@ export function Course({ classes }: { classes: ClassWithAvailability[] }) {
       <section className="flex w-full items-center justify-center gap-6">
         <h2
           className={cn(
-            "w-1/3 text-center text-3xl font-bold leading-normal text-zinc-800 transition lg:text-4xl",
-            type !== "presencial" && "opacity-60"
+            "w-1/3 text-center text-xl font-bold leading-normal text-zinc-800 transition md:text-3xl lg:text-4xl",
+            type !== "presencial" && "opacity-40"
           )}
         >
-          Curso <span className="text-secondary">Presencial</span>
+          <span className="hidden md:inline">Curso</span>{" "}
+          <span className="text-secondary">Presencial</span>
         </h2>
 
         <Switch onCheckedChange={switchType} />
 
         <h2
           className={cn(
-            "w-1/3  text-left text-3xl font-bold leading-normal text-zinc-800 transition lg:text-4xl",
-            type !== "online" && "opacity-60"
+            "w-1/3 text-center text-xl font-bold leading-normal text-zinc-800 transition md:text-3xl lg:text-left lg:text-4xl",
+            type !== "online" && "opacity-40"
           )}
         >
-          Curso <span className="text-primary-dark">Online</span>
+          <span className="hidden md:inline">Curso</span>{" "}
+          <span className="text-primary-dark">Online</span>
         </h2>
       </section>
 
@@ -184,16 +190,14 @@ export function Course({ classes }: { classes: ClassWithAvailability[] }) {
 
       <ul className="flex max-h-[600px] w-full flex-col items-center justify-start gap-6 overflow-auto lg:flex-row">
         {type === "presencial" &&
-          classes
-            .filter(({ type }) => type === "classroom")
-            .map((props) => (
-              <li
-                key={props.name}
-                className="flex h-full w-max flex-col gap-4 rounded-xl border border-zinc-300 p-6"
-              >
-                <ClassCard {...props} />
-              </li>
-            ))}
+          classes.map((props) => (
+            <li
+              key={props.name}
+              className="flex h-full w-max flex-col gap-4 rounded-xl border border-zinc-300 p-6"
+            >
+              <ClassCard {...props} />
+            </li>
+          ))}
 
         {type === "online" && <OnlinePlans />}
       </ul>

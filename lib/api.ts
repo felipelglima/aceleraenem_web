@@ -15,6 +15,8 @@ export type Class = {
   name: string
   size: number
   startsAt: string
+  weekday: string
+  classhour: number
   slug: string
   price: number
   type: "online" | "classroom"

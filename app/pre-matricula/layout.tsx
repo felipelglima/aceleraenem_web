@@ -2,9 +2,8 @@ import { AnimateOnScroll } from "@/ui/animate"
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Matrícula Curso Online e Presencial",
-  description:
-    "Aulas semanais com a professora Dulce Gomes em sala de aula ou assista aulas gravadas no seu próprio ritmo pela plataforma, em qualquer lugar.",
+  title: "Pré-Matrículas do Curso Presencial Acelera Enem",
+  description: "Faça a sua pré-matrícula.",
 }
 
 export default function RootLayout({
