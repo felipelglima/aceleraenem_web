@@ -25,7 +25,7 @@ export default function NotFound() {
         href="/"
         className="flex flex-col gap-2 rounded-3xl bg-black/5 p-8 transition hover:bg-black/10"
       >
-        <strong className="text-lg">Plataforma do Aluno</strong>
+        <strong className="text-lg">Site Acelera Enem</strong>
         <p className="text-muted-foreground">
           Caso esteja procurando mais sobre o curso Acelera Enem
         </p>
