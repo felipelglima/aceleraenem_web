@@ -8,7 +8,7 @@ export function PreEnrollmentSection() {
       <AnimateOnScroll animation="slide-to-left">
         <Div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-green-200 px-8 py-8 lg:py-32">
           <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-            Pré-Matrícula 2026
+            Pré-Matrícula 2025
           </h2>
 
           <p className="text-center text-xl text-zinc-600">
