@@ -1,7 +1,5 @@
 import { API_URL } from "../api"
 
-const ONE_HOUR_IN_SECONDS = 60 * 60
-
 export async function getTotalAvailableEnrollments() {
   type Response = {
     data: {
@@ -15,7 +13,7 @@ export async function getTotalAvailableEnrollments() {
       "Content-Type": "application/json",
     },
     next: {
-      revalidate: ONE_HOUR_IN_SECONDS,
+      revalidate: 60,
     },
   })
 

@@ -18,26 +18,29 @@ export async function AvailableEnrollments() {
           {available ? (
             <>
               <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-                Vagas Disponíveis: {totalAvailableEnrollments}
+                Vagas Presenciais Disponíveis: {totalAvailableEnrollments}
               </h2>
 
               <p className="text-center text-xl text-zinc-600">
                 Aceitamos Cartão de Crédito, PIX e Boleto.
               </p>
 
-              <Link className="w-max ease-out active:scale-90" href="/curso">
-                Ver Cursos
+              <Link
+                className="w-max ease-out active:scale-90"
+                href="/pre-matricula"
+              >
+                Ver Turmas
                 <ArrowRightIcon />
               </Link>
             </>
           ) : (
             <>
               <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-                Vagas Esgotadas
+                Vagas Presenciais Esgotadas
               </h2>
 
               <p className="text-center text-xl text-zinc-600">
-                Seja notificado quando abrirem novas vagas.
+                Seja notificado quando abrirem novas vagas do curso presencial.
               </p>
 
               <NoAvailableEnrollmentsModal />

@@ -18,7 +18,7 @@ export default async function Home() {
     <main className="flex w-full flex-col">
       <Hero />
 
-      <AvailableEnrollments />
+      <PreEnrollmentSection />
 
       {/* <FreeContent /> */}
 
@@ -30,7 +30,7 @@ export default async function Home() {
 
       <StudentsCounter />
 
-      <PreEnrollmentSection />
+      <AvailableEnrollments />
 
       <Faq />
     </main>

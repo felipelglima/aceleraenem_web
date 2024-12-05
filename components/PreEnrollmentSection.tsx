@@ -8,18 +8,22 @@ export function PreEnrollmentSection() {
       <AnimateOnScroll animation="slide-to-left">
         <Div className="flex w-full flex-col items-center justify-center gap-6 rounded-md bg-green-200 px-8 py-8 lg:py-32">
           <h2 className="text-center text-2xl font-bold leading-normal text-zinc-800 lg:text-4xl">
-            Pré-Matrícula 2025
+            Pré-Matrículas 2025 Com 20% de Desconto!
           </h2>
 
           <p className="text-center text-xl text-zinc-600">
-            Garanta sua vaga de 2025 com um desconto especial.
+            Garanta 20% de desconto na Pré-Matrícula de 2025 apenas em dezembro.
+          </p>
+
+          <p className="text-center text-xl text-zinc-600">
+            Desconto de 10% adicional para qualquer aluno que cursou em 2024!
           </p>
 
           <Link
             className="w-max ease-out active:scale-90"
             href="/pre-matricula"
           >
-            Garantir Vaga
+            Garantir Minha Vaga
             <ArrowRightIcon />
           </Link>
         </Div>

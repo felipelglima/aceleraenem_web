@@ -3,7 +3,8 @@ import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Pré-Matrículas do Curso Presencial Acelera Enem",
-  description: "Faça a sua pré-matrícula.",
+  description:
+    "Faça a sua pré-matrícula e garanta 20% de desconto na pré-matrícula do Curso Acelera Enem Presencial de 2025.",
 }
 
 export default function RootLayout({

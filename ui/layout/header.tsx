@@ -9,7 +9,7 @@ import { AnimateOnScroll } from "@/ui/animate"
 import { Link } from "../Button"
 
 const pages: Array<{ primary?: boolean; name: string; href: string }> = [
-  { primary: true, name: "Matricule-se", href: "/curso" },
+  { primary: true, name: "Matricule-se", href: "/pre-matricula" },
   { name: "Metodologia", href: "/#metodologia" },
   { name: "Professora", href: "/#a-professora" },
   { name: "Resultados", href: "/#resultados" },
