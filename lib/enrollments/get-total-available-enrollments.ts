@@ -14,6 +14,7 @@ export async function getTotalAvailableEnrollments() {
     },
     next: {
       revalidate: 60,
+      tags: ["enrollments"],
     },
   })
 

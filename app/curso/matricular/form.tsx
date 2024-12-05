@@ -436,17 +436,17 @@ export function Form({ slug }: { slug: string }) {
       <Label className="shrink-1 flex w-full items-center gap-2">
         <Checkbox name="terms" className="size-5" />
         Ao se matrícular você concorda com os{" "}
-        <Link href="/terms" className="text-sky-500">
+        <Link href="/termos-de-uso" className="text-sky-500">
           Termos de Uso
         </Link>
         ,{" "}
-        <Link href="/privacy-policy" className="text-sky-500">
+        <Link href="/politica-de-privacidade" className="text-sky-500">
           Política de Privacidade
         </Link>{" "}
         e{" "}
-        <a className="text-sky-500" href="">
+        <Link href="/contrato-de-assinatura" className="text-sky-500">
           Contrato de Assinatura
-        </a>
+        </Link>
       </Label>
 
       {state.errors?.general && (

@@ -29,6 +29,7 @@ export async function listClasses(query: {
       },
       next: {
         revalidate: ONE_MINUTE_IN_SECONDS * 10,
+        tags: ["classes"],
       },
     }
   )

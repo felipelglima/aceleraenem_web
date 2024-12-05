@@ -1,4 +1,6 @@
 User-Agent: *
 Allow: /
+Disallow: /tool/
+Disallow: /tool/reset-cache
 
 Sitemap: https://aceleraenem.com/sitemap.xml

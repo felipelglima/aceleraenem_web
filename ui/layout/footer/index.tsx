@@ -103,10 +103,10 @@ export const Footer = async () => {
 
       <AnimateOnScroll animation="slide-to-left">
         <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-16">
-          <Link className="hover:underline" href="/privacy-policy">
+          <Link className="hover:underline" href="/politica-de-privacidade">
             Política de Privacidade
           </Link>
-          <Link className="hover:underline" href="/terms">
+          <Link className="hover:underline" href="/termos-de-uso">
             Termos de Uso
           </Link>
         </div>
