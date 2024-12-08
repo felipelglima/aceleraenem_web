@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useMemo, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 import { materials } from "@/ui/variables"
 
@@ -20,31 +20,31 @@ import { AboutTeacher } from "@/ui/home/about-teacher"
 import { Methodology } from "@/ui/home/methodology"
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 
-type ContentType = "teacher" | "about" | "methodology" | "location"
+type ContentType = "about" | "teacher" | "methodology" | "photos" | "location"
 type OnlineContentType = "teacher" | "methodology"
 
 export const CourseContent = () => {
   const [section, setSection] = useState<ContentType>("about")
 
   const sectionName = useMemo(() => {
-    switch (section) {
-      case "about":
-        return "Sobre"
-      case "teacher":
-        return "Professora"
-      case "methodology":
-        return "Metodologia"
-      case "location":
-        return "Local"
+    const sections: Record<ContentType, string> = {
+      about: "Sobre",
+      teacher: "Professora",
+      methodology: "Metodologia",
+      photos: "Fotos",
+      location: "Local",
     }
+
+    return sections[section]
   }, [section])
 
   const handlePrevious = () => {
     const sections: Record<ContentType, ContentType> = {
-      location: "methodology",
-      methodology: "teacher",
-      teacher: "about",
       about: "location",
+      teacher: "about",
+      methodology: "teacher",
+      photos: "methodology",
+      location: "photos",
     }
 
     return setSection(sections[section])
@@ -54,7 +54,8 @@ export const CourseContent = () => {
     const sections: Record<ContentType, ContentType> = {
       about: "teacher",
       teacher: "methodology",
-      methodology: "location",
+      methodology: "photos",
+      photos: "location",
       location: "about",
     }
 
@@ -81,6 +82,7 @@ export const CourseContent = () => {
                 <SelectItem value="about">Sobre</SelectItem>
                 <SelectItem value="teacher">Professora</SelectItem>
                 <SelectItem value="methodology">Metodologia</SelectItem>
+                <SelectItem value="photos">Fotos</SelectItem>
                 <SelectItem value="location">Local</SelectItem>
               </SelectGroup>
             </SelectContent>
@@ -111,6 +113,13 @@ export const CourseContent = () => {
           </Button>
           <Button
             className="w-full lg:w-[120px]"
+            onClick={() => setSection("photos")}
+            variant={section === "photos" ? "default" : "outline"}
+          >
+            Fotos
+          </Button>
+          <Button
+            className="w-full lg:w-[120px]"
             onClick={() => setSection("location")}
             variant={section === "location" ? "default" : "outline"}
           >
@@ -126,6 +135,7 @@ export const CourseContent = () => {
       {section === "about" && <Materials />}
       {section === "teacher" && <AboutTeacher />}
       {section === "methodology" && <Methodology />}
+      {section === "photos" && <Photos />}
       {section === "location" && <LocationSection />}
     </>
   )
@@ -242,6 +252,75 @@ function Materials() {
 
                 <p className="text-zinc-600">{material.description}</p>
               </footer>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </AnimateOnScroll>
+  )
+}
+
+import Image01 from "../../../public/photos/01.jpg"
+import Image02 from "../../../public/photos/02.jpg"
+import Image06 from "../../../public/photos/06.jpg"
+import Image07 from "../../../public/photos/07.jpg"
+import Image08 from "../../../public/photos/08.jpg"
+import Image14 from "../../../public/photos/14.jpg"
+import Image15 from "../../../public/photos/15.jpg"
+import Image16 from "../../../public/photos/16.jpg"
+import Image17 from "../../../public/photos/17.jpg"
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+
+const pictures = [
+  Image01,
+  Image02,
+  Image06,
+  Image07,
+  Image08,
+  Image14,
+  Image15,
+  Image16,
+  Image17,
+]
+
+function Photos() {
+  return (
+    <AnimateOnScroll animation="fade-in">
+      <div className="flex w-full flex-col gap-4">
+        <h2 className="text-center text-3xl font-bold leading-normal text-zinc-800 lg:text-4xl">
+          Confira o Local das Aulas
+        </h2>
+
+        <ul className="grid w-full grid-cols-2 gap-6 lg:grid-cols-3">
+          {pictures.map((picture) => (
+            <li
+              key={picture.src}
+              className="flex w-full flex-col gap-3 transition duration-500 ease-out hover:scale-105 hover:saturate-150"
+            >
+              <div className="h-[130px] w-full animate-pulse overflow-hidden rounded-md bg-zinc-300 lg:h-[230px]">
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Image
+                      width={300}
+                      height={300}
+                      quality={50}
+                      src={picture.src}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[900px]">
+                    <Image
+                      width={850}
+                      height={400}
+                      quality={50}
+                      src={picture.src}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                  </DialogContent>
+                </Dialog>
+              </div>
             </li>
           ))}
         </ul>
