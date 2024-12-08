@@ -1,9 +1,10 @@
-import { API_URL, Class } from "@/lib/api"
+import { API_URL, Class, stagingHeaders } from "@/lib/api"
 
 export const retrieveClassBySlugAction = async ({ slug }: { slug: string }) => {
   const response = await fetch(`${API_URL}/classes?slug=${slug}`, {
     headers: {
       "Content-Type": "application/json",
+      ...stagingHeaders(),
     },
     method: "GET",
   })
