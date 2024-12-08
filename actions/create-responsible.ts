@@ -1,4 +1,4 @@
-import { Address, API_URL, Responsible } from "@/lib/api"
+import { Address, API_URL, Responsible, stagingHeaders } from "@/lib/api"
 
 type CreateResponsible = {
   name: string
@@ -14,6 +14,9 @@ type CreateResponsible = {
 export async function createResponsible(props: CreateResponsible) {
   const response = await fetch(`${API_URL}/responsible`, {
     method: "POST",
+    headers: {
+      ...stagingHeaders(),
+    },
     body: JSON.stringify(props),
   })
 

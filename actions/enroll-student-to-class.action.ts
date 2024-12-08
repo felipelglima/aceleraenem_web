@@ -1,8 +1,6 @@
 "use server"
 
-import crypto from "node:crypto"
-
-import { API_URL, COMMUNICATION_TOKEN } from "@/lib/api"
+import { API_URL, COMMUNICATION_TOKEN, stagingHeaders } from "@/lib/api"
 
 type EnrollStudentToClassRequest = {
   classId: string
@@ -16,6 +14,7 @@ export const enrollStudentToClass = async (
     method: "POST",
     headers: {
       Authorization: `Basic ${COMMUNICATION_TOKEN}`,
+      ...stagingHeaders(),
     },
     body: JSON.stringify(props),
   })

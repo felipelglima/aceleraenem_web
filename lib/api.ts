@@ -49,3 +49,19 @@ export type Responsible = {
   relationship: string
   studentId: string
 }
+
+export function stagingHeaders():
+  | {}
+  | { "x-vercel-protection-bypass": string } {
+  if (!process.env.VERCEL_ENV || !process.env.VERCEL_AUTOMATION_BYPASS_SECRET) {
+    return {}
+  }
+
+  if (process.env.VERCEL_ENV === "production") {
+    return {}
+  }
+
+  return {
+    "x-vercel-protection-bypass": process.env.VERCEL_AUTOMATION_BYPASS_SECRET!,
+  }
+}

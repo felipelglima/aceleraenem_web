@@ -1,6 +1,6 @@
 "use server"
 
-import { API_URL } from "@/lib/api"
+import { API_URL, stagingHeaders } from "@/lib/api"
 import consola from "consola"
 
 export type State = {
@@ -27,6 +27,9 @@ async function showInterestInClass({
 }) {
   const response = await fetch(`${API_URL}/interested`, {
     method: "POST",
+    headers: {
+      ...stagingHeaders(),
+    },
     body: JSON.stringify({
       email,
       classId,

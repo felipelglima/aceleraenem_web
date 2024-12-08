@@ -1,4 +1,4 @@
-import { API_URL, Student, StudentProps } from "@/lib/api"
+import { API_URL, stagingHeaders, Student, StudentProps } from "@/lib/api"
 import consola from "consola"
 
 export const createStudentAction = async ({
@@ -12,6 +12,9 @@ export const createStudentAction = async ({
 }: StudentProps & { password: string }) => {
   const response = await fetch(`${API_URL}/students`, {
     method: "POST",
+    headers: {
+      ...stagingHeaders(),
+    },
     body: JSON.stringify({
       name,
       email,

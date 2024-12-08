@@ -9,6 +9,9 @@ async function retrieveClassBySlug(slug: string) {
     next: {
       revalidate: HOUR_IN_SECONDS,
     },
+    headers: {
+      ...stagingHeaders(),
+    },
   })
 
   const result = (await response.json()) as
@@ -34,7 +37,7 @@ async function retrieveClassBySlug(slug: string) {
 import { Form } from "./form"
 import { Callout } from "./components"
 
-import { Class } from "@/lib/api"
+import { Class, stagingHeaders } from "@/lib/api"
 
 export default async function Page({
   searchParams,

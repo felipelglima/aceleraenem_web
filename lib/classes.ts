@@ -1,4 +1,4 @@
-import { API_URL, Class } from "./api"
+import { API_URL, Class, stagingHeaders } from "./api"
 
 const ONE_MINUTE_IN_SECONDS = 60
 
@@ -26,6 +26,7 @@ export async function listClasses(query: {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        ...stagingHeaders(),
       },
       next: {
         revalidate: ONE_MINUTE_IN_SECONDS * 10,

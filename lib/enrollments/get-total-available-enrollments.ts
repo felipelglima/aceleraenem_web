@@ -1,4 +1,4 @@
-import { API_URL } from "../api"
+import { API_URL, stagingHeaders } from "../api"
 
 export async function getTotalAvailableEnrollments() {
   type Response = {
@@ -11,6 +11,7 @@ export async function getTotalAvailableEnrollments() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      ...stagingHeaders(),
     },
     next: {
       revalidate: 60,

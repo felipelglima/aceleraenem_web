@@ -104,8 +104,19 @@ function StudentInfo({
       <Divider />
 
       <FormRow>
-        <TextField label="CPF" name="student-cpf" error={errors?.cpf} />
-        <TextField label="Celular" name="student-phone" error={errors?.phone} />
+        <TextField
+          label="CPF"
+          name="student-cpf"
+          placeholder="Apenas os números"
+          error={errors?.cpf}
+        />
+
+        <TextField
+          label="Celular"
+          name="student-phone"
+          placeholder="Apenas os números"
+          error={errors?.phone}
+        />
       </FormRow>
 
       <div className="max-w-[350px]">
@@ -177,6 +188,7 @@ function AddressInfo({ errors }: { errors: Errors }) {
         <TextField
           label="CEP"
           name="address-cep"
+          placeholder="Apenas os números"
           value={cep}
           onChange={setCep}
           error={errors?.cep}
@@ -310,12 +322,14 @@ function ResponsibleInfo({ errors }: { errors: Errors }) {
         <TextField
           label="CPF"
           name="responsible-cpf"
+          placeholder="Apenas os números"
           error={errors?.["responsible-cpf"]}
         />
 
         <TextField
           label="Celular"
           name="responsible-phone"
+          placeholder="Apenas os números"
           error={errors?.["responsible-phone"]}
         />
       </FormRow>
@@ -326,6 +340,7 @@ function ResponsibleInfo({ errors }: { errors: Errors }) {
 
       <TextField
         label="CEP"
+        placeholder="Apenas os números"
         name="responsible-address-cep"
         value={cep}
         onChange={setCep}

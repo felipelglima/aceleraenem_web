@@ -1,4 +1,4 @@
-import { API_URL } from "./api"
+import { API_URL, stagingHeaders } from "./api"
 
 const ONE_HOUR_IN_SECONDS = 60 * 60
 
@@ -13,6 +13,7 @@ export async function getTotalStudentsCount() {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
+      ...stagingHeaders(),
     },
     next: {
       revalidate: 60,

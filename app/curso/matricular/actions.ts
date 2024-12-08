@@ -388,5 +388,7 @@ export async function createEnrollment(
 
   const invoiceId = enrolledInfo!.invoice.id
 
-  return redirect(`https://app.aceleraenem.com/pay/${invoiceId}`)
+  const url = `${process.env.NEXT_PUBLIC_DASHBOARD_URL}/pay/${invoiceId}`
+
+  return redirect(url)
 }
