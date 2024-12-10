@@ -14,20 +14,26 @@ async function retrieveBusinessDetails() {
   const ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
   type Response = {
-    razao_social: string
-    nome_fantasia: string
-    descricao_situacao_cadastral: string
-    data_inicio_atividade: string
-    cnae_fiscal_descricao: string
+    company: {
+      name: string
+    }
+    status: {
+      text: string
+    }
+    alias: string
+    founded: string
+    mainActivity: {
+      text: string
+    }
   }
 
-  const response = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${CNPJ}`, {
+  const response = await fetch(`https://open.cnpja.com/office/${CNPJ}`, {
     method: "GET",
     headers: {
       "Content-type": "application/json",
     },
     next: {
-      revalidate: ONE_DAY_IN_SECONDS,
+      revalidate: ONE_DAY_IN_SECONDS * 30,
     },
   })
 
@@ -35,18 +41,18 @@ async function retrieveBusinessDetails() {
 
   return {
     name: {
-      default: data.razao_social,
-      display: data.nome_fantasia,
+      default: data.company.name,
+      display: data.alias,
     },
-    status: data.descricao_situacao_cadastral,
-    startDate: new Date(data.data_inicio_atividade),
-    activity: data.cnae_fiscal_descricao,
+    status: data.status.text,
+    startDate: new Date(data.founded),
+    activity: data.mainActivity.text,
   }
 }
 
 export const Footer = async () => {
   const address =
-    "Rua Dom Pedro II, 54 - Centro, Ilhéus - BA (Galeria It'art - 1º Andar) - TOCA"
+    "TOCA Coworking - Av. Soares Lopes, 986 - Cidade Nova, Ilhéus - BA"
   const businessDetails = await retrieveBusinessDetails()
 
   return (
@@ -84,20 +90,6 @@ export const Footer = async () => {
       </div>
 
       <BusinessDetails {...businessDetails} />
-
-      <AnimateOnScroll animation="slide-to-left">
-        <a
-          className="self-center rounded px-1 transition hover:bg-zinc-200"
-          target="_blank"
-          href="https://reclameaqui.com.br/empresa/aceleraenem"
-        >
-          <img
-            src="https://digitalks.com.br/wp-content/uploads/2018/01/LOGO-RA-01.png"
-            alt=""
-            className="h-auto w-24"
-          />
-        </a>
-      </AnimateOnScroll>
 
       <hr className="w-full text-zinc-400" />
 

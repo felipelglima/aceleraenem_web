@@ -241,7 +241,11 @@ function OnlinePlans() {
           asChild
           className="bg-yellow-600 font-bold uppercase text-white"
         >
-          <NextLink href={`/curso/matricular?turma=${"online-2025"}`}>
+          <NextLink
+            aria-disabled
+            // href={`/curso/matricular?turma=${"online-2025"}`}
+            href={"#"}
+          >
             Adquirir
           </NextLink>
         </Button>
@@ -275,7 +279,11 @@ function OnlinePlans() {
         />
 
         <Button asChild className="bg-zinc-600 font-bold uppercase text-white">
-          <NextLink href={`/curso/matricular?turma=${"online-2025"}`}>
+          <NextLink
+            // href={`/curso/matricular?turma=${"online-2025"}`}
+            href={"#"}
+            aria-disabled
+          >
             Adquirir
           </NextLink>
         </Button>

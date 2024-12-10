@@ -57,12 +57,14 @@ export default async function Page({
           {enrollingClass.name}
         </h1>
 
-        <div className="size-3 rounded-full bg-[#D2AE93]" />
+        <div className="hidden size-3 rounded-full bg-[#D2AE93] md:inline" />
 
-        <span className="text-zinc-700">Acelera Enem</span>
+        <span className="hidden text-zinc-700 md:inline">Acelera Enem</span>
       </header>
 
-      <p className="text-zinc-600">Toda Segunda-Feira às 18h</p>
+      <p className="text-zinc-600">
+        Toda {enrollingClass.weekday} às {enrollingClass.classhour}h
+      </p>
 
       <Callout
         icon={<AlertCircleIcon />}

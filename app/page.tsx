@@ -57,7 +57,7 @@ function Hero() {
             para ajudar você a entrar na sua Universidade dos sonhos!
           </p>
           <Link
-            href="/curso"
+            href="/pre-matricula"
             className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
           >
             Quero Conhecer o Curso

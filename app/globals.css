@@ -294,8 +294,8 @@ main {
   margin: auto;
 }
 
-#video-player {
-  scroll-margin-top: 10vh;
+.video-player {
+  scroll-margin-top: 150px;
 }
 
 @keyframes pulse {

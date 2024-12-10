@@ -28,15 +28,17 @@ export function StudentsResults() {
               97% dos alunos alcançaram 900+
             </p>
 
-            <VideoPlayerTrigger position="top" videoElementId="testimonials">
-              Ver depoimentos
-            </VideoPlayerTrigger>
+            <VideoPlayerTrigger
+              position="top"
+              videoElementId="testimonials"
+              texts={["Ver depoimentos", "Ver gráfico"]}
+            />
 
             <div className="relative flex w-full items-center justify-center">
               <video
                 controls
                 id="testimonials"
-                className="hidden h-auto w-[400px]"
+                className="video-player hidden h-auto w-[400px]"
               >
                 <source src="/depoimentos.mp4" type="video/mp4" />
               </video>
@@ -65,7 +67,7 @@ export function StudentsResults() {
 
       <AnimateOnScroll animation="fade-in">
         <Link
-          href="/curso"
+          href="/pre-matricula"
           className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
         >
           Quero conhecer o curso
