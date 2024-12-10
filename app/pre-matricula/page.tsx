@@ -2,6 +2,10 @@ import { ClassWithAvailability, listClasses } from "@/lib/classes"
 
 import { ClassCard } from "../curso/components"
 import { CourseContent } from "@/ui/courses/presencial/course-content"
+import {
+  PreEnrollmentCard,
+  PreEnrollmentSection,
+} from "@/components/PreEnrollmentSection"
 
 function Course({ classes }: { classes: ClassWithAvailability[] }) {
   return (
@@ -19,6 +23,8 @@ function Course({ classes }: { classes: ClassWithAvailability[] }) {
       <section className="flex w-full flex-col items-center justify-center gap-16 rounded-2xl md:border md:border-dashed md:border-zinc-400 md:p-4 lg:p-12">
         <CourseContent />
       </section>
+
+      <PreEnrollmentCard />
 
       <ul className="flex max-h-[600px] w-full flex-col items-center justify-start gap-6 overflow-auto lg:flex-row">
         {classes.map((props) => (

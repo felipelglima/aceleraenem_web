@@ -450,23 +450,39 @@ export function Form({ slug }: { slug: string }) {
 
       <Label className="shrink-1 flex w-full items-center gap-2">
         <Checkbox name="terms" className="size-5" />
-        Ao se matrícular você concorda com os{" "}
-        <Link href="/termos-de-uso" className="text-sky-500">
-          Termos de Uso
-        </Link>
-        ,{" "}
-        <Link href="/politica-de-privacidade" className="text-sky-500">
-          Política de Privacidade
-        </Link>{" "}
-        e{" "}
-        <Link href="/contrato-de-assinatura" className="text-sky-500">
-          Contrato de Assinatura
-        </Link>
+
+        <span>
+          Ao se matrícular você concorda com os{" "}
+          <Link target="_blank" href="/termos-de-uso" className="text-sky-500">
+            Termos de Uso
+          </Link>
+          ,{" "}
+          <Link
+            target="_blank"
+            href="/politica-de-privacidade"
+            className="text-sky-500"
+          >
+            Política de Privacidade
+          </Link>{" "}
+          e{" "}
+          <Link
+            target="_blank"
+            href="/contrato-de-assinatura"
+            className="text-sky-500"
+          >
+            Contrato de Assinatura
+          </Link>
+        </span>
       </Label>
 
       {state.errors?.general && (
         <p className="text-red-500">{state.errors?.general}</p>
       )}
+
+      <p>
+        *O desconto de 20% da pré-matrícula incide somente na primeira
+        mensalidade.
+      </p>
 
       <SubmitButton />
     </form>
