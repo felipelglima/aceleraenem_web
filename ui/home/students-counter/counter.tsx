@@ -13,15 +13,6 @@ export const Counter = ({ count }: { count: number }) => {
 
   const [counted, setCounted] = useState(false)
 
-  const emitEvent = () => {
-    const event = new CustomEvent("start-counter", {
-      detail: {
-        count,
-      },
-    })
-    document.dispatchEvent(event)
-  }
-
   useEffect(() => {
     const callback: IntersectionObserverCallback = async (entries) => {
       const [entry] = entries
@@ -30,7 +21,14 @@ export const Counter = ({ count }: { count: number }) => {
 
       if (entry.isIntersecting && !counted) {
         setCounted(true)
-        emitEvent()
+
+        document.dispatchEvent(
+          new CustomEvent("start-counter", {
+            detail: {
+              count,
+            },
+          })
+        )
       }
     }
 
@@ -41,9 +39,9 @@ export const Counter = ({ count }: { count: number }) => {
     observer.observe(ref.current)
 
     return () => {
-      return observer.disconnect()
+      observer.disconnect()
     }
-  }, [counted, ref])
+  }, [count, counted, ref])
 
   return (
     <div

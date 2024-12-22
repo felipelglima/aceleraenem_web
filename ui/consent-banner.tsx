@@ -47,7 +47,7 @@ export function ConsentBanner() {
         <div className="sticky inset-0 bottom-4 z-50 mx-auto flex h-max w-[90vw] max-w-4xl flex-col items-center gap-4 rounded-xl border border-black/15 bg-black/5 p-4 backdrop-blur-md md:flex-row">
           <p className="shrink-0">
             Utilizamos cookies para melhorar sua experiência. Saiba mais em{" "}
-            <Link className="text-sky-500" href="/privacy-policy">
+            <Link className="text-sky-500" href="/politica-de-privacidade">
               privacidade
             </Link>
           </p>
