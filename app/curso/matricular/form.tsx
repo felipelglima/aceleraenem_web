@@ -480,7 +480,7 @@ export function Form({ slug }: { slug: string }) {
       )}
 
       <p>
-        *O desconto de 20% da pré-matrícula incide somente na primeira
+        *O desconto de 10% da pré-matrícula incide somente na primeira
         mensalidade.
       </p>
 
