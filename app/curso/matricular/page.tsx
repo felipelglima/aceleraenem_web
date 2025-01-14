@@ -2,16 +2,15 @@ import consola from "consola"
 import { AlertCircleIcon } from "lucide-react"
 import { notFound } from "next/navigation"
 
-const HOUR_IN_SECONDS = 60 * 60 * 24
-
 async function retrieveClassBySlug(slug: string) {
   const response = await fetch(`${process.env.API_URL}/classes?slug=${slug}`, {
     next: {
-      revalidate: HOUR_IN_SECONDS,
+      revalidate: 60 * 10,
+      tags: ["classes"]
     },
     headers: {
       ...stagingHeaders(),
-    },
+    }
   })
 
   const result = (await response.json()) as
