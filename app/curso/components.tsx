@@ -88,12 +88,12 @@ export function ClassCard({
 
       <p>R$ {price}/mês</p>
 
-      {available ? (
+      {false ? (
         <Link
           className="text-center ease-out active:scale-90"
           href={`/curso/matricular?turma=${slug}`}
         >
-          Fazer Matrícula
+          Matrículas encerradas
         </Link>
       ) : (
         <span className="text-red-600">Vagas esgotadas!</span>
