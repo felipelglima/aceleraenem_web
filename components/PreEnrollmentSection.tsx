@@ -31,13 +31,3 @@ export function PreEnrollmentCard({
     </Div>
   )
 }
-
-export function PreEnrollmentSection() {
-  return (
-    <section className="mx-auto flex w-full max-w-7xl flex-row-reverse items-center gap-16 px-6 py-6 lg:py-32 lg:pb-0">
-      <AnimateOnScroll animation="slide-to-left">
-        <PreEnrollmentCard />
-      </AnimateOnScroll>
-    </section>
-  )
-}

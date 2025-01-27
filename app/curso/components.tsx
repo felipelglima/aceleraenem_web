@@ -88,7 +88,7 @@ export function ClassCard({
 
       <p>R$ {price}/mês</p>
 
-      {false ? (
+      {available ? (
         <Link
           className="text-center ease-out active:scale-90"
           href={`/curso/matricular?turma=${slug}`}
