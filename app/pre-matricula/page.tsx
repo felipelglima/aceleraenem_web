@@ -12,7 +12,7 @@ function Course({ classes }: { classes: ClassWithAvailability[] }) {
             "text-3xl font-bold leading-normal text-zinc-800 transition lg:text-4xl"
           }
         >
-          Pré-Matrículas do Curso Presencial
+          Matrículas do Curso Presencial
         </h2>
       </section>
 

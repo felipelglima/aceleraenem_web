@@ -93,7 +93,7 @@ export function ClassCard({
           className="text-center ease-out active:scale-90"
           href={`/curso/matricular?turma=${slug}`}
         >
-          Matrículas encerradas
+          Fazer Matrícula
         </Link>
       ) : (
         <span className="text-red-600">Vagas esgotadas!</span>
