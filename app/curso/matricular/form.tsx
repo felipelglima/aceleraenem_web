@@ -479,11 +479,6 @@ export function Form({ slug }: { slug: string }) {
         <p className="text-red-500">{state.errors?.general}</p>
       )}
 
-      <p>
-        *O desconto de 10% da pré-matrícula incide somente na primeira
-        mensalidade.
-      </p>
-
       <SubmitButton />
     </form>
   )
