@@ -53,7 +53,7 @@ export const Counter = ({ count }: { count: number }) => {
           id="hundreds"
           className="relative size-[80px] overflow-hidden bg-primary"
         >
-          {new Array(3).fill(0).map((_, index) => (
+          {new Array(6).fill(0).map((_, index) => (
             <div
               className="digit absolute left-0 w-full text-center text-[80px] leading-[1em] text-white transition duration-100 ease-linear"
               style={{
