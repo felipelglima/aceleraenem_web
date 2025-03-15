@@ -57,7 +57,7 @@ function AboutTeacherLeft({ children }: PropsWithChildren) {
 
       <AnimateOnScroll animation="fade-in">
         <Link
-          href="/pre-matricula"
+          href="/curso"
           className="w-max self-center bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
         >
           Quero conhecer o curso

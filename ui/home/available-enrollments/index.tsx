@@ -25,10 +25,7 @@ export async function AvailableEnrollments() {
                 Aceitamos Cartão de Crédito, PIX e Boleto.
               </p>
 
-              <Link
-                className="w-max ease-out active:scale-90"
-                href="/pre-matricula"
-              >
+              <Link className="w-max ease-out active:scale-90" href="/curso">
                 Ver Turmas
                 <ArrowRightIcon />
               </Link>

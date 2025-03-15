@@ -16,8 +16,8 @@ import {
   SelectValue,
 } from "@/ui/components/select"
 
-import { AboutTeacher, AboutTeacherCard } from "@/ui/home/about-teacher"
-import { Methodology, MethodologyCard } from "@/ui/home/methodology"
+import { AboutTeacherCard } from "@/ui/home/about-teacher"
+import { MethodologyCard } from "@/ui/home/methodology"
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 
 type ContentType = "about" | "teacher" | "methodology" | "photos" | "location"
@@ -227,8 +227,18 @@ export function OnlineCourseContent() {
         </Button>
       </div>
 
-      {section === "teacher" && <AboutTeacher />}
-      {section === "methodology" && <Methodology />}
+      {section === "teacher" && (
+        <AnimateOnScroll animation="fade-in">
+          <div className="flex w-full flex-col items-center gap-8">
+            <h2 className="hidden text-3xl font-bold leading-normal text-zinc-800 md:block">
+              Conheça sua <span className="text-primary">professora</span>
+            </h2>
+
+            <AboutTeacherCard />
+          </div>
+        </AnimateOnScroll>
+      )}
+      {section === "methodology" && <MethodologyCard />}
     </>
   )
 }

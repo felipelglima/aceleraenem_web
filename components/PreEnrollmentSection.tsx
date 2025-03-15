@@ -23,7 +23,7 @@ export function PreEnrollmentCard({
       </p>
 
       {!withoutCTA && (
-        <Link className="w-max ease-out active:scale-90" href="/pre-matricula">
+        <Link className="w-max ease-out active:scale-90" href="/curso">
           Garantir Minha Vaga
           <ArrowRightIcon />
         </Link>

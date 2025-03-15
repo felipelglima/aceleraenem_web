@@ -9,7 +9,7 @@ import { AnimateOnScroll } from "@/ui/animate"
 import { Link } from "../Button"
 
 const pages: Array<{ primary?: boolean; name: string; href: string }> = [
-  { primary: true, name: "Matricule-se", href: "/pre-matricula" },
+  { primary: true, name: "Matricule-se", href: "/curso" },
   { name: "Metodologia", href: "/#metodologia" },
   { name: "Professora", href: "/#a-professora" },
   { name: "Resultados", href: "/#resultados" },
@@ -47,14 +47,11 @@ export const Header = () => {
           >
             {pages.map((page) => (
               <NextLink
-                className={`
-                relative font-medium text-zinc-500 transition hover:text-zinc-700 lg:inline-block
-                ${
+                className={`relative font-medium text-zinc-500 transition hover:text-zinc-700 lg:inline-block ${
                   page?.primary
                     ? "rounded-full bg-secondary px-3 py-1.5 !font-bold !text-white ease-out hover:opacity-70 active:scale-90"
                     : "hidden"
-                }
-              `}
+                } `}
                 key={page.href}
                 href={page.href}
               >

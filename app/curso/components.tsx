@@ -171,7 +171,7 @@ export function Course({ classes }: { classes: ClassWithAvailability[] }) {
           <span className="text-secondary">Presencial</span>
         </h2>
 
-        <Switch onCheckedChange={switchType} />
+        <Switch disabled onCheckedChange={switchType} />
 
         <h2
           className={cn(

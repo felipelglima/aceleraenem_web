@@ -29,7 +29,7 @@ export function MethodologyCard() {
         </ul>
 
         <Link
-          href="/pre-matricula"
+          href="/curso"
           className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
         >
           Quero Conhecer o Curso
@@ -67,7 +67,7 @@ export function Methodology() {
 
       <AnimateOnScroll animation="slide-to-right">
         <Link
-          href="/pre-matricula"
+          href="/curso"
           className="w-max bg-primary text-black ease-out hover:bg-primary-light active:scale-90"
         >
           Quero Conhecer o Curso
