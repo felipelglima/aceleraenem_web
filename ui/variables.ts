@@ -49,229 +49,24 @@ export const materials = [
 
 export const grades = async () => [
   {
-    name: "Júlia Cardoso",
-    grade: 980,
-    img: await import("../public/students/julia_cardoso.jpg"),
-  },
-  {
-    name: "Luan Henrique",
-    grade: 960,
-    img: await import("../public/students/luan_henrique.jpg"),
-  },
-  {
-    name: "Nicole Scandar",
-    grade: 960,
-    img: await import("../public/students/nicole_scandar.jpg"),
-  },
-  {
-    name: "Maria Bela",
-    grade: 960,
-    img: await import("../public/students/maria_bela.jpg"),
-  },
-  {
-    name: "Raquel Sena",
-    grade: 960,
-    img: await import("../public/students/raquel_sena.jpg"),
-  },
-  {
-    name: "Leonardo Albuquerque",
-    grade: 940,
-    img: await import("../public/students/leonardo_albuquerque.jpg"),
-  },
-  {
-    name: "Kauê Santos",
-    grade: 940,
-    img: await import("../public/students/kaue_santos.jpg"),
-  },
-  {
-    name: "Júlia Liz",
-    grade: 940,
-    img: await import("../public/students/julia_liz.jpg"),
-  },
-  {
-    name: "Lavínia Rocha",
-    grade: 940,
-    img: await import("../public/students/lavinia_rocha.jpg"),
-  },
-  {
-    name: "Alonso Silva",
-    grade: 840,
-    img: await import("../public/students/alonso_silva.png"),
-  },
-  {
-    name: "Isabelle Bonfim",
-    grade: 920,
-    img: await import("../public/students/isabelle_bonfim.jpg"),
-  },
-  {
-    name: "Emília Kruschewsky",
-    grade: 920,
-    img: await import("../public/students/emilia_kruschewsky.jpg"),
-  },
-  {
-    name: "Bruna Thainá",
-    grade: 940,
-    img: await import("../public/students/bruna_thaina.jpg"),
-  },
-  {
     name: "Yan Sandes",
-    grade: 920,
+    grade: 960,
     img: await import("../public/students/yan_sandes.jpg"),
   },
   {
-    name: "Giulia Lima",
+    name: "Fernanda Zambiasi",
     grade: 960,
-    img: await import("../public/students/giulia_lima.jpg"),
-  },
-  {
-    name: "Júllia Belmiro",
-    grade: 960,
-    img: await import("../public/students/jullia_belmiro.jpg"),
+    img: await import("../public/students/fernanda_zambiasi.jpeg"),
   },
   {
     name: "Mariana Miguel",
-    grade: 920,
+    grade: 960,
     img: await import("../public/students/mariana_miguel.jpg"),
   },
   {
-    name: "Maria Júlia",
+    name: "Yasmim Marques",
     grade: 920,
-    img: await import("../public/students/maria_julia.jpg"),
-  },
-  {
-    name: "Giovana Higino",
-    grade: 960,
-    img: await import("../public/students/giovana_higino.jpg"),
-  },
-  {
-    name: "Kaúly Portela",
-    grade: 920,
-    img: await import("../public/students/kauly_portella.jpg"),
-  },
-  {
-    name: "Kauan Macedo",
-    grade: 880,
-    img: await import("../public/students/kauan_macedo.png"),
-  },
-  {
-    name: "Maria Cândida",
-    grade: 960,
-    img: await import("../public/students/maria_candida.jpg"),
-  },
-  {
-    name: "Maria Amélia",
-    grade: 940,
-    img: await import("../public/students/maria_amelia.jpg"),
-  },
-  {
-    name: "Isabelli Sousa",
-    grade: 960,
-    img: await import("../public/students/isabelli_sousa.jpg"),
-  },
-  {
-    name: "Hellen Victória",
-    grade: 920,
-    img: await import("../public/students/hellen_victoria.png"),
-  },
-  {
-    name: "Isabella Marques",
-    grade: 960,
-    img: await import("../public/students/isabella_marques.jpg"),
-  },
-  {
-    name: "Stella Lopes",
-    grade: 940,
-    img: await import("../public/students/stella_lopes.jpg"),
-  },
-  {
-    name: "Maria Clara",
-    grade: 940,
-    img: await import("../public/students/maria_clara.jpg"),
-  },
-  {
-    name: "Rodrigo Paiva",
-    grade: 940,
-    img: await import("../public/students/rodrigo_paiva.jpg"),
-  },
-  {
-    name: "Júlia Gomes",
-    grade: 960,
-    img: await import("../public/students/julia_gomes.jpg"),
-  },
-  {
-    name: "Cecília Dias",
-    grade: 940,
-    img: await import("../public/students/cecilia_dias.jpg"),
-  },
-  {
-    name: "Maria Dias",
-    grade: 920,
-    img: await import("../public/students/maria_dias.jpg"),
-  },
-  {
-    name: "Arthur Souza",
-    grade: 880,
-    img: await import("../public/students/arthur_souza.png"),
-  },
-  {
-    name: "Maria Fernanda",
-    grade: 960,
-    img: await import("../public/students/maria_fernanda.jpg"),
-  },
-  {
-    name: "Luiz Felipe",
-    grade: 920,
-    img: await import("../public/students/luiz_felipe.jpg"),
-  },
-  {
-    name: "Ronald Tata",
-    grade: 920,
-    img: await import("../public/students/ronald_tata.png"),
-  },
-  {
-    name: "Letícia Fraga",
-    grade: 940,
-    img: await import("../public/students/leticia_fraga.jpg"),
-  },
-  {
-    name: "Hugo Chaves",
-    grade: 900,
-    img: await import("../public/students/hugo_chaves.jpg"),
-  },
-  {
-    name: "Igor Oliveira",
-    grade: 900,
-    img: await import("../public/students/igor_oliveira.jpg"),
-  },
-  {
-    name: "Giovanna Castro",
-    grade: 940,
-    img: await import("../public/students/giovanna_castro.jpg"),
-  },
-  {
-    name: "Giovanna Virgínia",
-    grade: 960,
-    img: await import("../public/students/giovanna_virginia.jpg"),
-  },
-  {
-    name: "Maria Clara Souza",
-    grade: 960,
-    img: await import("../public/students/maria_clara_souza.jpg"),
-  },
-  {
-    name: "Giovanna Viana",
-    grade: 940,
-    img: await import("../public/students/giovanna_viana.jpg"),
-  },
-  {
-    name: "Tainá Coelho",
-    grade: 980,
-    img: await import("../public/students/taina_coelho.jpg"),
-  },
-  {
-    name: "Giovanna Melo",
-    grade: 920,
-    img: await import("../public/students/giovanna_melo.png"),
+    img: await import("../public/students/yasmin_marques.jpg"),
   },
   {
     name: "Giulia Araújo",
@@ -279,43 +74,228 @@ export const grades = async () => [
     img: await import("../public/students/giulia_araujo.jpg"),
   },
   {
-    name: "Jõao Flávio",
-    grade: 860,
-    img: await import("../public/students/joao_flavio.png"),
+    name: "Isabelle Bonfim",
+    grade: 960,
+    img: await import("../public/students/isabelle_bonfim.jpg"),
   },
   {
-    name: "Júlia Gondim",
+    name: "Luiza Hatab",
     grade: 940,
-    img: await import("../public/students/julia_gondim.jpg"),
+    img: await import("../public/students/luiza_hatab.jpg"),
   },
   {
-    name: "Ian Ourives",
+    name: "Clara Ramos",
     grade: 960,
-    img: await import("../public/students/ian_ourives.png"),
+    img: await import("../public/students/clara_ramos.jpg"),
   },
   {
-    name: "Gabriel Dalben",
-    grade: 940,
-    img: await import("../public/students/gabriel_dalben.png"),
-  },
-  {
-    name: "Guilherme Menezes",
-    grade: 960,
-    img: await import("../public/students/guilherme_menezes.png"),
-  },
-  {
-    name: "Fernanda Zambiasi",
-    grade: 960,
-    img: await import("../public/students/fernanda_zambiasi.png"),
-  },
-  {
-    name: "Jõao Alberto Bichara",
+    name: "Anna Luiza",
     grade: 920,
-    img: await import("../public/students/joao_alberto_bichara.png"),
+    img: await import("../public/students/anna_luiza.jpg"),
+  },
+  {
+    name: "Brendha de Lima",
+    grade: 920,
+    img: await import("../public/students/brendha_de_lima.jpg"),
+  },
+  {
+    name: "Ariele Santos",
+    grade: 960,
+    img: await import("../public/students/ariele_santos.jpg"),
+  },
+  {
+    name: "Carissa Aimée",
+    grade: 940,
+    img: await import("../public/students/carissa_aimee.jpeg"),
+  },
+  {
+    name: "Ana Karolina",
+    grade: 920,
+    img: await import("../public/students/ana_karolina.jpg"),
+  },
+  {
+    name: "Maria Céo",
+    grade: 900,
+    img: await import("../public/students/maria_ceo.jpg"),
+  },
+  {
+    name: "Gabriel Pimentel",
+    grade: 940,
+    img: await import("../public/students/gabriel_pimentel.jpeg"),
+  },
+  {
+    name: "Arthur Reis",
+    grade: 920,
+    img: await import("../public/students/arthur_reis.jpg"),
+  },
+  {
+    name: "Rafael Alencar",
+    grade: 900,
+    img: await import("../public/students/rafael_alencar.jpg"),
+  },
+  {
+    name: "Samira Vitória",
+    grade: 940,
+    img: await import("../public/students/samira_vitoria.jpg"),
+  },
+  {
+    name: "Maria Júlia",
+    grade: 960,
+    img: await import("../public/students/maria_julia.jpg"),
+  },
+  {
+    name: "João Daneu",
+    grade: 940,
+    img: await import("../public/students/joao_daneu.jpg"),
+  },
+  {
+    name: "Júlia Cardoso",
+    grade: 940,
+    img: await import("../public/students/julia_cardoso.jpg"),
+  },
+  {
+    name: "Gabriella Silva",
+    grade: 920,
+    img: await import("../public/students/gabriella_silva.jpg"),
+  },
+  {
+    name: "Mariana Pacheco",
+    grade: 920,
+    img: await import("../public/students/mariana_pacheco.jpg"),
+  },
+  {
+    name: "Sabrina Mendes",
+    grade: 920,
+    img: await import("../public/students/sabrina_mendes.jpg"),
   },
   {
     name: "Geórgia Meyssa",
+    grade: 960,
+    img: await import("../public/students/georgia_meyssa.jpeg"),
+  },
+  {
+    name: "Ester Menezes",
     grade: 920,
-    img: await import("../public/students/georgia_meyssa.png"),
+    img: await import("../public/students/ester_menezes.jpg"),
+  },
+  {
+    name: "Ian Ourives",
+    grade: 920,
+    img: await import("../public/students/ian_ourives.jpg"),
+  },
+  {
+    name: "Íris Novaes",
+    grade: 920,
+    img: await import("../public/students/iris_novaes.jpg"),
+  },
+  {
+    name: "Raissa Tavares",
+    grade: 940,
+    img: await import("../public/students/raissa_tavares.jpg"),
+  },
+  {
+    name: "Alcides Carlos",
+    grade: 940,
+    img: await import("../public/students/alcides_carlos.jpg"),
+  },
+  {
+    name: "Mariana Brito",
+    grade: 920,
+    img: await import("../public/students/mariana_brito.jpg"),
+  },
+  {
+    name: "Thales Oliveira",
+    grade: 940,
+    img: await import("../public/students/thales_oliveira.jpg"),
+  },
+  {
+    name: "Maria Clara",
+    grade: 960,
+    img: await import("../public/students/maria_clara.jpg"),
+  },
+  {
+    name: "Lavínia Rocha",
+    grade: 940,
+    img: await import("../public/students/lavinia_rocha.jpg"),
+  },
+  {
+    name: "Gabriela Fernandes",
+    grade: 940,
+    img: await import("../public/students/gabriela_fernandes.jpg"),
+  },
+  {
+    name: "Yasmin Dias",
+    grade: 940,
+    img: await import("../public/students/yasmin_dias.jpg"),
+  },
+  {
+    name: "Ila Maria",
+    grade: 960,
+    img: await import("../public/students/ila_maria.jpg"),
+  },
+  {
+    name: "Rodrigo Paiva",
+    grade: 940,
+    img: await import("../public/students/rodrigo_paiva.jpg"),
+  },
+  {
+    name: "Cindy Káilla",
+    grade: 960,
+    img: await import("../public/students/cindy_kailla.jpg"),
+  },
+  {
+    name: "Júlia Beatriz",
+    grade: 900,
+    img: await import("../public/students/julia_beatriz.jpg"),
+  },
+  {
+    name: "Júlia Gondim",
+    grade: 920,
+    img: await import("../public/students/julia_gondim.jpg"),
+  },
+  {
+    name: "João Alberto",
+    grade: 960,
+    img: await import("../public/students/joao_alberto.jpg"),
+  },
+  {
+    name: "Beatriz Carvalho",
+    grade: 900,
+    img: await import("../public/students/beatriz_carvalho.jpg"),
+  },
+  {
+    name: "Cecília Dias",
+    grade: 900,
+    img: await import("../public/students/cecilia_dias.jpg"),
+  },
+  {
+    name: "Lara Lobão",
+    grade: 920,
+    img: await import("../public/students/lara_lobao.jpg"),
+  },
+  {
+    name: "Renata Arey",
+    grade: 900,
+    img: await import("../public/students/renata_arey.jpg"),
+  },
+  {
+    name: "Thaís França",
+    grade: 940,
+    img: await import("../public/students/thais_franca.jpg"),
+  },
+  {
+    name: "Ricardo Santana",
+    grade: 920,
+    img: await import("../public/students/ricardo_santana.jpg"),
+  },
+  {
+    name: "Tainá Coelho",
+    grade: 960,
+    img: await import("../public/students/taina_coelho.jpg"),
+  },
+  {
+    name: "Kauan Macedo",
+    grade: 920,
+    img: await import("../public/students/kauan_macedo.jpg"),
   },
 ]
