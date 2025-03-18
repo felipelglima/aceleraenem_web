@@ -9,6 +9,7 @@ import { createResponsible } from "@/actions/create-responsible"
 import { enrollStudentToClass } from "@/actions/enroll-student-to-class.action"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
+import { createReferral } from "@/actions/create-referral"
 
 const accessTokenCookieKey = "@acelera-enem:analytics-track"
 const refreshTokenCookieKey = "@acelera-enem:clarity-token"
@@ -318,9 +319,7 @@ export async function createEnrollment(
     consola.error("Failed to create student.", createStudentError)
     return {
       errors: {
-        general: [
-          "Alguma coisa deu errado, já estamos trabalhando nisso. Tente novamente mais tarde.",
-        ],
+        general: [createStudentError],
       },
     }
   }
@@ -372,6 +371,26 @@ export async function createEnrollment(
         ],
       },
     }
+  }
+
+  const referralId = cookies().get("referralId")
+
+  if (referralId?.value) {
+    const referral = await createReferral({
+      referrerStudentId: referralId.value,
+      referredStudentId: createdStudent!.id,
+      referredEnrollmentId: enrolledInfo!.enrollment.id,
+    })
+
+    if (referral.error) {
+      consola.error("Failed to create referral for student.", {
+        referrerStudentId: referralId.value,
+        referredStudentId: createdStudent!.id,
+        referredEnrollmentId: enrolledInfo!.enrollment.id,
+      })
+    }
+
+    cookies().delete("referralId")
   }
 
   cookies().set(
