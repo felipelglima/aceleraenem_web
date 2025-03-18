@@ -26,6 +26,9 @@ export const enrollStudentToClass = async (
           invoice: {
             id: string
           }
+          enrollment: {
+            id: string
+          }
         }
       }
     | {
