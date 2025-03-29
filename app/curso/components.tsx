@@ -188,6 +188,18 @@ export function Course({ classes }: { classes: ClassWithAvailability[] }) {
         {type === "presencial" ? <CourseContent /> : <OnlineCourseContent />}
       </section>
 
+      <section className="flex w-full items-center rounded-md bg-secondary-dark p-8">
+        <header className="flex flex-col gap-1">
+          <h2 className="text-xl font-bold text-white">
+            Desconto de 20% para matrículas da turma 3
+          </h2>
+          <p className="text-white">
+            Até o final do mês quem se matricular na turma 3 receberá um
+            desconto de 20% na matrícula.
+          </p>
+        </header>
+      </section>
+
       <ul className="flex max-h-[600px] w-full flex-col items-center justify-start gap-6 overflow-auto lg:flex-row">
         {type === "presencial" &&
           classes.map((props) => (
