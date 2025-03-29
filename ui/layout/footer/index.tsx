@@ -141,8 +141,8 @@ function Instagram() {
 }
 
 function WhatsApp() {
-  const phone = "(73) 99812-1251"
-  const link = `https://wa.me/message/XCR4RQHJV3RNI1`
+  const phone = "(73) 99910-4596"
+  const link = `https://wa.me/73999104596`
 
   return (
     <a
