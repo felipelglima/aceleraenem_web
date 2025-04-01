@@ -188,7 +188,7 @@ export function Course({ classes }: { classes: ClassWithAvailability[] }) {
         {type === "presencial" ? <CourseContent /> : <OnlineCourseContent />}
       </section>
 
-      <section className="flex w-full items-center rounded-md bg-secondary-dark p-8">
+      {/* <section className="flex w-full items-center rounded-md bg-secondary-dark p-8">
         <header className="flex flex-col gap-1">
           <h2 className="text-xl font-bold text-white">
             Desconto de 20% para matrículas da turma 3
@@ -198,7 +198,7 @@ export function Course({ classes }: { classes: ClassWithAvailability[] }) {
             desconto de 20% na matrícula.
           </p>
         </header>
-      </section>
+      </section> */}
 
       <ul className="flex max-h-[600px] w-full flex-col items-center justify-start gap-6 overflow-auto lg:flex-row">
         {type === "presencial" &&
