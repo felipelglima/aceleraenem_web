@@ -15,10 +15,10 @@ import { TextField } from "@/components/TextField"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 
-import { useDebounce } from "use-debounce"
-import { Address, emptyAddress, getAddressByCep } from "./components"
 import { Checkbox } from "@/ui/components/checkbox"
 import Link from "next/link"
+import { useDebounce } from "use-debounce"
+import { Address, emptyAddress, getAddressByCep } from "./components"
 
 function FormSection({ children }: React.PropsWithChildren) {
   return <div className="flex w-full flex-col gap-6">{children}</div>
@@ -42,7 +42,7 @@ function StudentInfo({
   const minDate = useMemo(() => {
     const current = new Date()
 
-    current.setFullYear(current.getFullYear() - 40)
+    current.setFullYear(current.getFullYear() - 4000)
 
     return current
   }, [])
