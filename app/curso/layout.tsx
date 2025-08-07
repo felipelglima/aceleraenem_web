@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <main className="flex w-full flex-col">
       <AnimateOnScroll animation="fade-in">
-        <section className="mx-auto flex w-full max-w-5xl flex-col gap-10 p-5 lg:px-10 lg:py-10">
+        <section className="mx-auto flex w-full max-w-7xl flex-col gap-10 p-5 lg:px-10 lg:py-10">
           {children}
         </section>
       </AnimateOnScroll>
