@@ -11,7 +11,7 @@ export default async function Layout({
   children: React.ReactNode
 }>) {
   return (
-    <main className="mx-auto flex max-w-5xl flex-col gap-10 p-0 md:px-10 md:py-10">
+    <main className="mx-auto flex max-w-7xl flex-col gap-10 p-0 md:px-10 md:py-10">
       {children}
     </main>
   )
