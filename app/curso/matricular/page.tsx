@@ -6,11 +6,11 @@ async function retrieveClassBySlug(slug: string) {
   const response = await fetch(`${process.env.API_URL}/classes?slug=${slug}`, {
     next: {
       revalidate: 60 * 10,
-      tags: ["classes"]
+      tags: ["classes"],
     },
     headers: {
       ...stagingHeaders(),
-    }
+    },
   })
 
   const result = (await response.json()) as
@@ -33,8 +33,8 @@ async function retrieveClassBySlug(slug: string) {
   return result.data.class
 }
 
-import { Form } from "./form"
 import { Callout } from "./components"
+import { Form } from "./form"
 
 import { Class, stagingHeaders } from "@/lib/api"
 
@@ -61,14 +61,18 @@ export default async function Page({
         <span className="hidden text-zinc-700 md:inline">Acelera Enem</span>
       </header>
 
-      <p className="text-zinc-600">
-        Toda {enrollingClass.weekday} às {enrollingClass.classhour}h
-      </p>
+      {enrollingClass.weekday && enrollingClass.classhour && (
+        <p className="text-zinc-600">
+          Toda {enrollingClass.weekday} às {enrollingClass.classhour}h
+        </p>
+      )}
 
-      <Callout
-        icon={<AlertCircleIcon />}
-        content="Você poderá cancelar sua matrícula a qualquer momento."
-      />
+      {searchParams.turma !== "online-2025" && (
+        <Callout
+          icon={<AlertCircleIcon />}
+          content="Você poderá cancelar sua matrícula a qualquer momento."
+        />
+      )}
 
       <Form slug={searchParams.turma} />
     </>

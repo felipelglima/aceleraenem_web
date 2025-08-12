@@ -1,13 +1,8 @@
 "use client"
 
-import {
-  Check,
-  CheckIcon,
-  MessageCircleQuestionIcon,
-  XIcon,
-} from "lucide-react"
+import { CheckIcon, MessageCircleQuestionIcon } from "lucide-react"
 
-import NextLink from "next/link"
+import { Divider } from "@/components/Divider"
 import { SubmitButton } from "@/components/SubmitButton"
 import { TextField } from "@/components/TextField"
 import { Button } from "@/components/ui/button"
@@ -23,12 +18,11 @@ import {
   CourseContent,
   OnlineCourseContent,
 } from "@/ui/courses/presencial/course-content"
-import { ReactNode, useState } from "react"
-import { useFormState } from "react-dom"
 import { showInterestInClassAction } from "@/ui/no-available-enrollments/show-interest-in-class.action"
-import { Switch } from "@/components/CourseSelectionSwitch"
 import { cn } from "@/ui/utils"
-import { Divider } from "@/components/Divider"
+import NextLink from "next/link"
+import { ReactNode } from "react"
+import { useFormState } from "react-dom"
 
 const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
   dateStyle: "short",
@@ -151,16 +145,16 @@ function Interested() {
   )
 }
 
-export function Course({ classes }: { classes: ClassWithAvailability[] }) {
-  const [type, setType] = useState<"online" | "presencial">("presencial")
-
-  function switchType() {
-    setType((t) => (t === "online" ? "presencial" : "online"))
-  }
-
+export function Course({
+  classes,
+  type,
+}: {
+  type: "online" | "presencial"
+  classes: ClassWithAvailability[]
+}) {
   return (
     <>
-      <section className="flex w-full items-center justify-center gap-6">
+      {/* <section className="flex w-full items-center justify-center gap-6">
         <h2
           className={cn(
             "w-1/3 text-center text-xl font-bold leading-normal text-zinc-800 transition md:text-3xl lg:text-4xl",
@@ -182,7 +176,7 @@ export function Course({ classes }: { classes: ClassWithAvailability[] }) {
           <span className="hidden md:inline">Curso</span>{" "}
           <span className="text-primary-dark">Online</span>
         </h2>
-      </section>
+      </section> */}
 
       <section className="flex w-full flex-col items-center justify-center gap-16 rounded-2xl md:border md:border-dashed md:border-zinc-400 md:p-4 lg:p-12">
         {type === "presencial" ? <CourseContent /> : <OnlineCourseContent />}
@@ -237,10 +231,6 @@ function OnlinePlans() {
               icon: <CheckIcon color="green" />,
               text: "Plataforma de Aulas Online",
             },
-            {
-              icon: <CheckIcon color="green" />,
-              text: "1 Correção de Redação Por Mês",
-            },
           ]}
           item={({ icon, text }) => (
             <>
@@ -253,49 +243,7 @@ function OnlinePlans() {
           asChild
           className="bg-yellow-600 font-bold uppercase text-white"
         >
-          <NextLink
-            aria-disabled
-            // href={`/curso/matricular?turma=${"online-2025"}`}
-            href={"#"}
-          >
-            Adquirir
-          </NextLink>
-        </Button>
-      </Pricing>
-
-      <Pricing className="border-zinc-500 bg-zinc-400/30">
-        <PricingTitle text="Plano Prata" amount={299} />
-
-        <Divider />
-
-        <PricingItems
-          items={[
-            {
-              icon: <CheckIcon color="green" />,
-              text: "Atendimento Especializado",
-            },
-            {
-              icon: <CheckIcon color="green" />,
-              text: "Plataforma de Aulas Online",
-            },
-            {
-              icon: <XIcon color="red" />,
-              text: "1 Correção de Redação Por Mês",
-            },
-          ]}
-          item={({ icon, text }) => (
-            <>
-              {icon} {text}
-            </>
-          )}
-        />
-
-        <Button asChild className="bg-zinc-600 font-bold uppercase text-white">
-          <NextLink
-            // href={`/curso/matricular?turma=${"online-2025"}`}
-            href={"#"}
-            aria-disabled
-          >
+          <NextLink aria-disabled href={`/curso/matricular?turma=online-2025`}>
             Adquirir
           </NextLink>
         </Button>

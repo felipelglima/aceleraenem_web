@@ -45,6 +45,13 @@ export const Header = () => {
           <nav
             className={`flex-col items-center gap-6 lg:flex lg:flex-row ${opened ? "flex" : "hidden"}`}
           >
+            <NextLink
+              className={`relative rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition ease-out hover:bg-primary hover:opacity-70 active:scale-90 lg:inline-block`}
+              href={"/online"}
+            >
+              Online
+            </NextLink>
+
             {pages.map((page) => (
               <NextLink
                 className={`relative font-medium text-zinc-500 transition hover:text-zinc-700 lg:inline-block ${
