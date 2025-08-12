@@ -217,7 +217,7 @@ function OnlinePlans() {
   return (
     <div className="flex w-full items-center justify-center gap-8">
       <Pricing className="border-yellow-500 bg-yellow-500/30">
-        <PricingTitle text="Plano Ouro" amount={359} />
+        <PricingTitle text="Plano Ouro" amount={499} />
 
         <Divider />
 
@@ -258,7 +258,7 @@ function PricingTitle({ text, amount }: { text: ReactNode; amount: number }) {
       <h2 className="text-3xl font-bold text-black">{text}</h2>
 
       <div className="flex items-center justify-center rounded-lg border border-black/20 px-12 py-2">
-        12X DE
+        em até 12X DE
       </div>
 
       <div className="text-3xl">R$ {amount}</div>
