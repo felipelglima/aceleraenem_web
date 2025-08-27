@@ -49,7 +49,7 @@ export const Header = () => {
               className={`relative rounded-full bg-primary-dark px-3 py-1.5 font-bold text-white transition ease-out hover:bg-primary hover:opacity-70 active:scale-90 lg:inline-block`}
               href={"/online"}
             >
-              Online
+              Aulas Online
             </NextLink>
 
             {pages.map((page) => (
