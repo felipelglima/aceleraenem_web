@@ -1,8 +1,8 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Contrato de Assinatura - Acelera Enem",
-  description: "Contrato de assinatura.",
+  title: "Contrato de Compra - Acelera Enem",
+  description: "Contrato de Compra.",
   metadataBase: new URL("https://aceleraenem.com"),
 }
 

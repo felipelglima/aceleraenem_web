@@ -467,10 +467,10 @@ export function Form({ slug }: { slug: string }) {
           e{" "}
           <Link
             target="_blank"
-            href="/contrato-de-assinatura"
+            href="/contrato-de-compra"
             className="text-sky-500"
           >
-            Contrato de Assinatura
+            Contrato de Compra
           </Link>
         </span>
       </Label>

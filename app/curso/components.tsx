@@ -217,7 +217,11 @@ function OnlinePlans() {
   return (
     <div className="flex w-full items-center justify-center gap-8">
       <Pricing className="border-yellow-500 bg-yellow-500/30">
-        <PricingTitle text="Plano Ouro" amount={499} />
+        <PricingTitle text="Plano Básico" amount={499} />
+
+        <span className="self-center text-sm text-black/70">
+          Pagamento único
+        </span>
 
         <Divider />
 

@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useMemo, useState } from "react"
+import { useMemo, useState } from "react"
 
 import { materials } from "@/ui/variables"
 
@@ -21,7 +21,7 @@ import { MethodologyCard } from "@/ui/home/methodology"
 import { ArrowLeftIcon, ArrowRightIcon } from "lucide-react"
 
 type ContentType = "about" | "teacher" | "methodology" | "photos" | "location"
-type OnlineContentType = "teacher" | "methodology"
+type OnlineContentType = "teacher" | "methodology" | "about"
 
 export const CourseContent = () => {
   const [section, setSection] = useState<ContentType>("about")
@@ -160,13 +160,16 @@ export function OnlineCourseContent() {
         return "Professora"
       case "methodology":
         return "Metodologia"
+      case "about":
+        return "Sobre"
     }
   }, [section])
 
   const handlePrevious = () => {
     const sections: Record<OnlineContentType, OnlineContentType> = {
       methodology: "teacher",
-      teacher: "methodology",
+      teacher: "about",
+      about: "methodology",
     }
 
     return setSection(sections[section])
@@ -175,7 +178,8 @@ export function OnlineCourseContent() {
   const handleNext = () => {
     const sections: Record<OnlineContentType, OnlineContentType> = {
       teacher: "methodology",
-      methodology: "teacher",
+      methodology: "about",
+      about: "teacher",
     }
 
     return setSection(sections[section])
@@ -200,6 +204,7 @@ export function OnlineCourseContent() {
               <SelectGroup>
                 <SelectItem value="teacher">Professora</SelectItem>
                 <SelectItem value="methodology">Metodologia</SelectItem>
+                <SelectItem value="about">Sobre</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -220,6 +225,13 @@ export function OnlineCourseContent() {
           >
             Metodologia
           </Button>
+          <Button
+            className="w-full lg:w-[120px]"
+            onClick={() => setSection("about")}
+            variant={section === "about" ? "default" : "outline"}
+          >
+            Sobre
+          </Button>
         </div>
 
         <Button onClick={handleNext} variant={"ghost"} className="shrink-0">
@@ -239,6 +251,62 @@ export function OnlineCourseContent() {
         </AnimateOnScroll>
       )}
       {section === "methodology" && <MethodologyCard />}
+      {section === "about" && (
+        <section>
+          <ul className="flex flex-col gap-6">
+            <AnimateOnScroll animation="fade-in">
+              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
+                <ArrowRightIcon />
+                Aulas gravadas, assista quando e onde quiser
+              </li>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="fade-in">
+              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
+                <ArrowRightIcon />
+                Conteudo de A a Z condensado em 165 minutos e 72 aulas divididas
+                em 12 modulos
+              </li>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="fade-in">
+              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
+                <ArrowRightIcon />
+                Comunidade para dúvidas
+              </li>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="fade-in">
+              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
+                <ArrowRightIcon />
+                Slides de material exclusivo para revisar cada módulo
+              </li>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="fade-in">
+              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
+                <ArrowRightIcon />
+                Uma mentoria em grupo por videochamada com a professora
+                mensalmente
+              </li>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="fade-in">
+              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
+                <ArrowRightIcon />
+                10 temas com repertório para praticar o aprendizado
+              </li>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll animation="fade-in">
+              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
+                <ArrowRightIcon />
+                Acesso até o Enem
+              </li>
+            </AnimateOnScroll>
+          </ul>
+        </section>
+      )}
     </>
   )
 }
@@ -280,6 +348,7 @@ function Materials() {
   )
 }
 
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 import Image01 from "../../../public/photos/01.jpg"
 import Image02 from "../../../public/photos/02.jpg"
 import Image06 from "../../../public/photos/06.jpg"
@@ -289,7 +358,6 @@ import Image14 from "../../../public/photos/14.jpg"
 import Image15 from "../../../public/photos/15.jpg"
 import Image16 from "../../../public/photos/16.jpg"
 import Image17 from "../../../public/photos/17.jpg"
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 
 const pictures = [
   Image01,
