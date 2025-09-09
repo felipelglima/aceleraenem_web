@@ -152,7 +152,7 @@ export const CourseContent = () => {
 }
 
 export function OnlineCourseContent() {
-  const [section, setSection] = useState<OnlineContentType>("methodology")
+  const [section, setSection] = useState<OnlineContentType>("about")
 
   const sectionName = useMemo(() => {
     switch (section) {
