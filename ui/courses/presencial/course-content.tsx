@@ -301,7 +301,7 @@ export function OnlineCourseContent() {
             <AnimateOnScroll animation="fade-in">
               <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
                 <ArrowRightIcon />
-                Acesso até o Enem
+                Acesso até o final do ano
               </li>
             </AnimateOnScroll>
           </ul>
