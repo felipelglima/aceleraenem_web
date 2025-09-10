@@ -261,11 +261,11 @@ function PricingTitle({ text, amount }: { text: ReactNode; amount: number }) {
     <header className="flex flex-col items-center gap-4">
       <h2 className="text-3xl font-bold text-black">{text}</h2>
 
-      <div className="flex items-center justify-center rounded-lg border border-black/20 px-12 py-2">
-        em até 12X DE
-      </div>
-
       <div className="text-3xl">R$ {amount}</div>
+
+      <div className="flex items-center justify-center rounded-lg border border-black/20 px-12 py-2">
+        em até 12x com juros
+      </div>
     </header>
   )
 }
