@@ -1,7 +1,6 @@
 "use client"
 
-import { useCallback, useState } from "react"
-import { useFormState } from "react-dom"
+import { useActionState, useCallback, useState } from "react"
 
 import { createEnrollment, State } from "./actions"
 
@@ -420,7 +419,7 @@ export function Form({ slug }: { slug: string }) {
     classSlug: slug,
     responsibleEnabled,
   })
-  const [state, action] = useFormState(actionWithClassSlug, initialState)
+  const [state, action] = useActionState(actionWithClassSlug, initialState)
 
   const handleAgeType = useCallback((type: "minor" | "adult") => {
     setAgeType(type)

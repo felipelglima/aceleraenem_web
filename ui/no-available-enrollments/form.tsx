@@ -1,17 +1,13 @@
 "use client"
 
-import { useFormState } from "react-dom"
 import { Input } from "@/ui/Input"
-import { Button } from "@/components/ui/button"
 
-import {
-  showInterestInClassAction,
-  State,
-} from "./show-interest-in-class.action"
 import { SubmitButton } from "@/components/SubmitButton"
+import { useActionState } from "react"
+import { showInterestInClassAction } from "./show-interest-in-class.action"
 
 export const PreStudentForm = () => {
-  const [state, action] = useFormState(showInterestInClassAction, {
+  const [state, action] = useActionState(showInterestInClassAction, {
     success: false,
   })
 

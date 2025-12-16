@@ -21,8 +21,7 @@ import {
 import { showInterestInClassAction } from "@/ui/no-available-enrollments/show-interest-in-class.action"
 import { cn } from "@/ui/utils"
 import NextLink from "next/link"
-import { ReactNode } from "react"
-import { useFormState } from "react-dom"
+import { ReactNode, useActionState } from "react"
 
 const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
   dateStyle: "short",
@@ -97,7 +96,7 @@ export function ClassCard({
 }
 
 function Interested() {
-  const [state, action] = useFormState(showInterestInClassAction, {
+  const [state, action] = useActionState(showInterestInClassAction, {
     success: false,
   })
 
@@ -217,10 +216,10 @@ function OnlinePlans() {
   return (
     <div className="flex w-full items-center justify-center gap-8">
       <Pricing className="border-yellow-500 bg-yellow-500/30">
-        <PricingTitle text="Plano Básico" amount={499} />
+        <PricingTitle text="Plano Básico" amount={899} />
 
         <span className="self-center text-sm text-black/70">
-          Pagamento único
+          Pagamento único, acesso de janeiro à dezembro.
         </span>
 
         <Divider />
@@ -235,6 +234,10 @@ function OnlinePlans() {
               icon: <CheckIcon color="green" />,
               text: "Plataforma de Aulas Online",
             },
+            {
+              icon: <CheckIcon color="green" />,
+              text: "Correção Quinzenal de Redações",
+            },
           ]}
           item={({ icon, text }) => (
             <>
@@ -247,7 +250,7 @@ function OnlinePlans() {
           asChild
           className="bg-yellow-600 font-bold uppercase text-white"
         >
-          <NextLink aria-disabled href={`/curso/matricular?turma=online-2025`}>
+          <NextLink aria-disabled href={`/curso/matricular?turma=online-2026`}>
             Adquirir
           </NextLink>
         </Button>
