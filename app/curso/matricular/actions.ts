@@ -69,10 +69,7 @@ const studentSchema = z
       .superRefine((date, ctx) => {
         let newDate = formatDateInput(date)
         if (!newDate) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.invalid_date,
-            message: "Data inválida",
-          })
+          ctx.addIssue("Data inválida")
         }
       })
       .transform((d) => new Date(d)),
@@ -373,7 +370,8 @@ export async function createEnrollment(
     }
   }
 
-  const referralId = cookies().get("referralId")
+  const cookieStore = await cookies()
+  const referralId = cookieStore.get("referralId")
 
   if (referralId?.value) {
     const referral = await createReferral({
@@ -390,16 +388,16 @@ export async function createEnrollment(
       })
     }
 
-    cookies().delete("referralId")
+    cookieStore.delete("referralId")
   }
 
-  cookies().set(
+  cookieStore.set(
     accessTokenCookieKey,
     enrolledInfo!.authentication.accessToken,
     cookieOptions
   )
 
-  cookies().set(
+  cookieStore.set(
     refreshTokenCookieKey,
     enrolledInfo!.authentication.refreshToken,
     cookieOptions

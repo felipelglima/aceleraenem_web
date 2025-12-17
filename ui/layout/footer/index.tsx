@@ -1,5 +1,5 @@
-import Link from "next/link"
 import Image from "next/image"
+import Link from "next/link"
 
 import { AnimateOnScroll } from "@/ui/animate"
 import { InstagramIcon } from "@/ui/icons"
@@ -10,43 +10,14 @@ import MercadoPago from "@/public/footer/mercado-pago.png"
 import ReclameAqui from "./reclame-aqui"
 
 async function retrieveBusinessDetails() {
-  const CNPJ = process.env.NEXT_PUBLIC_BUSINESS_CNPJ!
-  const ONE_DAY_IN_SECONDS = 60 * 60 * 24
-
-  type Response = {
-    company: {
-      name: string
-    }
-    status: {
-      text: string
-    }
-    alias: string
-    founded: string
-    mainActivity: {
-      text: string
-    }
-  }
-
-  const response = await fetch(`https://open.cnpja.com/office/${CNPJ}`, {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json",
-    },
-    next: {
-      revalidate: ONE_DAY_IN_SECONDS * 30,
-    },
-  })
-
-  const data = (await response.json()) as Response
-
   return {
     name: {
-      default: data.company.name,
-      display: data.alias,
+      default: "ACELERA ENEM CURSOS PREPARATORIOS LTDA",
+      display: "Acelera Enem",
     },
-    status: data.status.text,
-    startDate: new Date(data.founded),
-    activity: data.mainActivity.text,
+    status: "Ativa",
+    startDate: new Date("2023-06-20"),
+    activity: "Cursos preparatórios para concursos",
   }
 }
 

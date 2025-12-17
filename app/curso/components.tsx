@@ -21,7 +21,7 @@ import {
 import { showInterestInClassAction } from "@/ui/no-available-enrollments/show-interest-in-class.action"
 import { cn } from "@/ui/utils"
 import NextLink from "next/link"
-import { ReactNode, useActionState } from "react"
+import { ReactElement, ReactNode, useActionState } from "react"
 
 const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
   dateStyle: "short",
@@ -278,7 +278,7 @@ function PricingItems<T extends { text: string }>({
   item,
 }: {
   items: Array<T>
-  item: (props: T) => JSX.Element
+  item: (props: T) => ReactElement
 }) {
   return (
     <ul className="flex flex-col gap-2">
