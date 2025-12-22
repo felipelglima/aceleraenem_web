@@ -41,9 +41,10 @@ import { Class, stagingHeaders } from "@/lib/api"
 export default async function Page({
   searchParams,
 }: {
-  searchParams: { turma: string }
+  searchParams: Promise<{ turma: string }>
 }) {
-  const enrollingClass = await retrieveClassBySlug(searchParams.turma)
+  const { turma } = await searchParams
+  const enrollingClass = await retrieveClassBySlug(turma)
 
   if (!enrollingClass) {
     return notFound()
@@ -67,14 +68,14 @@ export default async function Page({
         </p>
       )}
 
-      {searchParams.turma !== "online-2025" && (
+      {turma !== "online-2025" && (
         <Callout
           icon={<AlertCircleIcon />}
           content="Você poderá cancelar sua matrícula a qualquer momento."
         />
       )}
 
-      <Form slug={searchParams.turma} />
+      <Form slug={turma} />
     </>
   )
 }

@@ -1,20 +1,21 @@
 "use client"
 
+import { InputMask } from "@react-input/mask"
 import { useId, useState } from "react"
-import ReactInputMask from "react-input-mask"
 
 import { Label } from "./ui/label"
 
-const formatter = Intl.DateTimeFormat("pt-BR", {
-  dateStyle: "short",
-})
-
 function formatDateInput(date: string) {
-  const [day, month, year] = date.replaceAll("_", "").split("/")
+  // Remove caracteres não numéricos exceto a barra
+  const cleaned = date.replace(/[^\d/]/g, "")
+  const [day, month, year] = cleaned.split("/").filter(Boolean)
 
-  if (day.length === 2 && month.length === 2 && year.length === 4) {
-    const date = new Date(`${month}-${day}-${year}`)
-    return date
+  if (day?.length === 2 && month?.length === 2 && year?.length === 4) {
+    const dateObj = new Date(`${month}-${day}-${year}`)
+    // Verifica se a data é válida
+    if (!isNaN(dateObj.getTime())) {
+      return dateObj
+    }
   }
 
   return null
@@ -46,16 +47,18 @@ export function DateField({
     <Label htmlFor={id} className="flex w-full flex-col gap-2">
       {label}
 
-      <ReactInputMask
+      <InputMask
         id={id}
-        mask="99/99/9999"
+        mask="__/__/____"
+        replacement={{ _: /\d/ }}
         name={name}
         placeholder={placeholder}
         className={
           "flex h-10 w-full rounded-xl border border-input bg-background bg-white px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:!ring-0 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
         }
         onChange={(event) => {
-          const date = formatDateInput(event.target.value)
+          const value = event.target.value
+          const date = formatDateInput(value)
 
           if (!date) return
 
@@ -70,7 +73,7 @@ export function DateField({
           }
 
           setError(null)
-          onChange(event.target.value)
+          onChange(value)
         }}
       />
 
