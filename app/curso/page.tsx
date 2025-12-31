@@ -3,7 +3,7 @@ import { Course } from "./components"
 
 export default async function Page() {
   const classes = await listClasses({
-    type: "pre-enroll",
+    type: "classroom",
   })
 
   return <Course classes={classes} type="presencial" />

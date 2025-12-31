@@ -28,10 +28,12 @@ export async function listClasses(query: {
         "Content-Type": "application/json",
         ...stagingHeaders(),
       },
-      next: {
-        revalidate: ONE_MINUTE_IN_SECONDS * 10,
-        tags: ["classes"],
-      },
+      ...(process.env.NODE_ENV === "production" && {
+        next: {
+          revalidate: ONE_MINUTE_IN_SECONDS * 10,
+          tags: ["classes"],
+        },
+      }),
     }
   )
 
