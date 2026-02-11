@@ -30,7 +30,7 @@ export async function listClasses(query: {
       },
       ...(process.env.NODE_ENV === "production" && {
         next: {
-          revalidate: ONE_MINUTE_IN_SECONDS * 10,
+          revalidate: ONE_MINUTE_IN_SECONDS * 1,
           tags: ["classes"],
         },
       }),
