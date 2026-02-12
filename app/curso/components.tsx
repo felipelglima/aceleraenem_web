@@ -194,6 +194,16 @@ export function Course({
       </section> */}
 
       <ul className="flex max-h-[600px] w-full flex-col items-center justify-start gap-6 overflow-auto lg:flex-row">
+        {type === "presencial" &&
+          classes.map((props) => (
+            <li
+              key={props.name}
+              className="flex h-full w-max flex-col gap-4 rounded-xl border border-zinc-300 p-6"
+            >
+              <ClassCard {...props} />
+            </li>
+          ))}
+
         {type === "online" && <OnlinePlans amount={classes[0].price} />}
       </ul>
 
