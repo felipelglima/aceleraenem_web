@@ -194,17 +194,7 @@ export function Course({
       </section> */}
 
       <ul className="flex max-h-[600px] w-full flex-col items-center justify-start gap-6 overflow-auto lg:flex-row">
-        {type === "presencial" &&
-          classes.map((props) => (
-            <li
-              key={props.name}
-              className="flex h-full w-max flex-col gap-4 rounded-xl border border-zinc-300 p-6"
-            >
-              <ClassCard {...props} />
-            </li>
-          ))}
-
-        {type === "online" && <OnlinePlans />}
+        {type === "online" && <OnlinePlans amount={classes[0].price} />}
       </ul>
 
       <Interested />
@@ -212,11 +202,11 @@ export function Course({
   )
 }
 
-function OnlinePlans() {
+function OnlinePlans({ amount }: { amount: number }) {
   return (
     <div className="flex w-full items-center justify-center gap-8">
       <Pricing className="border-yellow-500 bg-yellow-500/30">
-        <PricingTitle text="Plano Básico" amount={899} />
+        <PricingTitle text="Plano Básico" amount={amount} />
 
         <span className="self-center text-sm text-black/70">
           Pagamento único, acesso de janeiro à dezembro.
