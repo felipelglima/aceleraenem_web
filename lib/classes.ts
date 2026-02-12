@@ -1,7 +1,5 @@
 import { API_URL, Class, stagingHeaders } from "./api"
 
-const ONE_MINUTE_IN_SECONDS = 60
-
 export type ClassWithAvailability = Class & {
   available: boolean
   enrollments: number
@@ -24,16 +22,11 @@ export async function listClasses(query: {
     `${API_URL}/classes?${searchParams.toString()}`,
     {
       method: "GET",
+      cache: "no-store",
       headers: {
         "Content-Type": "application/json",
         ...stagingHeaders(),
       },
-      ...(process.env.NODE_ENV === "production" && {
-        next: {
-          revalidate: ONE_MINUTE_IN_SECONDS * 1,
-          tags: ["classes"],
-        },
-      }),
     }
   )
 

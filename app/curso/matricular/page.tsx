@@ -4,10 +4,7 @@ import { notFound } from "next/navigation"
 
 async function retrieveClassBySlug(slug: string) {
   const response = await fetch(`${process.env.API_URL}/classes?slug=${slug}`, {
-    next: {
-      revalidate: 60 * 10,
-      tags: ["classes"],
-    },
+    cache: "no-store",
     headers: {
       ...stagingHeaders(),
     },

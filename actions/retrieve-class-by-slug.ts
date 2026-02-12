@@ -7,6 +7,7 @@ export const retrieveClassBySlugAction = async ({ slug }: { slug: string }) => {
       ...stagingHeaders(),
     },
     method: "GET",
+    cache: "no-store",
   })
 
   type APIResponse =

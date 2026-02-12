@@ -13,10 +13,7 @@ export async function getTotalStudentsCount() {
       "Content-Type": "application/json",
       ...stagingHeaders(),
     },
-    next: {
-      revalidate: 60,
-      tags: ["students"],
-    },
+    cache: "no-store",
   })
 
   const { data } = (await response.json()) as Response

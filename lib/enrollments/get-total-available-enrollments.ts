@@ -13,10 +13,7 @@ export async function getTotalAvailableEnrollments() {
       "Content-Type": "application/json",
       ...stagingHeaders(),
     },
-    next: {
-      revalidate: 60,
-      tags: ["enrollments"],
-    },
+    cache: "no-store",
   })
 
   const { data } = (await response.json()) as Response
