@@ -234,10 +234,6 @@ function OnlinePlans({ amount }: { amount: number }) {
               icon: <CheckIcon color="green" />,
               text: "Plataforma de Aulas Online",
             },
-            {
-              icon: <CheckIcon color="green" />,
-              text: "Correção Quinzenal de Redações",
-            },
           ]}
           item={({ icon, text }) => (
             <>
