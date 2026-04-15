@@ -272,29 +272,7 @@ export function OnlineCourseContent() {
             <AnimateOnScroll animation="fade-in">
               <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
                 <ArrowRightIcon />
-                Comunidade para dúvidas
-              </li>
-            </AnimateOnScroll>
-
-            <AnimateOnScroll animation="fade-in">
-              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
-                <ArrowRightIcon />
                 Slides de material exclusivo para revisar cada módulo
-              </li>
-            </AnimateOnScroll>
-
-            <AnimateOnScroll animation="fade-in">
-              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
-                <ArrowRightIcon />
-                Uma mentoria em grupo por videochamada com a professora
-                mensalmente
-              </li>
-            </AnimateOnScroll>
-
-            <AnimateOnScroll animation="fade-in">
-              <li className="flex items-center gap-2 text-sm font-medium lg:text-xl">
-                <ArrowRightIcon />
-                10 temas com repertório para praticar o aprendizado
               </li>
             </AnimateOnScroll>
 
